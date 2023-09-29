@@ -1,0 +1,25 @@
+/* 文字の色の変更 */
+h1 {
+  color: #ff0000;
+}
+
+/* 文字の大きさ */
+h1 {
+  font-size: 40px;
+}
+
+/* 文字の種類 */
+h1 {
+  font-family: serif;
+}
+
+/* 背景色 */
+h1 {
+  background-color: #f3f372;
+}
+
+/* 横幅、高さ */
+h1 {
+  height: 80px;
+  width: 200px;
+}
