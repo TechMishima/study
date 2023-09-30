@@ -6,3 +6,6 @@
 
 __参照URL__
 https://www.sejuku.net/blog/81688
+
+### JavaScriptについて
+スクリプト言語である・・・可読性が高く比較的簡単に書きやすい言語の総称
