@@ -62,3 +62,38 @@ console.log(Math.floor(5));
 console.log(Math.floor(-5.05));
 // Expected output: -6
 ```
+
+### 日付と時間
+```
+//今日の日付データを変数hidukeに格納
+var hiduke=new Date(); 
+
+//年・月・日・曜日を取得する
+var year = hiduke.getFullYear();
+var month = hiduke.getMonth()+1;
+var week = hiduke.getDay();
+var day = hiduke.getDate();
+
+var yobi= new Array("日","月","火","水","木","金","土");
+
+console.log("西暦"+year+"年"+month+"月"+day+"日 "+yobi[week]+"曜日");
+```
+- new Date()・・・現在の日付＆時刻の取得
+- .getFullYear()・・・4桁の西暦年を取得
+- .getMonth()・・・月を取得します。<b>値は実際より1つ少ない数</b>
+- .getDay()・・・曜日を取得します。日曜日が0で、月曜が1，…,土曜が6
+- .getDate()・・・日にちを取得
+```
+//時刻データを取得して変数jikanに格納する
+var jikan= new Date();
+
+//時・分・秒を取得する
+var hour = jikan.getHours();
+var minute = jikan.getMinutes();
+var second = jikan.getSeconds();
+
+console.log(hour+"時",+minute+"分"+second+"秒");
+```
+- .getHours()・・・時刻データの中から時間を取得
+- .getMinutes()・・・時刻データの中から分を取得
+- .getSeconds()・・・時刻データの中から秒を取得
