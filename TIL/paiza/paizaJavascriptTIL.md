@@ -35,3 +35,30 @@ process.stdout.write("<h1><b>モンスター</b>があらわれた</h1>");
 ```
 var number = parseInt(Math.random() * 6) + 1;
 ```
+
+### 計算の優先順位
+高い ( )<br>
+｜ * / %<br>
+低い + -
+```
+"西暦" + 2000 + 5 + "年"
+=>西暦20005年
+```
+上記になる理由は先に”西暦+2000”の計算が行われるため、2000が文字列として扱われるため。
+
+### Math.floor
+
+指定された数値以下の最大の整数を表す。
+```
+console.log(Math.floor(5.95));
+// Expected output: 5
+
+console.log(Math.floor(5.05));
+// Expected output: 5
+
+console.log(Math.floor(5));
+// Expected output: 5
+
+console.log(Math.floor(-5.05));
+// Expected output: -6
+```
