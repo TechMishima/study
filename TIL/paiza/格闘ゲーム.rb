@@ -1,4 +1,3 @@
-https://paiza.jp/works/mondai/class_primer/class_primer__fighting_game
 # データ取得
 line = gets.split(" "); N = line[0].to_i; K = line[1].to_i
 
@@ -22,7 +21,7 @@ K.times do
     line = gets.split(" ")
     playerA = players[line[0].to_i - 1]
     playerB = players[line[2].to_i - 1]
-    if playerA[:hp] > 0 || playerB[:hp] > 0
+    if (playerA[:hp] > 0) && (playerB[:hp] > 0)
         # Aのフレームと攻撃
         if line[1] == "1"
             attackA = playerA[:attack1]
@@ -56,14 +55,20 @@ K.times do
             if players[line[0].to_i - 1][:attack3] != 0
                 players[line[0].to_i - 1][:attack3] += 5
             end
-            if players[line[0].to_i - 1][:frame1] != 0
+            if players[line[0].to_i - 1][:frame1] >= 4
                 players[line[0].to_i - 1][:frame1] -= 3
+            elsif players[line[0].to_i - 1][:frame1] >= 1
+                players[line[0].to_i - 1][:frame1] = 1
             end
-            if players[line[0].to_i - 1][:frame2] != 0
+            if players[line[0].to_i - 1][:frame2] >= 4
                 players[line[0].to_i - 1][:frame2] -= 3
+            elsif players[line[0].to_i - 1][:frame2] >= 1
+                players[line[0].to_i - 1][:frame2] = 1
             end
-            if players[line[0].to_i - 1][:frame3] != 0
+            if players[line[0].to_i - 1][:frame3] >= 4
                 players[line[0].to_i - 1][:frame3] -= 3
+            elsif players[line[0].to_i - 1][:frame3] >= 1
+                players[line[0].to_i - 1][:frame3] = 1
             end
         end
         if frameB == 0 && attackB == 0
@@ -76,22 +81,35 @@ K.times do
             if players[line[2].to_i - 1][:attack3] += 0
                 players[line[2].to_i - 1][:attack3] += 5
             end
-            if players[line[2].to_i - 1][:frame1] != 0
+            if players[line[2].to_i - 1][:frame1] >= 4
                 players[line[2].to_i - 1][:frame1] -= 3
+            elsif players[line[2].to_i - 1][:frame1] >= 1
+                players[line[2].to_i - 1][:frame1] = 1
             end
-            if players[line[2].to_i - 1][:frame2] != 0
+            if players[line[2].to_i - 1][:frame2] >= 4
                 players[line[2].to_i - 1][:frame2] -= 3
+            elsif players[line[2].to_i - 1][:frame2] >= 1
+                players[line[2].to_i - 1][:frame2] = 1
             end
-            if players[line[2].to_i - 1][:frame3] != 0
+            if players[line[2].to_i - 1][:frame3] >= 4
                 players[line[2].to_i - 1][:frame3] -= 3
+            elsif players[line[2].to_i - 1][:frame3] >= 1
+                players[line[2].to_i - 1][:frame3] = 1
             end
         end
         #AvsBの計算（戦い）
-        if frameA < frameB
-            players[line[2].to_i - 1][:hp] -= attackA
-        elsif frameB < frameA
+        if frameA == 0
             players[line[0].to_i - 1][:hp] -= attackB
+        elsif frameB == 0
+            players[line[2].to_i - 1][:hp] -= attackA
+        else
+            if frameA < frameB
+                players[line[2].to_i - 1][:hp] -= attackA
+            elsif frameB < frameA
+                players[line[0].to_i - 1][:hp] -= attackB
+            end
         end
+        
     end
 end
 
