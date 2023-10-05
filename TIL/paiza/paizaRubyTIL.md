@@ -9,3 +9,10 @@ puts(5.abs)    # 5<br>
 puts(-5.abs)   # 5
 
 .absを使用する。差を求めるときに使用する。
+
+### べき乗について
+https://www.tairaengineer-note.com/ruby-power-operator/
+```
+2 ** 3
+```
+上記だと2の3乗で8が出力される
