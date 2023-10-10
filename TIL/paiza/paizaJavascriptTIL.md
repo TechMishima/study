@@ -107,3 +107,58 @@ count = count + 1
 count += 1
 count++
 ```
+
+### 配列
+配列に要素を追加
+```
+team[team.length] = "商人";
+team.push("狩人");
+```
+配列の要素数
+```
+console.log(team.length);
+```
+
+### 繰り返し処理
+- for
+```
+for (var index = 0; index < team.length; index++) {
+  console.log(team[index]);
+}
+```
+
+- for in (インデックスの取得)
+<br>配列に存在するすべてのインデックスを取得できる
+<br>必ずしも0から順番に取得できるとは限らない(順番が重要ならば使わないほうが良い)
+```
+for (var index in team) {
+  console.log(team[index]);
+}
+```
+
+- for of (要素の取得)
+<br>配列の要素をすべて取得できる
+<br>ECMA Scriptが使える環境でのみ可能
+```
+for (var value of team) {
+  console.log(value);
+}
+```
+- ECMAScript(エクマスクリプト)
+<br>ECMAScriptとは、国際的な標準化団体が策定しているJavaScriptの標準規格。
+<br>当時普及していた、Netscape 社の「Netscape Navigator」というブラウザと、
+Microsoft 社の「Internet Explorer」のどちらでも使用できるようにした規格。
+https://blog.isystk.com/contents/js-school/2067/
+
+- forEach(要素を昇順に取得)
+```
+team.forEach(value => {
+    console.log(value);
+})
+```
+
+### 文字列の分割 split
+「,」の部分で分けて配列として格納する。
+```
+var values = input_string.split(",");
+```
