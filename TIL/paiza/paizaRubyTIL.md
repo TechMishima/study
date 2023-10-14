@@ -1,7 +1,7 @@
 # ToDo
-クラス・構造体メニュー
+Aランクレベルアップメニュー
 <br>
-https://paiza.jp/works/mondai/class_primer/problem_index?language_uid=ruby
+https://paiza.jp/works/mondai/a_rank_level_up_problems/problem_index?language_uid=ruby
 
 ## Til
 ### 絶対値の取り方

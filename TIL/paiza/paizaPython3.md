@@ -1,8 +1,7 @@
-https://paiza.jp/pages/works/stories/crank_python
+https://paiza.jp/works/python3/primer/beginner-python1
 
 # ToDo
-https://paiza.jp/pages/works/stories/crank_python
-
+https://paiza.jp/pages/works/stories/crank_python<br>
 # Python参考ページ
 https://docs.python.org/ja/3/reference/index.html<br>
 http://qiita.com/rohinomiya/items/aab6b16d1a470871713c
@@ -11,6 +10,9 @@ http://qiita.com/rohinomiya/items/aab6b16d1a470871713c
 ## Pyhonについて
 - 開発しやすいスクリプト言語である。
 - 統計処理・人口知能の分野で活躍している。
+- 本格的なWebサービスでも活躍されている。
+- YoutubeはPythonで作られている。
+- 誰が書いても同じような書き方になる。
 
 ## paiza
 ### 出力方法
