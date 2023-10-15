@@ -83,3 +83,41 @@ font-family: 候補1,候補2,候補3;
   text-align: right;
 }
 ```
+
+### line-heightプロパティ
+行の高さを指定
+```
+.text {
+  line-height: 200px;
+}
+```
+
+### text-decorationプロパティ
+文字の罫線を指定
+```
+.text {
+  text-decoration: none; /* 装飾なし */
+  text-decoration: underline; /* 下線を引く */
+  text-decoration: overline; /* 上線を引く */
+  text-decoration: line-through; /* 取り消し線を引く */
+}
+```
+
+### text-indentプロパティ
+頭の字下げを行う
+```
+.text {
+  text-indent: 1em;
+}
+```
+
+### text-transformプロパティ
+大文字と小文字の変換
+```
+.text {
+  text-transform: none;
+  text-transform: capitalize; /* 先頭文字を大文字に変換 */
+  text-transform: uppercase; /* 全ての文字を大文字に変換 */
+  text-transform: lowercase; /* 全ての文字を小文字に変換 */
+}
+```
