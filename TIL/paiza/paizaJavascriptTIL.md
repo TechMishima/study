@@ -162,3 +162,10 @@ team.forEach(value => {
 ```
 var values = input_string.split(",");
 ```
+
+### (配列) 要素の結合 join
+```
+var myArray = ['apple', 'banana', 'cherry'];
+var result = myArray.join(':');
+console.log(result); // "apple:banana:cherry"
+```
