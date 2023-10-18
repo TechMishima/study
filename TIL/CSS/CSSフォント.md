@@ -1,8 +1,3 @@
-# ToDo
-プロパティの学習<br>
-https://www.tagindex.com/stylesheet/properties/
-<br>上記リンクを実際に動かしながら試す。
-
 # TIL
 ## プロパティ
 ### font-sizeプロパティ
@@ -119,5 +114,22 @@ font-family: 候補1,候補2,候補3;
   text-transform: capitalize; /* 先頭文字を大文字に変換 */
   text-transform: uppercase; /* 全ての文字を大文字に変換 */
   text-transform: lowercase; /* 全ての文字を小文字に変換 */
+}
+```
+
+### letter-spacingプロパティ
+文字の間隔の指定
+<br>負の値を設定することで、間隔を詰めることができる。
+```
+.text {
+  letter-spacing: 0.5em;
+}
+```
+
+### word-spacingプロパティ
+単語の間隔の指定
+```
+.text {
+  word-spacing: 1em;
 }
 ```

@@ -7,6 +7,7 @@ https://docs.python.org/ja/3/reference/index.html<br>
 http://qiita.com/rohinomiya/items/aab6b16d1a470871713c
 
 # TIL
+
 ## Pyhonについて
 - 開発しやすいスクリプト言語である。
 - 統計処理・人口知能の分野で活躍している。
