@@ -2,9 +2,13 @@ https://paiza.jp/works/python3/primer/beginner-python1
 
 # ToDo
 https://paiza.jp/pages/works/stories/crank_python<br>
+### 配列
+https://note.nkmk.me/python-list-append-extend-insert/
 # Python参考ページ
 https://docs.python.org/ja/3/reference/index.html<br>
-http://qiita.com/rohinomiya/items/aab6b16d1a470871713c
+http://qiita.com/rohinomiya/items/aab6b16d1a470871713c<br>
+### Python note
+https://note.nkmk.me/python/
 
 # TIL
 
