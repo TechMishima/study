@@ -67,3 +67,76 @@ rn ：表示を改行させます<br>
 %x, %X : 数値を16進数で出力<br>
 %e : 9.999e+10のような指数表現で数値を出力<br>
 %% : %そのものを出力（%のエスケープ シーケンス）
+
+### sliceメソッド
+https://www.sejuku.net/blog/14690<br>
+配列、文字列、特定の条件でハッシュで使用できる。<br>
+
+配列(インデックスを使用したほうがはやい？)
+```
+array = ["Ruby","Python","Java"]
+p array[0]
+p array.slice(0)
+
+結果
+"Ruby"
+"Ruby"
+```
+配列(最後の番号を指定する)
+```
+array = ["Ruby","Python","Java"]
+p array[-1]
+p array.slice(-1)
+
+結果
+"Java"
+"Java"
+```
+配列(範囲の指定)
+```
+array = ["Ruby","Python","Java"]
+p array[0,2]
+p array.slice(0,2)
+p array[0..3]
+p array.slice(0..3)
+
+結果
+["Ruby","Python"]
+["Ruby","Python"]
+["Ruby","Python","Java"]
+["Ruby","Python","Java"]
+```
+文字列
+```
+p "ruby".slice(0) 
+p "ruby"[0]
+
+結果
+"r"
+"r"
+```
+文字列（範囲で指定）<br>
+範囲の指定の際は、0,3と0..3では異なるので注意！！
+```
+p "ruby".slice(0,3) 
+p "ruby".slice(0..3)
+p "ruby"[0,3]
+p "ruby"[0..3]
+
+結果
+"rub"
+"ruby"
+"rub"
+"ruby"
+```
+ハッシュ（外部ライブラリー使用）
+```
+require 'active_support'
+hash = {"Ruby":"Rails","Python":"Django","PHP":"CakePHP"}
+p hash.slice(:Ruby,:Python)
+p hash.slice(:Ruby,:PHP)
+
+結果
+{:Ruby=>"Rails", :Python=>"Django"}
+{:Ruby=>"Rails", :PHP=>"CakePHP"}
+```
