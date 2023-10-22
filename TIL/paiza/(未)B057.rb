@@ -19,6 +19,7 @@ end
 
 puts lane
 
+
 # アルゴリズム
 Answer = 0
 while (M > 0) do
