@@ -140,3 +140,34 @@ p hash.slice(:Ruby,:PHP)
 {:Ruby=>"Rails", :Python=>"Django"}
 {:Ruby=>"Rails", :PHP=>"CakePHP"}
 ```
+
+### 要素の取り出し、追加
+https://magazine.techacademy.jp/magazine/30065<br>
+1. 先頭要素の取り出し shift
+```
+arr = [1,2,3,4,5]
+a1 = arr.shift
+
+p a1 # => 1
+p arr # => [2,3,4,5]
+```
+2. 先頭要素の追加 unshift
+```
+arr = [2, 3, 4]
+arr.unshift(1) # 配列の先頭に1を追加
+puts arr # 出力: [1, 2, 3, 4]
+```
+3. 最後尾要素の取り出し pop
+```
+arr = [1,2,3,4,5]
+a1 = arr.pop
+
+p a1 # => 5
+p arr # => [1,2,3,4]
+```
+4. 最後尾要素の追加 push
+```
+arr = [1, 2, 3]
+arr.push(4) # 配列の最後尾に4を追加
+puts arr # 出力: [1, 2, 3, 4]
+```
