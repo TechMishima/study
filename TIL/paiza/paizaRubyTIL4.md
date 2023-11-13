@@ -1,6 +1,6 @@
 # ToDo
 Aランクアップ陣取りゲーム
-https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_camp_boss
+https://paiza.jp/works/mondai/a_rank_level_up_problems/a_rank_camp_boss<br>
 下記コードの解読
 
 ```
@@ -53,4 +53,18 @@ end
 
 puts teri[:A].to_s + ' ' + teri[:B].to_s
 puts teri.max_by { |key, val| val }[0]
+```
+# アルゴリズム解読
+## 1~3行目
+```
+h, w = gets.split.map(&:to_i)
+n = gets.chomp
+board = h.times.map { gets.chomp.split('') }
+```
+データの取得を行う
+
+## 4~5行目
+```
+names = ['A'.to_sym, 'B'.to_sym]
+players = { A: [[0, 0]], B: [[0, 0]] }
 ```
