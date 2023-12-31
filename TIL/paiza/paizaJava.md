@@ -63,3 +63,59 @@ int number = (int)60.5;
 ```
 ath.random()というメソッドを呼び出すと、0から1の間のランダムな数値が戻り値となります。
 ```
+## IF文による条件式
+```
+public class Main {
+    public static void main(String[] args) {
+        int number = 1;
+        if (条件式1) {
+            // 条件式1が成立したときの処理
+        } else if (条件式2) {
+            // 条件式2が成立したときの処理
+        } else {
+            // 条件式がどれも成立しなかったときの処理
+        }
+    }
+}
+```
+
+## 論理(真偽値)を変数に代入
+```
+public class Main {
+    public static void main(String[] args) {
+        int number = 1;
+        boolean flag = number == 1;
+        if (flag) {
+            System.out.println("スキ！");   //条件が成立したときの処理
+        } else {
+            System.out.println("キライ");   //条件が成立しなかったときの処理
+        }
+        System.out.println(flag);
+    }
+}
+```
+## データの形（発展）
+整数のデータ
+```
+- byte： 8ビット整数　-128から127までの整数
+- short： 16ビット整数　-32768から32767
+- int： 32ビット整数　-2147483648 から2147483647
+- long：　64ビット整数　-9223372036854775808から9223372036854775807まで
+```
+実数のデータ
+```
+- float：32ビット単精度小数点
+- double：64ビット倍精度小数点
+```
+## データの変換（キャスト）
+実数から整数
+```
+double number = 3.14;
+System.out.print((int)number);
+```
+文字列から整数、実数に変換
+```
+String text = "123";
+System.out.println(Integer.parseInt(text));
+System.out.println(Double.parseDouble(text));
+```
