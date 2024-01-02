@@ -119,3 +119,147 @@ String text = "123";
 System.out.println(Integer.parseInt(text));
 System.out.println(Double.parseDouble(text));
 ```
+
+## while 繰り返し処理
+```
+// カウンタ変数の初期化
+while (条件式) {
+    // 繰り返し処理
+    // カウンタ変数の更新
+}
+```
+例文
+```
+public class Main {
+    public static void main(String[] args) {
+        int number = 0;
+        while (number <= 15) {
+            System.out.println(number);
+            number += 1;
+        }
+
+    }
+}
+```
+
+## for 繰り返し処理
+```
+for (初期化式; 条件式; 変化式){
+  // 繰り返しの中で実行される処理
+  ...
+}
+```
+例文
+```
+public class Main {
+    public static void main(String[] args) {
+        for (int i = 0; i <= 15; i++) {
+            System.out.println(i);
+        }
+
+    }
+}
+```
+## 標準入力
+文字列 nextメソッド
+```
+// 標準入力
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String line = sc.next();
+        System.out.println(line);
+    }
+}
+```
+数値 nextIntメソッド
+```
+// 標準入力
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int line = sc.nextInt();
+        System.out.println(line);
+    }
+}
+```
+
+## 配列
+配列の作成
+```
+String[] team = {"戦士", "忍者"};
+```
+配列の出力
+```
+System.out.println(team[0]);
+```
+配列の追加
+```
+String player_1 = "勇者";
+String[] team = {"戦士", "忍者", player_1};
+System.out.println(team[2]);
+```
+## 配列を全部出力 foreach
+```
+public class Main {
+    public static void main(String[] args) {
+        String[] array = {"戦士","侍","僧侶","魔法使い"};
+        // この下で、arrayを出力してみよう
+        for (String element : array) {
+            System.out.println(element);
+        }
+    }
+}
+```
+インポートすれば下記でも可
+```
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        String[] array = {"戦士", "侍", "僧侶", "魔法使い"};
+
+        // ラムダ式を使用して要素を出力
+        Arrays.asList(array).forEach(data -> {
+            System.out.println(data);
+        });
+    }
+}
+```
+```
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+
+        // コレクションを作成
+        var myList = new ArrayList<String>();
+        myList.add("りんご");
+        myList.add("ぶどう");
+        myList.add("みかん");
+
+        // ループで内容をすべて表示
+        myList.forEach(value -> {
+            System.out.println("データ：" + value);
+        });
+    }
+}
+```
+## 配列の長さ length (疑似foreach)
+配列の長さはlengthを使う
+```
+String[] team = {"勇者", "戦士", "魔法使い"};
+System.out.println(team.length);
+
+//3が出力される。
+```
+上記を使用してfor文を作成するとfor-eachのようなコードを作成できる。
+```
+for (int i = 0; i < team.length; i++) {
+    System.out.println(team[i]);
+}
+```
