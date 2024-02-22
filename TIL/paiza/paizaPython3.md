@@ -68,3 +68,43 @@ for i in range(5):
 ```
 len("Hello") # 5
 ```
+
+### リスト
+リストとは配列のこと。pythonではリストと呼ばれる。
+```
+番号でデータを参照
+print(team[0])
+
+番号を計算で求める
+print(team[n + 1])
+
+データの個数
+print(len(team))
+```
+リストの指定
+```
+team = ["勇者", "魔法使い"]
+```
+リストの操作
+```
+末尾に要素の追加
+team.append("戦士")
+
+要素の上書き
+team[0] = "ドラゴン"
+
+要素の削除
+team.pop(0)
+```
+標準入力 分割してリストに格納する split関数
+```
+カンマで区切って格納する方法
+line = input().rstrip().split(",")
+```
+標準入力 複数行の入力データ
+```
+import sys
+array = []
+for line in sys.stdin.readlines():
+    array.append(rstrip())
+```
