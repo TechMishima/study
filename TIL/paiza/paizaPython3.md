@@ -196,3 +196,29 @@ numbers = [1 for i in range(10)]
 ```
 numbers = [i * 2 for i in range(10)]
 ```
+### 条件分岐 and or
+```
+for j,area in enumerate(line):
+        if (i % 2 == 0 or j % 3 == 0) and area == "森":
+            print("＋", end="")
+        else:
+            print(area, end="")
+```
+
+### 関数
+作成と呼び出し
+```
+def say_hello():
+    print("hello world")
+
+say_hello()
+say_hello()
+```
+引数と戻り値の追加
+```
+def sum(x, y):
+    return x + y
+
+num1 = sum(3, 4)
+print(num1)
+```
