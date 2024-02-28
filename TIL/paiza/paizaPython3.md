@@ -222,3 +222,90 @@ def sum(x, y):
 num1 = sum(3, 4)
 print(num1)
 ```
+### スコープについて(rubyとの違い)
+関数外で定義した変数も使用できる。（違い<br>
+関数内で再度定義した変数は外で使用できない
+```
+a = "apple"
+
+def message():
+    print(a)
+
+message()
+```
+
+### グローバル変数とローカル変数について
+グローバル変数は関数外で定義、ローカル変数は関数内で定義する。
+### ローカル変数
+```
+def my_function():
+    local_variable = 10
+    print(local_variable)
+
+my_function()
+# print(local_variable)  # これはエラーになる。関数外でのアクセスはできない。
+```
+### グローバル変数
+関数内で使用することは推奨されていない。
+```
+global_variable = "global value"
+
+def my_function():
+    print(global_variable)
+
+my_function()
+print(global_variable)  # 関数外でもアクセス可能
+```
+### 関数内でグローバル変数を宣言する
+```
+global_variable = "global value"
+
+def update_global_variable():
+    global global_variable
+    global_variable = "updated value"
+
+update_global_variable()
+print(global_variable)  # "updated value" が出力される
+```
+
+## 引数
+### デフォルト値
+引数が足りない時に参照する
+```
+def introduce(greeting, name = "村人"):
+    print("私は" + name + "です。" + greeting)
+
+introduce("こんにちは", "勇者")
+introduce("こんにちは")
+```
+
+### 可変長引数
+引数が多い時に参照する
+```
+def introduce(greeting, *names):
+    for name in names:
+        print("私は" + name + "です。" + greeting)
+
+introduce("こんにちは", "勇者", "村人", "兵士")
+```
+
+### 可変長引数 - 辞書
+キーと値を使用して、参照する
+```
+def introduce(**people):
+    for name, greeting in people.items():
+        print("私は" + name + "です。" + greeting)
+
+introduce(hero = "はじめまして", villager = "こんにちは", soldier = "よろしくお願いします")
+```
+### キーワード引数
+デフォルト値を複数使用するときにラベルをつけられる
+```
+def say_hello(greeting = "hello", target = "world"):
+    print(greeting + " " + target)
+
+say_hello()
+say_hello("こんにちは", "皆さん")
+say_hello(greeting = "ネコ先生", target = "皆さん")
+say_hello(target = "ネコ先生", greeting = "おはようございます")
+```
