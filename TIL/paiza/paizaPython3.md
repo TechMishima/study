@@ -309,3 +309,140 @@ say_hello("こんにちは", "皆さん")
 say_hello(greeting = "ネコ先生", target = "皆さん")
 say_hello(target = "ネコ先生", greeting = "おはようございます")
 ```
+
+## クラスについて
+### オブジェクトとは
+変数とメソッドをセットにしたもの。クラスからオブジェクトを作って利用する。<br>
+
+クラス: オブジェクトの設計図<br>
+オブジェクト: クラスから作成したもの<br>
+
+### クラスの作成
+引数にselfをいれる<br>
+クラス名は頭大文字で命名する<br>
+```
+class Player:
+    def walk(self):
+        print("勇者は荒野を歩いていた")
+```
+### オブジェクトの作成
+```
+player1 = Player()
+```
+### メソッドの呼び出し
+```
+player1.walk()
+```
+### コンストラクタ
+オブジェクト作成時に自動的に呼び出されるメソッド<br>
+rubyでいうinitializeメソッドの事
+```
+class Player:
+    def __init__(self, job):
+        self.job = job
+
+    def walk(self):
+        print(self.job + "は荒野を歩いていた")
+
+player1 = Player("戦士")
+player1.walk()
+```
+### インスタンス変数
+上記のself.jobがインスタンス変数と呼ばれる。<br>
+インスタンス変数は、インスタンスが持つ変数。<br>
+インスタンス変数は、インスタンスがある限りデータが保持される。<br>
+
+### クラス変数
+クラス変数を宣言したクラスのインスタンス全てで共有して利用できる変数。
+
+### デフォルトで設定されているメソッドについて
+capitalizeメソッド・・・全部小文字にしてくれるメソッド<br>
+upperメソッド・・・全部大文字にしてくれるメソッド<br>
+removeメソッド・・・特定の要素をリストから削除するメソッド<br>
+appendメソッド・・・要素を追加するメソッド<br>
+上記の他にもさまざまなメソッドが用意されている。
+
+```
+text = "pYthon"
+print(text)
+print(text.capitalize())
+print(text.upper())
+
+players = "勇者,戦士,魔法使い,忍者"
+list = players.split(",")
+print(list)
+list.remove("忍者")
+print(list)
+list.append("霧島")
+print(list)
+```
+islowerメソッド<br>
+全部小文字ならTrueを、違うならFalseを返す。
+```
+msg.islower()
+```
+## アクセス制限について
+メソッドの前にアンダーバーをふたつ(__)つけるとプライベートメソッドになる。<br>
+クラスの外から呼び出すことはできなくなる。<br>
+```
+class Player:
+    def __init__(self, job, weapon):
+        self.job = job
+        self.weapon = weapon
+
+    def walk(self):
+        print(self.job + "は荒野を歩いていた")
+        self.__attack("スライム")
+
+    def __attack(self, enemy):
+        print(self.weapon + "で" + enemy + "を攻撃")
+
+
+player1 = Player("戦士", "剣")
+player1.walk()
+# player1.__attack("スライム")
+```
+変数の前にアンダーバーをふたつ(__)つけるとプライベート変数、またはプライベートプロパティになる。<br>
+クラスの外から呼び出すことはできなくなる。<br>
+```
+class Player:
+    def __init__(self, job, weapon):
+        self.job = job
+        self.__weapon = weapon
+
+    def walk(self):
+        print(self.job + "は荒野を歩いていた")
+        self.__attack("スライム")
+
+    def __attack(self, enemy):
+        print(self.__weapon + "で" + enemy + "を攻撃")
+
+
+player1 = Player("戦士", "剣")
+player1.walk()
+# print(player1.__weapon)
+```
+### クラスの継承
+クラスの継承は、既存のクラスを使用して新しいクラスを作成する機能。<br>
+子クラスは、親クラスの属性やメソッドを継承し、同時に独自の属性やメソッドを追加できる。<br>
+親クラスの事をスーパークラス、子クラスの事をサブクラスと呼ぶこともある。<br>
+### メソッドのオーバーライド
+子クラスが親クラスのメソッドを再定義することを指します。
+
+### 継承の記述
+```
+class Box:
+    def __init__(self, item):
+        self.item = item
+
+    def open(self):
+        print("宝箱を開いた。" + self.item + "を手に入れた。")
+
+class JewelryBox(Box):
+    def look(self):
+        print("宝箱はキラキラと輝いている。")
+
+jewelrybox = JewelryBox("魔法の指輪")
+jewelrybox.look()
+jewelrybox.open()
+```
