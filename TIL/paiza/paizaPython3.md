@@ -446,3 +446,85 @@ jewelrybox = JewelryBox("魔法の指輪")
 jewelrybox.look()
 jewelrybox.open()
 ```
+
+### オーバーライドの記述
+```
+class Box:
+    def __init__(self, item):
+        self.item = item
+
+    def open(self):
+        print("宝箱を開いた。" + self.item + "を手に入れた。")
+
+class MagicBox(Box):
+    def look(self):
+        print("宝箱は、妖しく輝いている。")
+
+    def open(self):
+        print("宝箱を開いた。" + self.item + "が襲ってきた！")
+
+magicbox = MagicBox("モノマネモンスター")
+magicbox.look()
+magicbox.open()
+```
+### ネームマングリング
+プログラム内でクラスの属性やメソッドの名前を変更する手法のこと
+```
+wizard._Wizard__spell()
+```
+
+### スーパークラスのメソッドの呼び出し
+```
+class Wizard(Player):
+    def __init__(self):
+        super().__init__("魔法使い")
+```
+
+### クラス関数
+オブジェクト間で共通して利用できる変数のこと。
+```
+class Player:
+    charactor_count = 0
+
+    def __init__(self, name):
+        self.name = name
+        Player.charactor_count += 1
+        print(str(Player.charactor_count) + "番目のプレイヤー、" + self.name + "が登場した。")
+
+```
+
+### クラスメソッド
+オブジェクト間で共通して利用できるメソッドのこと。
+```
+class Player:
+    __charactor_count = 0
+
+    def summary(cls):
+        print(str(Player.__charactor_count) + "人で、スライムを攻撃した。")
+    
+    summary = classmethod(summary)
+
+Player.summary()
+```
+```
+class Player:
+    __charactor_count = 0
+
+    @classmethod
+    def summary(cls):
+        print(str(Player.__charactor_count) + "人で、スライムを攻撃した。")
+
+Player.summary()
+```
+### 標準ライブラリ
+呼び出し方
+```
+from モジュール import クラス
+```
+datetimeモジュールだと
+```
+from datetime import datetime
+
+today = datetime.now()
+print(today)
+```
