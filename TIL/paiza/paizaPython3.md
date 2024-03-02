@@ -528,4 +528,23 @@ from datetime import datetime
 today = datetime.now()
 print(today)
 ```
-### 例外処理
+## 例外処理 exception
+- try あらかじめコードを指定して、プログラム実行時に、処理の問題を検出
+- except 問題を検出した時、どのように対応するか記述しておく
+- raise 対応を記述していない場合、メソッドの呼び出し元に対応を任せる
+
+### 簡単な例外処理
+tryブロック ・・・ 例外処理が出てくる可能性があるコード
+exceptブロック ・・・ 例外が発生したときに処理するコード
+finallyブロック ・・・ 例外が発生しても処理をしたいコード
+```
+print(1)
+try:
+    number = 0
+    answer = 100 / number
+    print(answer)
+except ZeroDivisionError as e:
+    print(e)
+finally:
+    print(2)
+```
