@@ -528,3 +528,4 @@ from datetime import datetime
 today = datetime.now()
 print(today)
 ```
+### 例外処理
