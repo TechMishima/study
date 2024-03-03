@@ -548,3 +548,34 @@ except ZeroDivisionError as e:
 finally:
     print(2)
 ```
+### tracebackモジュール
+```
+import traceback # モジュールを取得
+
+try:
+    number = 0
+    answer = 100 / number
+    print(answer)
+except ZeroDivisionError as e:
+    print(traceback.format_exc()) # エラーメッセージを出力
+```
+
+### 実行時にエラーを出力(別タブ)
+```
+import traceback, sys
+
+print(1)
+try:
+    number = 0
+    answer = 100 / number
+    print(answer)
+except ZeroDivisionError as e:
+    print("0では割り算できません")
+    sys.stderr.write(traceback.format_exc()) #ユーザーには見えないエラーメッセージ
+finally:
+    print(2)
+```
+### エラーの種類
+- ZeroDivisionError 0で割り算してしまった場合
+- NameError 未定義のローカル変数や定数を使用したときに発生する
+- TypeError 期待と異なる型が渡された時に発生する
