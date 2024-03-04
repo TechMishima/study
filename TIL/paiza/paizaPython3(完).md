@@ -579,3 +579,41 @@ finally:
 - ZeroDivisionError 0で割り算してしまった場合
 - NameError 未定義のローカル変数や定数を使用したときに発生する
 - TypeError 期待と異なる型が渡された時に発生する
+- Exception 全てのエラーのスーパークラス ※一番下に記述しないとすべてこれで捕捉してしまう。
+
+### raise
+意図的に例外を発生させることができる<br>
+```
+try:
+    raise Exception("意図的な例外")
+except Exception as e:
+    print("予期せぬエラーが発生しました")
+    print(e) #メッセージに"意図的な例外"が表示される。
+```
+
+### BaseException
+Exceptionのスーパークラス<br>
+システムの強制終了や、ctrl + cでの強制終了などの特別な例外
+
+### 例外の伝達
+```
+def test_exception(number):
+    print(2)
+    try:
+        print(3)
+        answer = 100 / number
+        return answer
+        print(4)
+    except ZeroDivisionError as e:
+        print(5)
+        raise e # ここで関数内のエラーを呼び出し元へ戻す
+    print(6)
+
+print(1)
+try:
+    answer = test_exception(0)
+    print(7)
+except ZeroDivisionError as e:
+    print(8)
+    print(e)
+```
