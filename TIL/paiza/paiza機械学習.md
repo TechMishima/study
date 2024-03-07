@@ -181,4 +181,81 @@ plt.show()
 ```
 棒グラフにして表示する。
 
-# 1-5 scikit learnで学習と予測を行う
+## 1-5 scikit learnで学習と予測を行う
+### pandas
+様々な形式のデータの読み書きを行うことができるライブラリ
+```
+import pandas as pd
+targets_data = pd.read_csv('y_classified.csv') # (CSVファイルのパス)
+
+print(targets_data['Kirishima']) # 出力例
+```
+### %演算子
+```
+for i in range(100):
+    file = ('images/%03d.png' % (i))
+```
+繰り返し処理でiは0から99まで増えていく。<br>
+'images/%03d.png'の部分については、
+- % フォーマット演算子
+- 03 幅が3桁で、足りない桁を0で埋める
+- d 整数型
+
+上記を表している。<br>
+後ろに % (i)がついているので0-99の数値がファイル名に代入される。
+
+### np.empty
+```
+np.empty((3, 4), int)
+```
+縦3，横4の空の配列を作成する。intをつけているので整数が入る。
+
+### np.array
+```
+import numpy as np
+
+# PythonのリストからNumPy配列を作成
+my_list = [1, 2, 3, 4, 5]
+my_array = np.array(my_list)
+```
+### scikit-learn
+簡単に使用できるPythonの機械学習ライブラリ
+```
+import sklearn
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+
+X_train, X_test, y_train, y_test = train_test_split(images_data, targets_data['Kirishima'], random_state=0)
+print(X_train.shape)
+print(X_test.shape)
+print(y_train.shape)
+print(y_test.shape)
+```
+train_test_split関数<br>
+モデルを評価するためにデータをトレーニング用とテスト用で分けるための手法。<br>
+trainが教師用データ、testがテスト用データの事。<br>
+Xには入力する特徴ベクトル、Yには期待する分類結果が入っている。<br>
+
+train_test_splitの後は、
+1. Xの特徴データ images_data
+2. Yの目的変数(自分で作成した教師データ) targets_data['Kirishima']
+3. seed値 random_state=0
+
+上記で成り立っている。
+
+### k-NN
+k近傍法<br>
+k-NNとは、分類問題を解く教師あり機械学習アルゴリズムの１つ
+```
+knn = KNeighborsClassifier(n_neighbors=1)
+knn.fit(X_train, y_train)
+```
+
+出力
+```
+print(knn.predict(np.array([X_test[0]]))) # 1番目の結果を出力
+
+y_pred = knn.predict(X_test)
+print(np.mean(y_pred == y_test)) # 正解率を出力
+```
+※trueは1として評価、falseは0として評価されるので、平均すると％で正解率をだせる。
