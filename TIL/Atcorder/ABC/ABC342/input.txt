@@ -1,16 +1,23 @@
-7
-3 7 2 1 6 5 4
-13
-2 3
-1 2
-1 3
-3 6
-3 7
-2 4
-3 7
-1 3
-4 7
-1 6
-2 4
-1 3
-1 3
+34
+supercalifragilisticexpialidocious
+20
+g c
+l g
+g m
+c m
+r o
+s e
+a a
+o f
+f s
+e t
+t l
+d v
+p k
+v h
+x i
+h n
+n j
+i r
+s i
+u a
