@@ -15,3 +15,5 @@ elsif val1 == val3
 else
   puts 1
 end
+
+#study/TIL/Atcorder/ABC
