@@ -3,8 +3,10 @@ n = gets.to_i
 bags = []
 n.times do
   line = gets.chomp.split
-  line[0] = ""
+  line.push("")
   bags << line
 end
 
-n.times do ||
+n.times do |i|
+  num = bags[i].shift
+end
