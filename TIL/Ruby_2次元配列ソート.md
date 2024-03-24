@@ -85,3 +85,7 @@ p arr.sort_by {|x| [x[1], i += 1]}.reverse.sort_by {|x| [x[0], i += 1]}
 
 => [[1, 5], [1, 3], [1, 2], [2, 4], [2, 2]]
 ```
+## 大文字小文字を考慮したケース
+```
+b = a.sort {|a,b| (a.downcase <=> b.downcase).nonzero? || a <=> b }
+```
