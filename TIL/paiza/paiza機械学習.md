@@ -268,3 +268,49 @@ print(np.mean(y_pred == y_test)) # 正解率を出力
 - SVM(サポートベクターマシン) : 高い精度でパターンを識別できる
 - フーリエ変換 : 音声の波形データの変換方法で、どんな周波数の組み合わせでできているかを分析できる
 - MFCC : 音声認識によく使われる音声の特徴量
+
+## 2-2 SVMを利用してみよう
+### SVMはなぜ使うのか？
+テストデータを入れるとデータを分類できる境界線を作成してくれる。
+### 散布図の作成
+'o'は散布図(〇点)にする意味を持っている。<br>
+'x'は散布図(x点)にする意味を持っている。<br>
+color='blue'を入力することで、点の色を青に指定できる。<br>
+annotate関数はグラフに注釈を入れることができる関数。下記では散布図の点に番号を振っている。sizeの20はテキストの大きさのこと。<br>
+```
+for i in range(len(train_X)):
+    plt.plot(train_X[i][0], train_X[i][1], 'o', color='blue')
+    plt.annotate(i, (train_X[i][0], train_X[i][1]), size=20)
+```
+### SVMで学習する
+```
+clf = svm.SVC(gamma=0.0001, C=1)
+clf.fit(train_X, train_y)
+```
+ガンマの値が大きい境界線がしなやかになり、領域が狭まる。<br>
+逆に小さいと直線的になり、区別が緩くなる。<br>
+適切なガンマの値を設定することが、データ分類において重要である。
+
+Cは正則化パラメータと呼ばれる。デフォルトでは1.0<br>
+係数にペナルティをかけて、極端な形のグラフをかけないようにする。<br>
+主に、膨大なデータを扱い、過学習が発生するときに設定する。<br>
+
+### 決定境界の解読
+全体図
+```
+x = np.linspace(0, 100, 30)
+y = np.linspace(0, 100, 30)
+yy, xx = np.meshgrid(y, x)
+xy = np.vstack([xx.ravel(), yy.ravel()]).T
+P = clf.decision_function(xy).reshape(xx.shape)
+plt.contour(xx, yy, P, colors='k',
+                      levels=[0], alpha=0.5,
+                      linestyles=['-'])
+```
+方眼紙のようなマス目を作成する。<br>
+0から100までの範囲で30個で区切る。1マスおよそ3.3のマス目が作成される。<br>
+```
+x = np.linspace(0, 100, 30)
+y = np.linspace(0, 100, 30)
+yy, xx = np.meshgrid(y, x)
+```
