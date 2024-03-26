@@ -314,3 +314,5 @@ x = np.linspace(0, 100, 30)
 y = np.linspace(0, 100, 30)
 yy, xx = np.meshgrid(y, x)
 ```
+<b>わかりやすいサイトでmeshgrid関数を勉強する</b>
+https://disassemble-channel.com/np-meshgrid/<br>
