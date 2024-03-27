@@ -316,3 +316,5 @@ yy, xx = np.meshgrid(y, x)
 ```
 <b>わかりやすいサイトでmeshgrid関数を勉強する</b>
 https://disassemble-channel.com/np-meshgrid/<br>
+meshgridは2つの変数が返り値として返ってくる<br>
+どのようにして使われているのか？
