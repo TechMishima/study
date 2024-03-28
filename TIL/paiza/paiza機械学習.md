@@ -318,3 +318,6 @@ yy, xx = np.meshgrid(y, x)
 https://disassemble-channel.com/np-meshgrid/<br>
 meshgridは2つの変数が返り値として返ってくる<br>
 どのようにして使われているのか？
+
+値は別に管理したい時に使用する。<br>
+2次元配列だと1つの値しか管理できない？
