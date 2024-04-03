@@ -317,7 +317,13 @@ yy, xx = np.meshgrid(y, x)
 <b>わかりやすいサイトでmeshgrid関数を勉強する</b>
 https://disassemble-channel.com/np-meshgrid/<br>
 meshgridは2つの変数が返り値として返ってくる<br>
+格子点を作成するための関数である<br>
 どのようにして使われているのか？
 
 値は別に管理したい時に使用する。<br>
 2次元配列だと1つの値しか管理できない？
+```
+xy = np.vstack([xx.ravel(), yy.ravel()]).T
+```
+xx,yyを組み合わせて格子点にしていく。<br>
+np.vstackは結合するための関数であり、xx.ravel(), yy.ravel()を合わせる<br>
