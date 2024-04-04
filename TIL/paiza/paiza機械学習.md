@@ -327,3 +327,4 @@ xy = np.vstack([xx.ravel(), yy.ravel()]).T
 ```
 xx,yyを組み合わせて格子点にしていく。<br>
 np.vstackは結合するための関数であり、xx.ravel(), yy.ravel()を合わせる<br>
+ravelは1次元配列にする役割を持っている。xx,yyは2次元配列なので1次元配列に変換するために使用する。<br>
