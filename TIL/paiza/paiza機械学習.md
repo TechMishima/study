@@ -329,3 +329,18 @@ xx,yyを組み合わせて格子点にしていく。<br>
 np.vstackは結合するための関数であり、xx.ravel(), yy.ravel()を合わせる<br>
 ravelは1次元配列にする役割を持っている。xx,yyは2次元配列なので1次元配列に変換するために使用する。<br>
 .Tは、行列や配列の転置（transpose）を行うための属性。転置とは、行と列を入れ替える操作のこと。<br>
+<b>T属性の使い方</b><br>
+```
+import numpy as np
+
+a_2d = np.arange(6).reshape(2, 3)
+print(a_2d)
+# [[0 1 2]
+#  [3 4 5]]
+
+a_2d_T = a_2d.T
+print(a_2d_T)
+# [[0 3]
+#  [1 4]
+#  [2 5]]
+```
