@@ -344,3 +344,11 @@ print(a_2d_T)
 #  [1 4]
 #  [2 5]]
 ```
+決定関数
+```
+P = clf.decision_function(xy).reshape(xx.shape)
+```
+clf.decision_function(xy) : 与えられた格子点 xy 上で SVM モデル clf の決定関数を評価する。<br>
+上記で境界線のデータを作成する。
+
+.reshape(xx.shape) : 上記だけだと1次元になってしまう。今回は2次元配列なので、reshapeでxxを指定することで2次元配列に変換することができる。
