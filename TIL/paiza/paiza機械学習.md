@@ -381,3 +381,28 @@ import numpy as np
 arr = np.array([1, 4, 9, 16, 25])
 sqrt_arr = np.sqrt(arr)
 ```
+
+## 2-3 話者認識に利用する音声データを確認しよう
+
+### 音声データについて
+高い音声と低い音声だと、低い音声の波形の方が荒い<br>
+時間当たりの振動が多いと高い音になる<br>
+時間当たりの振動が少ない（波がゆるやか）だと低い音になる
+
+### 音声データを波形のグラフにする
+
+```
+import librosa
+import librosa.display
+import matplotlib.pyplot as plt
+
+a, sr = librosa.load('sample/hi.wav')
+librosa.display.waveplot(a, sr)
+plt.show()
+```
+波形データは a に、サンプリングレートは sr に格納される。
+- a(波形データ) : 音声を時間軸と振幅の 2 次元グラフで表したもの。
+- sr(サンプリングレート) : 1秒間のサンプル数を表したもの。音声のクオリティに影響する。
+
+6秒の音声の場合、サンプリングレート*6で音声データのフレーム数がわかる。len(a)
+
