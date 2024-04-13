@@ -406,3 +406,11 @@ plt.show()
 
 6秒の音声の場合、サンプリングレート*6で音声データのフレーム数がわかる。len(a)
 
+### グラフを詳しくみる（時間の範囲設定）
+```
+a, sr = librosa.load('sample/lo.wav')
+librosa.display.waveplot(a[0:100], sr)
+plt.show()
+```
+a[0:100]で0~100フレームまでを確認できる
+
