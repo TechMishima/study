@@ -422,3 +422,30 @@ a[0:100]で0~100フレームまでを確認できる
 音声データは波のデータである。話すタイミングが違うだけで全く反対の結果を出してしまう。<br>
 適切なデータに加工してから学習させる必要がある。
 
+### コードを読んでみる
+```
+import os
+```
+Python の標準ライブラリで、osと対話を行うための機能を追加する。<br>
+ファイルやディレクトリの操作、環境変数の取得などができる。
+
+```
+.format
+
+name = "John"
+age = 30
+message = "My name is %s and I am %d years old." % (name, age)
+print(message)
+```
+formatメソッドは動的に値を組み込むことができるメソッド。<br>
+％演算子に似ている。
+```
+dir_name = 'voiceset'
+for file_name in sorted(os.listdir(path=dir_name)):
+```
+osモジュールを使用して繰り返し処理を行っている。<br>
+取り出したファイルはfile_nameとして命名している。なんでもOK<br>
+os.listdir()関数は、ディレクトリ内のファイルを返すために使用される。<br>
+引数を設定しなかった場合は、現在のディレクトリが指定される。<br>
+今回は、voicesetを指定したいため、path=で指定している。
+
