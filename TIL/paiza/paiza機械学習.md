@@ -449,3 +449,36 @@ os.listdir()関数は、ディレクトリ内のファイルを返すために�
 引数を設定しなかった場合は、現在のディレクトリが指定される。<br>
 今回は、voicesetを指定したいため、path=で指定している。
 
+<b>os.listdir()関数をふかぼり</b>
+```
+# listdir()関数 指定したディレクトリ内のファイルを取得
+
+# 現在のディレクトリを取得
+import os
+
+files = os.listdir()
+print(files)
+
+# 指定したディレクトリを取得
+import os
+
+desktop_path = '/path/to/desktop'
+files = os.listdir(desktop_path)
+print(files)
+
+# 現在のディレクトリの中に指定したいディレクトリ(sub)がある場合
+import os
+
+files = os.listdir(path='sub')
+print(files)
+```
+
+os.path.join
+
+```
+a, sr = librosa.load(os.path.join(dir_name, file_name))
+```
+a, sr = librosa.load('パス')で音声データを読み込む<br>
+繰り返し処理でパスを取得したいのでos.path.joinを使用する<br>
+os.path.joinを使用するとvoicesetとファイル名を組み合わせることができる。
+
