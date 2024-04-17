@@ -482,3 +482,39 @@ a, sr = librosa.load('パス')で音声データを読み込む<br>
 繰り返し処理でパスを取得したいのでos.path.joinを使用する<br>
 os.path.joinを使用するとvoicesetとファイル名を組み合わせることができる。
 
+<b>os.path.joinをふかぼり</b><br>
+ディレクトリ名やファイル名などのパーツをつなぎ合わせて、有効なパスを生成するための関数。<br>
+主にディレクトリの区切り文字の適切な処理を行うために使用される。<br>
+
+Windowsではディレクトリの区切り文字がバックスラッシュ \ で表されるが、<br>
+Unix系のシステム（LinuxやmacOSなど）ではスラッシュ / が使われる。<br>
+適切なパスを設定するためにpath.joinを使用する。
+
+```
+# 特徴量と分類のラベル済みのラベルの組を返す
+def get_data(dir_name):
+    data_X = []
+    data_y = []
+    for file_name in sorted(os.listdir(path=dir_name)):
+        print("read: {}".format(file_name))
+        speaker = file_name[0:file_name.index('_')]
+        data_X.append(get_feat(os.path.join(dir_name, file_name)))
+        data_y.append((speakers[speaker], file_name))
+    return (np.array(data_X), np.array(data_y))
+
+data_X, data_y = get_data('voiceset')
+```
+
+```
+speaker = file_name[0:file_name.index('_')]
+```
+.index('_')はかっこの中にある文字までどのぐらいかを返す<br>
+"belevskaya_06_su.wav"の場合だと10を返す<br>
+そしてfile_name[0:10]になるので、belevskayaが返される
+
+```
+ok_count += 1 if actual == expected else 0
+```
+一行でifとelseを使うことができる。
+
+
