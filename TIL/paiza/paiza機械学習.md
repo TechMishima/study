@@ -530,3 +530,37 @@ ok_count += 1 if actual == expected else 0
 特徴量の多さが精度を上げるが、もしデータが一つで長い音声であった場合だと、集計できるスペクトルは１つだけになってしまう。<br>
 改善するとすれば、長い音声を区切ってあげることによって、特徴量を増やしてあげることができる。
 
+### コードを読んでみる
+
+```
+from scipy import fftpack
+```
+フーリエ変換の計算機能を提供するモジュール。<br>
+Fast Fourier Transform（FFT）: 高速フーリエ変換
+
+```
+# 特徴量を返す
+def get_feat(file_name):
+    a, sr = librosa.load(file_name)
+    fft_wave = fftpack.rfft(a, n=sr)
+    fft_freq = fftpack.rfftfreq(n=sr, d=1/sr)
+    y = librosa.amplitude_to_db(fft_wave, ref=np.max)
+    plt.plot(fft_freq, y)
+    plt.show()
+    return y
+```
+- fftpack.rfft() : 音声データのFFT（高速フーリエ変換）を計算。n=srはFFTの点数をサンプリングレートと同じに設定
+- fftpack.rfftfreq : FFT結果の周波数軸を取得。n=srはFFTの点数、d=1/srは各周波数ビンの幅を指定
+- librosa.amplitude_to_db() : FFT結果をデシベルスケールに変換。ref=np.maxは変換の基準となる振幅を指定
+
+### フーリエ変換を学習
+https://www.youtube.com/watch?v=fGos3wrKeHY<br>
+複雑な波の波形でも、様々な周波数の波の集まりであるので、それを分解してあげるのがフーリエ変換である。<br>
+フーリエ変換を行うことでノイズをなる周波数を消してほぼ逆の逆フーリエ変換をすることもできる。<br>
+
+## 2-6 音声の時間別の特徴量を利用して予測の精度を改善しよう
+予測の精度をあげるために、MFCCを利用していく<br>
+短時間フーリエ変換を利用する<br>
+パワースペクトルの時間による変化の事を、パワースペクトルグラムという<br>
+
+mfccを利用すると高い確率で音声を予測をすることができる。
