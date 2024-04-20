@@ -16,3 +16,4 @@ djangoと比べて軽い分析や機械学習に適している<br>
 
 ## 1-2 FlaskでHello World
 python -Vコマンド : 現在のpythonのバージョンを確認できるコマンド<br>
+mkdir myapp : ディレクトリの作成ができる
