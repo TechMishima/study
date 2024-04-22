@@ -44,3 +44,28 @@ developmentは開発環境の事。<br>
 ```
 http://localhost:5000/
 ```
+
+## ルーティングを理解しよう
+
+### ルーティングについて
+Webブラウザのリクエストに合わせて、呼び出すページやコードを切り替える<br>
+
+<b>一連の流れ</b><br>
+webブラウザからwebサーバーへリクエスト（URL）が送られてくる。<br>
+受け取ったリクエストをwebサーバーが処理をする。<br>
+HTMLファイル、CSSファイル、画像ファイル、JavaScriptなどをwebブラウザへ送信する。<br>
+受け取ったデータを組み合わせて、ブラウザ上に表示される。
+
+### ルートの追加
+```
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "Hello World!"
+
+@app.route("/about")
+def about():
+    return "This is paiza"
+```
