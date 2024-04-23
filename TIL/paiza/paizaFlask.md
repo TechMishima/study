@@ -45,7 +45,7 @@ developmentは開発環境の事。<br>
 http://localhost:5000/
 ```
 
-## ルーティングを理解しよう
+## 1-3 ルーティングを理解しよう
 
 ### ルーティングについて
 Webブラウザのリクエストに合わせて、呼び出すページやコードを切り替える<br>
@@ -69,3 +69,45 @@ def hello_world():
 def about():
     return "This is paiza"
 ```
+
+## 1-4 テンプレートで表示しよう
+### テンプレートエンジンとは
+データとHTMLを組み合わせてWebページを生成する機能<br>
+flaskのテンプレートエンジンはjinja2が使われている<br>
+jinja2はpythonのウェブフレームワークであり、Djangoにも採用されている。
+
+### テンプレートエンジンの呼び出し
+```
+from flask import Flask, render_template
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return render_template("index.html")
+
+@app.route("/about")
+def about():
+    return "This is paiza"
+```
+from flask import Flask, render_template : render_templateをインポートする。<br>
+return render_template("index.html") : テンプレートとしてindex.htmlを指定する。
+
+### テンプレートの作成
+ディレクトリの中に「templates」とディレクトリを作成する。<br>
+templatesディレクトリの中にindex.htmlを作成する。<br>
+index.htmlにレイアウトを記述していく。（例として下記を記述）
+```
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Flask - paiza</title>
+        <style>body {padding: 10px;}</style>
+    </head>
+    <body>
+        <h1>Hello Python</h1>
+        <p>Hello paiza!</p>
+    </body>
+</html>
+```
+
