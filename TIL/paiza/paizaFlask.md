@@ -111,3 +111,50 @@ index.htmlにレイアウトを記述していく。（例として下記を記�
 </html>
 ```
 
+## 1-5 テンプレートエンジンの書き方を理解しよう
+
+### テンプレートにデータを渡す
+pyフォルダからテンプレートにデータを渡すことができる。<br>
+変数で名前を定義して、こんにちは○○さんと、適切に切り替えることが可能になる。
+
+### コードの記述
+
+```
+from flask import Flask, render_template
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    name = "Flask"
+    return render_template("index.html", name_value = name)
+
+@app.route("/about")
+def about():
+    return render_template("index.html")
+```
+name_value = nameを記述することで、テンプレートにデータを渡すことができる。<br>
+name_valueがテンプレート側で使用できる変数になっている。
+
+```
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Flask - paiza</title>
+        <style>body {padding: 10px;}</style>
+    </head>
+    <body>
+        {% if name_value %}
+            <h1>Hello {{ name_value }}</h1>
+        {% else %}
+            <p>Hello paiza!</p>
+        {% endif %}
+    </body>
+</html>
+```
+テンプレート側で使用するときは{{ }}2重波かっこを使用する。
+
+jinja2を使用しているので、<% %>で囲ってあげると、pythonコードを使用することができる。<br>
+pythonと記述が似ているが全く同じではないので注意
+
+
