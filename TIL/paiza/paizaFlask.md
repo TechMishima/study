@@ -158,3 +158,26 @@ jinja2を使用しているので、<% %>で囲ってあげると、pythonコー
 pythonと記述が似ているが全く同じではないので注意
 
 
+## 1-6 RPGの戦闘シーンを表現しよう
+
+### ループ処理を行うテンプレート
+```
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>Flask - paiza</title>
+        <style>body {padding: 10px;}</style>
+    </head>
+    <body>
+        <h1>Hello {{ name_value }}</h1>
+        <p>Hello paiza!</p>
+        {% for player in players: %}
+            <p>{{ player + "はモンスターと戦った" }}</p>
+        {% endfor %}
+    </body>
+</html>
+```
+for inを使用することでループ処理を行うことができる。<br>
+さらにpyからテンプレートへリストを送ることが可能。<br>
+for inを使用するときはend forが必要である。<br>
