@@ -228,3 +228,25 @@ cp templates/index.html templates/layout.html
     {% endfor %}
 {% endblock %}
 ```
+
+## 1-8 RPGの行動選択メニューを作ろう その１
+
+### HTMLのlinkタグとaタグの違いとは？
+https://saruwakakun.com/html-css/basic/link-rel<br>
+
+linkタグ : 訪問者に見えないようにしながら別ページとの関連付けをするタグ。<br>
+head内に記述する。<br>
+```
+スタイルシートの読み込み
+<link rel="stylesheet" href="スタイルシートのURL">
+
+Webサイトのアイコン指定
+<link rel="icon" href="画像のURL" sizes="32x32" />
+<link rel="icon" href="画像のURL" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="画像のURL" />
+# "apple-touch-icon-precomposed"はスマホやタブレットでホーム画面にページを追加したときに使われる。150×150くらいのサイズのPNG画像を使用すると良い。
+```
+aタグ : 訪問者に見えるように記述する。リンクを踏ませるためのタグ。<br>
+body内に記述する。<br>
+```
+<a href="指定したリンク先">リンク先</a>
