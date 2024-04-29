@@ -265,3 +265,17 @@ body内に記述する。<br>
 <a href="/">メニューに戻る</a>
 ```
 上記のコードについて、リンクでルートを指定することでトップページに戻ることができる。
+
+## 2-1 フォーム処理の基本を理解しよう
+pythonで、フォーム処理の基本を身に着ける。<br>
+データ転送にはgetメソッドとpostメソッドがある。<br>
+
+### フォームメソッドのおさらい
+```
+<form method="POST" action="sample.cgi">
+    <p>お名前：<input type="text" name="NAME"></p>
+    <p>メールアドレス：<input type="text" name="email"></p>
+    <p><input type="submit" value="送信する"></p>
+    <p><input type="reset" value="取消する"></p>
+</form>
+```
