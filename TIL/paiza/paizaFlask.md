@@ -279,3 +279,16 @@ pythonで、フォーム処理の基本を身に着ける。<br>
     <p><input type="reset" value="取消する"></p>
 </form>
 ```
+<form method="POST" action="sample.cgi">
+    <p>お名前：<input type="text" name="NAME"></p>
+    <p>メールアドレス：<input type="text" name="email"></p>
+    <p><input type="submit" value="送信する"></p>
+    <p><input type="reset" value="取消する"></p>
+</form>
+
+
+https://html-coding.co.jp/annex/dictionary/html/form/<br>
+formタグがひとつのフォームとなり、フォームの中にinputタグ、selectタグ、textareaタグなどのフォーム部品を配置してフォームをつくる。<br>
+action属性が送信先アドレス、methodでhttpメソッドを指定する。
+
+## 2-2 投稿フォームを作ろう
