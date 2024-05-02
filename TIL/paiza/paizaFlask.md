@@ -298,3 +298,37 @@ getメソッド : 検索する時に使用される。urlに?や&などを加え
 上記だと検索フォームでarticleがhelloと、nameがpaizaで検索している。
 
 postメソッド : フォームを送信するときに使用する。
+
+## 2-3 投稿したデータを表示しよう
+
+### formで送ったデータを表示する
+```
+<form action="/result" method="post">
+    <label for="article">投稿</label>
+    <input type="text" name="article">
+    <p></p>
+    <label for="name">名前</label>
+    <input type="text" name="name">
+    <button type="submit">送信する</button>
+</form>
+```
+```
+from flask import Flask, request, render_template
+app = Flask(__name__)
+
+@app.route("/")
+def show():
+    message = "Hello World"
+    return render_template("form.html", message = message)
+
+@app.route("/result", methods=["POST"])
+def result():
+    message = "This is paiza"
+    article = request.form["article"]
+    name = request.form["name"]
+    return render_template("form.html", message = message, article = article, name = name)
+```
+
+インポートにrequestを追加する。<br>
+ルーティングを設定する。フォームで/resultのpostメソッドを受け取った時に結果を表示するようにしている。<br>
+request.form["キー"]で、受け取った値を変数に入れることができる。
