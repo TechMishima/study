@@ -332,3 +332,56 @@ def result():
 インポートにrequestを追加する。<br>
 ルーティングを設定する。フォームで/resultのpostメソッドを受け取った時に結果を表示するようにしている。<br>
 request.form["キー"]で、受け取った値を変数に入れることができる。
+
+## 2-4 getメソッドでフォームを作ろう
+
+### postメソッドとgetメソッドの違いについて
+どちらもフォームを送信して、画面に表示することはできる。<br>
+get : urlに送信する情報が入っている。 他人から見られる可能性があるので、検索機能で使用される。<br>
+post : urlに送信する情報が入っていないので、秘匿性のあるデータを送信するときに使用する。
+
+### getメソッドにも対応できるコード
+```
+from flask import Flask, request, render_template
+app = Flask(__name__)
+
+@app.route("/")
+def show():
+    message = "Hello World"
+    return render_template("form.html", message = message)
+
+@app.route("/result", methods=["GET", "POST"])
+def result():
+    message = "This is paiza"
+    if request.method == "POST":
+        article = request.form["article"]
+        name = request.form["name"]
+    else:
+        article = request.args.get("article")
+        name = request.args.get("name")
+    return render_template("form.html", message = message, article = article, name = name)
+```
+
+上記が完成
+```
+@app.route("/result", methods=["GET", "POST"])
+```
+メソッドにGETを追加する。
+```
+if request.method == "POST":
+    article = request.form["article"]
+    name = request.form["name"]
+else:
+    article = request.args.get("article")
+    name = request.args.get("name")
+return render_template("form.html", message = message, article = article, name = name)
+```
+if文はhttpメソッドでPOSTを受けたとき、elseはそれ以外なのでgetメソッドを受けたときになる。<br>
+getメソッドで変数に入れるときは、request.args.get("name")と記入する。<br>
+かっこがpostとgetで異なっているので注意する。
+
+```
+<form action="/result" method="get">
+```
+送信フォームを送る時は、メソッドをgetに変更するとルーティングを変更できる。
+
