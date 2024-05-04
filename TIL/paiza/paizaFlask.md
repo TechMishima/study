@@ -385,3 +385,29 @@ getメソッドで変数に入れるときは、request.args.get("name")と記�
 ```
 送信フォームを送る時は、メソッドをgetに変更するとルーティングを変更できる。
 
+## 2-5 フォームでRPGの戦闘シーンを作ろう
+
+### optionタグの valueについて
+```
+<option value="{{ player }}">{{ player }}</option>
+```
+プルダウンメニューに値を設定できる。<br>
+値をman、表示を男性にするように、コードと可読性を分けている。
+
+### valueをちょっとふかぼり
+https://html-coding.co.jp/annex/dictionary/html/option/<br>
+```
+<form action="samplel.cgi" method="post">
+  <p>性別<br>
+    <select name="sex">
+      <option value="man">男性</option>
+      <option selected value="woman">女性</option>
+      <option disabled value="monster">モンスター</option>
+    </select>
+  </p>
+</form>
+```
+disabledで選択不可の状態にできる<br>
+selectedですでに選択されている状態にできる
+
+## 2-6 1行掲示板を作ろう 投稿したデータを表示する
