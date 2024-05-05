@@ -411,3 +411,70 @@ disabledで選択不可の状態にできる<br>
 selectedですでに選択されている状態にできる
 
 ## 2-6 1行掲示板を作ろう 投稿したデータを表示する
+
+### コードを読む テキストの読み込み
+```
+from flask import Flask, request, render_template
+import codecs
+app = Flask(__name__)
+
+@app.route("/")
+def bbs():
+    message = "Hello world"
+    file = codecs.open("articles.txt", "r", "utf-8")
+    lines = file.readlines()
+    file.close()
+    return render_template("bbs.html", message = message)
+
+@app.route("/result", methods=["POST"])
+def result():
+    message = "This is paiza"
+    article = request.form["article"]
+    name = request.form["name"]
+    return render_template("bbs.html", message = message, article = article, name = name)
+```
+
+import codecs : コーデックスをインポート<br>
+
+file = codecs.open("articles.txt", "r", "utf-8") : ファイルを開く<br>
+かっこの中は、ファイル名, 読み込みモード, 文字コードの順番になっている。<br>
+
+readlines変数を使用すると、1行ずつ読み込んで、変数に格納してくれる。
+
+### コードを読む テーブル
+```
+<table>
+<tr><th>投稿</th><th>名前</th></tr>
+    {% for line in lines: %}
+        {% set column = line.rstrip().split(",") %}
+        <tr>
+            {% for item in column: %}
+                <td>{{ item }}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+```
+setはforのような、繰り返し処理をしているときに変数の再定義をするときに使用される。<br>
+
+<b>テーブルをふかぼり</b><br>
+https://www.sejuku.net/blog/49377<br>
+```
+ <table border="1" bordercolor="red" bgcolor="yellow">
+    <tr>
+      <th>名前</th>
+      <th>年齢</th>
+    </tr>
+    <tr>
+      <td>田中</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <td>佐藤</td>
+      <td>42</td>
+    </tr>
+  </table>
+```
+borderで、枠線を追加することができる。上記では太さが1<br>
+bordercolerで、枠線の色を変えることができる<br>
+bgcolorでテーブルの背景の色を変えることができる<br>
