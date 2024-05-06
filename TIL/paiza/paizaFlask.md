@@ -478,3 +478,16 @@ https://www.sejuku.net/blog/49377<br>
 borderで、枠線を追加することができる。上記では太さが1<br>
 bordercolerで、枠線の色を変えることができる<br>
 bgcolorでテーブルの背景の色を変えることができる<br>
+
+## 2-7 1行掲示板を作ろう 投稿をファイルに保存する
+
+```
+file = codecs.open("articles.txt", "a", "utf-8")
+file.write(article + "," + name + "\n")
+file.close()
+```
+
+aは書き込みモード。ファイルに追加で記述したい時にしようする。
+
+<b>ちょっとふかぼり</b><br>
+wのモードもある。既存の内容は上書きされてしまう。
