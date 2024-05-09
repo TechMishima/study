@@ -25,3 +25,6 @@ https://paiza.jp/works/sql/primer
 - Oracle Database
 - Microsoft SQL Server
 
+## 1-2 データベースを準備しよう
+phpMyAdminの使い方<br>
+http://www.dbonline.jp/phpmyadmin/
