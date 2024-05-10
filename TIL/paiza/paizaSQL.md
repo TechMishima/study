@@ -28,3 +28,50 @@ https://paiza.jp/works/sql/primer
 ## 1-2 データベースを準備しよう
 phpMyAdminの使い方<br>
 http://www.dbonline.jp/phpmyadmin/
+
+## 1-3 テーブルの中身を見てみよう
+
+### SQL文の構造
+```
+-- 全てのデータを取り出す
+SELECT * FROM players;
+```
+- SELECT : 命令を表す部分。今回はデータを取り出す命令。<br>
+- *(ｱｽﾀﾘｽｸ) : 対象にするカラムを指定する部分。今回は全てのカラムに対して実行する。<br>
+- FROM : 対象にするテーブルを指定する部分。<br>
+- players : FROMの後に続いているので、今回はplayersテーブルを参照している。<br>
+- ;(ｾﾐｺﾛﾝ) : 最後にはセミコロンをつける。<br>
+- -- (ﾊｲﾌﾝふたつ + ｽﾍﾟｰｽ) : コメントを作成するときに使用する。※スペースが必要！
+
+### SQLコーディングの規約例
+SQL クエリのコーディング規約（スタイルガイド）<br>
+https://yulii.github.io/sql-style-guide-20160327.html
+
+### SQL文の例
+```
+-- 全てのデータを取り出す
+SELECT * FROM players;
+
+-- 一部のカラムだけ取得する
+SELECT name, level FROM players;
+
+-- 複数の条件を組み合わせる
+SELECT * FROM players WHERE level >= 7 AND job_id <> 6;
+```
+
+
+### WHEREの条件指定
+|構文|意味|
+|-|-|
+|a = b|aとbが等しい(==ではないので注意)|
+|a < b|aがbよりも小さい|
+|a > b|aがbよりも大きい|
+|a <= b|aがb以下である|
+|a >= b|aがb以上である|
+|a <> b|aとbが等しくない(!=ではないので注意)|
+
+
+|条件をつなげるキーワード|意味|
+|-|-|
+|AND|両方の条件が成立した場合|
+|OR|どちらか一方の条件が成立した場合|
