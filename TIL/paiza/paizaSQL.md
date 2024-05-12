@@ -75,3 +75,37 @@ SELECT * FROM players WHERE level >= 7 AND job_id <> 6;
 |-|-|
 |AND|両方の条件が成立した場合|
 |OR|どちらか一方の条件が成立した場合|
+
+## 1-4 いろいろな情報を取り出そう
+
+### データの件数を表示する
+```
+-- データ件数を表示する
+SELECT COUNT(*) FROM players;
+
+-- 条件に合ったデータの件数を表示する
+SELECT COUNT(*) FROM players WHERE job_id = 6;
+```
+
+### データを並び替えて取得
+```
+-- データを並び替えて取得する
+SELECT * FROM players ORDER BY level;
+
+
+-- データを並び替えて取得する 逆順
+SELECT * FROM players ORDER BY level DESC;
+```
+DESCとはdescending(降順)の略
+
+### 件数を絞って表示
+```
+-- 上位3件だけ表示する
+SELECT * FROM players ORDER BY level DESC LIMIT 3;
+```
+
+### グループ化して表示
+```
+-- 職業ごとに人数を集計する
+SELECT job_id, COUNT(*) FROM players GROUP BY job_id;
+```
