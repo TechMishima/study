@@ -109,3 +109,34 @@ SELECT * FROM players ORDER BY level DESC LIMIT 3;
 -- 職業ごとに人数を集計する
 SELECT job_id, COUNT(*) FROM players GROUP BY job_id;
 ```
+
+## 1-5 データを追加・更新・削除しよう
+
+### データの追加
+```
+-- データを追加する
+INSERT INTO players(id,name,level,job_id) VALUES(11, "霧島1号", 1, 1);
+
+-- 一度に複数のデータを追加する
+INSERT INTO players(id,name,level,job_id)
+VALUES
+(13, "霧島3号", 1, 1),
+(14, "霧島4号", 1, 1)
+;
+SELECT * FROM players;
+```
+
+### データの更新
+```
+-- データを更新する
+UPDATE players SET level = 10 WHERE id = 11;
+
+-- データを更新する。1増加
+UPDATE players SET level = level + 1 WHERE id = 12;
+```
+
+### データの削除
+```
+-- データを削除する
+DELETE FROM players WHERE id >= 11;
+```
