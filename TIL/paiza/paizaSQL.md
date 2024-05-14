@@ -140,3 +140,32 @@ UPDATE players SET level = level + 1 WHERE id = 12;
 -- データを削除する
 DELETE FROM players WHERE id >= 11;
 ```
+
+## 1-6 2つのテーブルを結合しよう
+
+### テーブルの関連付けについて
+重複したデータのテーブルを分割しておいて、必要に応じて、仮想的な一つの表をして結合して扱う方法。<br>
+テーブルを分ける理由は、重複したデータが膨大になると、管理に時間がかかる上にデータが重くなるからである。
+
+### 結合の種類
+
+- 内部結合(INNER JOIN): 両方のテーブルに共通のデータを表示
+- 外部結合: 左結合+右結合+完全外部結合
+- 左結合(LEFT JOIN): 左側テーブルを基準に表示
+- 右結合(RIGHT JOIN): 右側テーブルを基準に表示
+- 完全外部結合: 左側と右側のレコードを全て参照
+
+### 結合のSQL文
+```
+-- テーブルを結合して表示する（内部結合）
+SELECT * FROM players INNER JOIN jobs ON jobs.id = players.job_id;
+
+-- テーブルを結合して表示する(左結合)
+SELECT * FROM players LEFT JOIN jobs ON jobs.id = players.job_id;
+
+-- テーブルを結合して表示する(右結合)
+SELECT * FROM players RIGHT JOIN jobs ON jobs.id = players.job_id;
+```
+### 補足
+MySQLは完全外部結合に対応していない。
+
