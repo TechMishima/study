@@ -169,3 +169,20 @@ SELECT * FROM players RIGHT JOIN jobs ON jobs.id = players.job_id;
 ### 補足
 MySQLは完全外部結合に対応していない。
 
+## 1-7 結合したテーブルを操作しよう
+
+### 結合したテーブルに対しての操作例
+```
+-- 結合したテーブルを操作する
+SELECT * FROM players INNER JOIN jobs ON jobs.id = players.job_id;
+
+-- 結合したテーブルで、指定カラムだけ表示
+SELECT name, level, vitality FROM players INNER JOIN jobs ON jobs.id = players.job_id;
+
+-- 結合したテーブルで、条件に合った行だけ表示
+SELECT name, level, strength FROM players INNER JOIN jobs ON jobs.id = players.job_id WHERE strength >= 5;
+
+-- 職業ごとに人数を集計する
+SELECT job_id, job_name, COUNT(*) FROM players INNER JOIN jobs ON jobs.id = players.job_id GROUP BY job_id;
+```
+
