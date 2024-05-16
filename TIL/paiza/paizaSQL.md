@@ -186,3 +186,56 @@ SELECT name, level, strength FROM players INNER JOIN jobs ON jobs.id = players.j
 SELECT job_id, job_name, COUNT(*) FROM players INNER JOIN jobs ON jobs.id = players.job_id GROUP BY job_id;
 ```
 
+## 2-1 仕事にもSQLを使おう
+
+ネットサービスの行動ログ解析を目的に学習していく。<br>
+SQL文をクエリーと呼び、出てきた結果をビューと呼ぶ。
+
+## 2-2 SQLの書き方のポイント
+
+### カンマについて
+カンマの多いとエラーになる。しかし、カンマ忘れの場合はエラーにならず通ってしまう。
+```
+例
+
+SELECT userID name
+FROM users
+    INNER JOIN jobs ON jobs.jobID = users.jobID
+    INNER JOIN area ON area.areaID = users.areaID;
+```
+SELECTの後ろでuserIDの後にカンマがないので、nameのみ取得してしまう。<br>
+適切にカンマを使用することが大事。
+
+### 重複するカラム名のデータ取得
+
+重複するカラムのデータを取得したい場合は、カラム名の前にテーブル名を追加する。
+```
+例
+
+SELECT area.name
+FROM users
+    INNER JOIN jobs ON jobs.jobID = users.jobID
+    INNER JOIN area ON area.areaID = users.areaID;
+```
+もしもusersテーブルとareaテーブルで同じカラム名でnameを使用していた場合、<br>
+nameの前にピリオドをつけ、areaテーブルを指定することで取得できる。
+
+### WHERE文の記載
+上手にインデントすることで、可読性が大きく変わる。
+```
+例
+
+SELECT userID, name
+FROM users
+    INNER JOIN jobs ON jobs.jobID = users.jobID
+    INNER JOIN area ON area.areaID = users.areaID;
+WHERE
+    userID >= 10
+    AND userID < 20;
+```
+コードの分類ごとに、インデントを使い分ける。
+- SELECT : どのレコードを取得したいのか
+- FORM : どのテーブルを参照しているのか
+- WHERE : どんな条件で取得しているのか
+
+## 2-3 ログ解析してみよう
