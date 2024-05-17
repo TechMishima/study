@@ -239,3 +239,32 @@ WHERE
 - WHERE : どんな条件で取得しているのか
 
 ## 2-3 ログ解析してみよう
+
+### 色んな関数
+DATE関数 : 日付または日付時間式の日付部分を抽出します
+```
+-- 日次のアクセス数を求める
+SELECT DATE(startTime), COUNT(logID)
+FROM eventlog
+GROUP BY DATE(startTime);
+```
+
+BETWEEN関数 : ある期間のデータを取得する
+```
+-- 日次のアクセス数を求める
+SELECT DATE(startTime), COUNT(logID)
+FROM eventlog
+WHERE DATE(startTime) BETWEEN "2015-04-01" AND "2015-04-30"
+GROUP BY DATE(startTime);
+```
+
+DATE_FORMAT関数 : 日付を指定された書式に設定します
+```
+-- 月次のアクセス数を求める
+SELECT DATE_FORMAT(startTime, '%Y-%m'), COUNT(logID)
+FROM eventlog
+GROUP BY DATE_FORMAT(startTime, '%Y-%m');
+```
+
+### 日付および時間関数の参考URL
+https://dev.mysql.com/doc/refman/8.0/ja/date-and-time-functions.html
