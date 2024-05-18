@@ -266,5 +266,19 @@ FROM eventlog
 GROUP BY DATE_FORMAT(startTime, '%Y-%m');
 ```
 
+<b>少しふかぼり</b>
+大文字のYだと2024で取得できるが、小文字だと24になる。
+
 ### 日付および時間関数の参考URL
 https://dev.mysql.com/doc/refman/8.0/ja/date-and-time-functions.html
+
+## 2-4 アクティブユーザーを調べよう
+
+AS関数
+
+SELECT userID AS "アクティブユーザー"
+FROM users
+WHERE deleted_at IS NULL;
+
+SELECT DISTINCT userID AS "アクティブユーザー"
+FROM users;
