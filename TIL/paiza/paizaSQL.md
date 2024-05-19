@@ -274,11 +274,24 @@ https://dev.mysql.com/doc/refman/8.0/ja/date-and-time-functions.html
 
 ## 2-4 アクティブユーザーを調べよう
 
-AS関数
+### AS カラム名を別名で表示する
+userIDだと視認性が悪いので、アクティブユーザーに変更している。
+```
+SELECT userID AS "アクティブユーザー"
+FROM users;
+```
 
+### WHEREで空白の値のデータを表示 IS NULL
+WHERE カラム IS NULLで空白の値を集計できる。
+```
 SELECT userID AS "アクティブユーザー"
 FROM users
 WHERE deleted_at IS NULL;
+```
 
+### 重複した行を省く DISTINCT
+重複したuserIDを省いて表示する。
+```
 SELECT DISTINCT userID AS "アクティブユーザー"
 FROM users;
+```
