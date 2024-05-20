@@ -295,3 +295,16 @@ WHERE deleted_at IS NULL;
 SELECT DISTINCT userID AS "アクティブユーザー"
 FROM users;
 ```
+
+## 2-5 データを集計しよう
+
+### SELECT文の処理順
+1. FROM 対象テーブルからデータを取り出す
+2. WHERE 条件に一致するレコードを絞り込み
+3. GROUP BY グループ化
+4. HAVING 集計結果から絞り込み
+5. SELECT 指定したカラムだけを表示
+
+SUM　AVG　
+HAVING　グループばいのあと
+MIN MAX
