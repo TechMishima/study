@@ -305,6 +305,42 @@ FROM users;
 4. HAVING 集計結果から絞り込み
 5. SELECT 指定したカラムだけを表示
 
-SUM　AVG　
-HAVING　グループばいのあと
-MIN MAX
+### SQLの集計関数
+https://products.sint.co.jp/topsic/blog/sql-bootcamp-03#toc-1<br>
+
+- SUM関数<br>
+SUM関数は指定された項目Xの合計を返します。
+ただし、項目Xの値がNULLの場合は除外して集計します。
+```
+SUM ( 項目X  )
+```
+
+- AVG関数<br>
+AVG関数は指定された項目Xの平均値を返します。
+ただし、項目Xの値がNULLの場合は除外して集計します。
+```
+AVG ( 項目X )
+```
+
+- MAX関数<br>
+MAX関数は、指定された項目Xの最大値を返します。
+```
+MAX ( 項目X )
+```
+
+- MIN関数<br>
+MIN関数は、指定された項目Xの最小値を返します。
+```
+MIN ( 項目X )
+```
+
+### HAVING句について
+GROUP BYでグループ化した結果に条件式を適用できる。
+```
+SELECT 項目X , 項目Y , ・・・　FROM テーブル名
+GROUP BY 項目X , 項目Y ・・・
+HAVING 条件式;
+```
+SUM関数で合計したのちに比べたりするときに、使用する。
+
+## 2-6 ユーザーの年齢を計算しよう
