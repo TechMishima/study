@@ -344,3 +344,41 @@ HAVING 条件式;
 SUM関数で合計したのちに比べたりするときに、使用する。
 
 ## 2-6 ユーザーの年齢を計算しよう
+
+### 2つの時刻の計算
+
+- TIMESTAMPADD(unit,interval,datetime_expr)<br>
+整数式 interval を日付または日付時間式 datetime_expr に加算します。 interval の単位は、unit 引数で指定されます。この引数は、MICROSECOND (マイクロ秒)、SECOND、MINUTE、HOUR、DAY、WEEK、MONTH、QUARTER、YEAR 値のいずれかにする
+```
+mysql> SELECT TIMESTAMPADD(MINUTE,1,'2003-01-02');
+        -> '2003-01-02 00:01:00'
+mysql> SELECT TIMESTAMPADD(WEEK,1,'2003-01-02');
+        -> '2003-01-09'
+```
+
+- TIMESTAMPDIFF(unit,datetime_expr1,datetime_expr2)<br>
+datetime_expr2 − datetime_expr1 を返します。結果 (整数) の単位は、unit 引数で指定されます。 unit の有効な値は、TIMESTAMPADD() 関数の説明で一覧表示された値と同じです。
+```
+mysql> SELECT TIMESTAMPDIFF(MONTH,'2003-02-01','2003-05-01');
+        -> 3
+mysql> SELECT TIMESTAMPDIFF(YEAR,'2002-05-01','2001-01-01');
+        -> -1
+mysql> SELECT TIMESTAMPDIFF(MINUTE,'2003-02-01','2003-05-01 12:05:55');
+        -> 128885
+```
+
+### 現在の時刻を取得
+下記の3つが現在の時刻を求めるシノニム。
+- CURRENT_DATE
+- CURRENT_DATE()
+- CURDATE()
+```
+SELECT CURRENT_DATE;
+
+SELECT CURRENT_DATE();
+
+SELECT CURDATE();
+```
+シノニムって？<br>
+SQLにおけるシノニム（synonym）とは、ある関数やコマンドが異なる名前でも同じ機能を持つ場合を指します。つまり、複数の名前が同じ動作をするということです。
+
