@@ -382,3 +382,25 @@ SELECT CURDATE();
 シノニムって？<br>
 SQLにおけるシノニム（synonym）とは、ある関数やコマンドが異なる名前でも同じ機能を持つ場合を指します。つまり、複数の名前が同じ動作をするということです。
 
+## 2-7 テキストを検索しよう
+
+### LIKE命令 検索する
+下記のコードでは「●●との闘い」を検索することができる。
+```
+-- テキスト検索
+SELECT
+	events.event_summary
+FROM
+	eventlog
+	INNER JOIN events ON events.eventID = eventlog.eventID
+WHERE  events.event_summary LIKE '%との闘い'
+```
+
+<b>すこしふかぼり</b><br>
+LIKE句で使用可能なワイルドカード
+
+| ワイルドカード | 意味 |
+| - | - |
+| % | 0文字以上の任意の文字列 |
+| _ | 任意の1文字 |
+
