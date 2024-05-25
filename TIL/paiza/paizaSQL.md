@@ -405,8 +405,32 @@ LIKE句で使用可能なワイルドカード
 | _ | 任意の1文字 |
 
 ## 2-8 サブクエリでアクティブユーザー数を求めよう
-
+```
 -- FROM句に書く場合
 SELECT *
 FROM (サブクエリ) AS (サブクエリ名);
-
+```
+```
+SELECT 列名1, 列名2, ...
+FROM テーブル名
+WHERE 列名 = ( 
+    SELECT 列名
+    FROM テーブル名
+    [WHERE 条件式など]
+)
+```
+サブクエリの例
+```
+SELECT
+    yearMonth,
+    COUNT(user)
+FROM 
+    (SELECT DISTINCT
+    	DATE_FORMAT(startTime, '%Y-%m') AS yearMonth,
+    	eventlog.userID AS user
+    FROM eventlog
+    	INNER JOIN users ON users.userID = eventlog.userID
+    WHERE deleted_at IS NULL)
+AS years
+GROUP BY yearMonth;
+```
