@@ -434,3 +434,20 @@ FROM
 AS years
 GROUP BY yearMonth;
 ```
+
+## 2-9 グループ分けしよう
+### CASE命令
+case命令を使用するとデータを分類できる。
+```
+-- データを分類し直す
+SELECT
+	userID,
+	level,
+	CASE
+		WHEN (条件式1) THEN (出力1)
+		WHEN (条件式2) THEN (出力2)
+		ELSE (出力3)
+	END
+FROM
+	users;
+```
