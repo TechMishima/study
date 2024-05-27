@@ -451,3 +451,39 @@ SELECT
 FROM
 	users;
 ```
+
+## 2-10 クロス集計してみよう
+
+### クロス集計を作る手順
+1. クロス集計の元になるデータを用意する
+2. サブクエリとして読み込む
+3. CASEで、特定の値だったら1にする。このとき別名を、特定の値と同じにする
+```
+CASE WHEN クラス = "初級" THEN 1 ELSE NULL END AS "初級",
+CASE WHEN クラス = "中級" THEN 1 ELSE NULL END AS "中級",
+CASE WHEN クラス = "上級" THEN 1 ELSE NULL END AS "上級"
+```
+4. SUM関数とGROUP BYで集計する
+
+### 実装例
+```
+-- 所持金で分類してクロス集計
+SELECT
+	日付,
+	SUM(CASE WHEN finance = "大金持ち" THEN 1 ELSE 0 END) AS "大金持ち",
+	SUM(CASE WHEN finance = "小金持ち" THEN 1 ELSE 0 END) AS "小金持ち",
+	SUM(CASE WHEN finance = "発展途上" THEN 1 ELSE 0 END) AS "発展途上"
+FROM ( SELECT DISTINCT
+	DATE_FORMAT(startTime, '%Y%m') AS 日付,
+	eventlog.userID,
+	(CASE
+		WHEN gold >= 3000 THEN "大金持ち"
+		WHEN gold >= 1000 THEN "小金持ち"
+		ELSE "発展途上"
+	END) AS finance
+	FROM eventlog
+		INNER JOIN users ON users.userID = eventlog.userID
+	) AS クラス分け
+GROUP BY 日付;
+```
+
