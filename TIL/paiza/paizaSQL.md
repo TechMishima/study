@@ -487,3 +487,35 @@ FROM ( SELECT DISTINCT
 GROUP BY 日付;
 ```
 
+## 2-11 サブクエリで、平均や割合を求めよう
+
+### 色んなサブクエリ
+FROM句に書く場合
+```
+-- FROM句に書く場合
+SELECT *
+FROM (サブクエリ) AS (サブクエリ名);
+```
+
+WHERE句に書く場合
+```
+-- WHERE句に書く場合
+SELECT *
+FROM users
+WHERE level = ((サブクエリ));
+```
+
+SELECT句に書く場合
+```
+-- SELECT句に書く場合
+SELECT (サブクエリ) AS (サブクエリ名)
+FROM users;
+```
+
+### 実装例
+```
+-- 平均以上の所持金を持つユーザー数を表示する
+SELECT userID, name, gold
+FROM users
+WHERE gold >= (SELECT AVG(gold) FROM users);
+```
