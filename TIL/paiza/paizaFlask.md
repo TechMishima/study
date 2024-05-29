@@ -493,3 +493,81 @@ aは書き込みモード。ファイルに追加で記述したい時にしよ�
 wのモードもある。既存の内容は上書きされてしまう。
 
 
+## 3-1 pythonでデータベースに接続しよう
+
+sqlを学習する。<br>
+https://paiza.jp/works/sql/primer
+
+### データベースへ接続するためのコード
+全体
+```
+import pymysql
+
+print("世界の皆さん、こんにちは")
+
+connection = pymysql.connect(
+    host="localhost",
+    db="mydb",
+    user="root",
+    password="",
+    charset="utf8",
+    cursorclass=pymysql.cursors.DictCursor
+)
+
+sql = "SELECT * FROM players"
+cursor = connection.cursor()
+cursor.execute(sql)
+players = cursor.fetchall()
+
+cursor.close()
+connection.close()
+
+for player in players:
+    print(player["name"])
+```
+
+```
+import pymysql
+```
+データベースを操作するためのライブラリの取得<br>
+mysqlを操作するためのライブラリを取得している
+
+```
+connection = pymysql.connect(
+    host="localhost",
+    db="mydb",
+    user="root",
+    password="",
+    charset="utf8",
+    cursorclass=pymysql.cursors.DictCursor
+)
+```
+データベースに接続するためのコード
+- host="localhost" : データベースサーバーの指定
+- db="mydb" : データベース名の指定
+- user="root" : ユーザー名の指定
+- password="" : パスワードの指定
+- charset="utf8" : 文字コードの指定
+- cursorclass=pymysql.cursors.DictCursor : データを辞書にするかリストにするか選べる
+
+```
+sql = "SELECT * FROM players"
+cursor = connection.cursor()
+cursor.execute(sql)
+players = cursor.fetchall()
+```
+データベースからデータを取り出すためのコード
+- sql = "SELECT * FROM players" : 使用したいSQL文
+- cursor = connection.cursor() : 操作しようとしているデータの位置のオブジェクト
+- cursor.execute(sql) : 使用したいデータの位置でexecuteメソッドを使用してSQL文を呼び出す
+- players = cursor.fetchall() : 取り出したデータをplayers変数に入れている
+
+
+```
+cursor.close()
+connection.close()
+```
+上記の接続と取り出しを終わるためのコード
+
+
+
