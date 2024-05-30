@@ -571,3 +571,50 @@ connection.close()
 
 
 
+## 3-2 Flaskでデータベースから表示しよう
+
+### pythonファイルの記述
+3-1で学習した内容をFlask組み込んでいる
+```
+from flask import Flask, render_template
+import pymysql
+app = Flask(__name__)
+
+def getConnection():
+    return pymysql.connect(
+        host='localhost',
+        db='mydb',
+        user='root',
+        password='',
+        charset='utf8',
+        cursorclass=pymysql.cursors.DictCursor
+    )
+
+@app.route('/')
+def select_sql():
+    connection = getConnection()
+    message = "Hello world"
+
+    sql = "SELECT * FROM players"
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    players = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+
+    return render_template('view.html', message = message, players = players)
+```
+### テンプレートファイル
+```
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Hello SQL</h1>
+    <p>{{ message }}</p>
+
+    {% for player in players %}
+        <p>{{ player }}</p>
+    {% endfor %}
+
+{% endblock %}
+```
