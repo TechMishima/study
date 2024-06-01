@@ -619,4 +619,12 @@ def select_sql():
 {% endblock %}
 ```
 
-## 3-3 
+## 3-3 Pythonでデータベースを使ってみよう1
+
+%sは
+
+
+sql = "SELECT * FROM players WHERE level >= %s AND level <= %s"
+cursor = connection.cursor()
+cursor.execute(sql, (5, 10))
+players = cursor.fetchall()
