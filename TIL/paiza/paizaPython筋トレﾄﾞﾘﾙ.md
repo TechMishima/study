@@ -27,3 +27,23 @@ print(c.upper())
 c = "X"
 print(c.lower())
 ```
+
+## 文字列の検索 find
+```
+s = "aaapaizabbb"
+index = s.find("paiza")
+print(index) # 3になる
+```
+
+### findとindexはどう違うのか？
+https://ittrip.xyz/python/python-string-find-index<br>
+- findメソッド : 対象の文字列がない場合、-1を返す。
+- indexメソッド : 対象の文字列がない場合、エラーが発生する。
+
+## 特定の範囲の文字列を出力
+n文字目からm文字目まではs[n-1:m] ※今回は10-12
+
+```
+s = "abcdefghijklmnopqrstuvwxyz"
+print(s[9:12])
+```

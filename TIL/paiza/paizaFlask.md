@@ -621,10 +621,57 @@ def select_sql():
 
 ## 3-3 Pythonでデータベースを使ってみよう1
 
-%sは
+### %sってなに？
+%sはpymysqlで使用できる引数。<br>
+SQL文で使用したい引数をexecuteメソッドに打ち込む。
 
-
+```
 sql = "SELECT * FROM players WHERE level >= %s AND level <= %s"
 cursor = connection.cursor()
 cursor.execute(sql, (5, 10))
 players = cursor.fetchall()
+```
+
+## 3-4 Pythonでデータベースを使ってみよう2
+
+```
+from flask import Flask, render_template
+import pymysql
+app = Flask(__name__)
+
+def getConnection():
+    return pymysql.connect(
+        host='localhost',
+        db='mydb',
+        user='root',
+        password='',
+        charset='utf8',
+        cursorclass=pymysql.cursors.DictCursor
+    )
+
+@app.route('/')
+def select_sql():
+
+    connection = getConnection()
+    message = "Hello world"
+    
+    cursor = connection.cursor()
+
+    # sql = "INSERT INTO players (name,level,job_id) VALUES('霧島1号', 1, 1)"
+    # sql = "UPDATE players SET level = 10 WHERE id = 11"
+    sql = "DELETE FROM players WHERE id = 11"
+    cursor.execute(sql)
+    connection.commit()
+
+    sql = "SELECT * FROM players"
+    cursor.execute(sql)
+    players = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+
+    return render_template('view.html', message = message, players = players)
+```
+
+connection.commit()を行わないとデータベースが更新されない。<br>
+closeするまでは反映されているので、非破壊メソッドと似たような動作になる。
