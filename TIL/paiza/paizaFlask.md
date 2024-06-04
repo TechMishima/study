@@ -675,3 +675,37 @@ def select_sql():
 
 connection.commit()を行わないとデータベースが更新されない。<br>
 closeするまでは反映されているので、非破壊メソッドと似たような動作になる。
+
+## 3-5 Pythonでテーブルを連結してデータを取り出す
+
+```
+from flask import Flask, render_template
+import pymysql
+app = Flask(__name__)
+
+def getConnection():
+    return pymysql.connect(
+        host='localhost',
+        db='mydb',
+        user='root',
+        password='',
+        charset='utf8',
+        cursorclass=pymysql.cursors.DictCursor
+    )
+
+@app.route('/')
+def select_sql():
+  
+    connection = getConnection()
+    message = "Hello world"
+
+    sql = "SELECT * FROM players LEFT JOIN jobs ON jobs.id = players.job_id"
+    cursor = connection.cursor()
+    cursor.execute(sql)
+    players = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+
+    return render_template('view.html', message = message, players = players)
+```

@@ -3,8 +3,9 @@ python3 筋トレﾄﾞﾘﾙの受講<br>
 https://paiza.jp/works/mondai/cgc_problems/problem_index?language_uid=python3
 
 # Progress
-出力とコメント - コメントアウト 5
-「変数 - 右辺が変数を使った式 2 Python3編」
+出力とコメント - コメントアウト 5<br>
+「変数 - 右辺が変数を使った式 2 Python3編」<br>
+条件分岐と等価演算子 - 比較と代入の違い 3<br>
 
 # TIL
 
@@ -47,3 +48,72 @@ n文字目からm文字目まではs[n-1:m] ※今回は10-12
 s = "abcdefghijklmnopqrstuvwxyz"
 print(s[9:12])
 ```
+
+## True,Falseの出力
+```
+print(s == t)
+```
+
+## データの型
+- int : 整数
+- str : 文字列
+- float : 実数(小数点以下含むなど)
+
+## 小数点以下の桁数を指定する
+
+https://magazine.techacademy.jp/magazine/23378
+
+### 桁数を指定して出力する方法
+
+
+formatを使用する<br>
+例だと先頭に3文字分の余白が追加されて表示されている。<br>
+「整数部3桁 + 小数点を意味するドットで1桁 + 小数部3桁」の合計 7桁だから。<br>
+実際の数値よりも少ない桁数を指定してもそのまま表示される<br>
+```
+num = 123.456
+print('{:10}'.format(num))
+# =>    123.456
+
+num = 123.456
+print('{:2}'.format(num))
+# => 123.456
+```
+
+f文字列を使用する<br>
+f”もしくは f”” で囲むと、{} 内に変数などを指定できる。
+```
+num = 123.456
+print(f'{num:10}')
+# =>    123.456
+
+print(f'{num:2}')
+# => 123.456
+```
+
+### 小数点以下の桁数を指定して出力する方法
+
+formatを使用する<br>
+ゼロ埋めして表示したい場合には {:.08f} と指定
+```
+num = 123.456
+print('{:.1f}'.format(num))
+# => 123.5
+
+num = 123.456
+print('{:.08f}'.format(num))
+# => 123.45600000
+```
+
+f文字列を使用する
+```
+num = 123.456
+print(f'{num:.1f}')
+# => 123.5
+
+print(f'{num:.08f}')
+# => 123.45600000
+```
+
+#
+import math floor
