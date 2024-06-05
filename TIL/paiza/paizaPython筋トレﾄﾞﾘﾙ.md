@@ -6,6 +6,7 @@ https://paiza.jp/works/mondai/cgc_problems/problem_index?language_uid=python3
 出力とコメント - コメントアウト 5<br>
 「変数 - 右辺が変数を使った式 2 Python3編」<br>
 条件分岐と等価演算子 - 比較と代入の違い 3<br>
+条件分岐と関係演算子 - 数値の大きさの比較 4 <br>
 
 # TIL
 
@@ -117,3 +118,5 @@ print(f'{num:.08f}')
 
 #
 import math floor
+
+1,3 rand?

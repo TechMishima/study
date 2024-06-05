@@ -709,3 +709,28 @@ def select_sql():
 
     return render_template('view.html', message = message, players = players)
 ```
+
+## 3-6 データをtableタグで表示する
+
+Flaskで取り出したデータをテーブルタグで表示する
+
+```
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Hello SQL</h1>
+    <p>{{ message }}</p>
+
+    <table>
+        {% for player in players %}
+            <tr>
+                <td>{{ player.id }}</td>
+                <td>{{ player.name }}</td>
+                <td>{{ player.job_name }}</td>
+                <td>{{ player.level }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
+```
+
