@@ -116,7 +116,47 @@ print(f'{num:.08f}')
 # => 123.45600000
 ```
 
-#
-import math floor
+## randomモジュールについて
 
-1,3 rand?
+https://www.sejuku.net/blog/20915
+
+### random.random 基礎ランダム
+0.0から1.0の範囲のfloat型の値を返す。
+```
+num = random.random()
+print(num)
+
+# => 0.08114641703637393
+```
+
+### random.uniform 指定した範囲の実数
+```
+num = random.uniform(2.0,5.0)
+print(num)
+
+# => 3.8989018807071822
+```
+
+### random.choice 配列の中身をランダムに取得
+choice関数を使用することで、規則性の無い数字の乱数を取得できる。
+```
+mylist = ["apple", "banana", "melon", "strawberry", "peach", "lemon"]
+print(random.choice(mylist))
+
+# => melon
+```
+
+
+
+
+
+
+
+
+## if not
+
+## if True:
+if False:
+if b == True:
+
+## import math floor

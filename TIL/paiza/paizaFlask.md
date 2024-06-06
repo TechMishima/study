@@ -734,3 +734,68 @@ Flaskで取り出したデータをテーブルタグで表示する
 {% endblock %}
 ```
 
+## 3-7 特定のプレイヤーを表示する
+
+### pyフォルダ
+
+```
+from flask import Flask, request, render_template
+import pymysql
+app = Flask(__name__)
+
+def getConnection():
+    return pymysql.connect(
+        host='localhost',
+        db='mydb',
+        user='root',
+        password='',
+        charset='utf8',
+        cursorclass=pymysql.cursors.DictCursor
+    )
+
+@app.route('/')
+def list_players():
+    connection = getConnection()
+    message = "Player一覧"
+
+    cursor = connection.cursor()
+    sql = "SELECT * FROM players LEFT JOIN jobs ON jobs.id = players.job_id;"
+    cursor.execute(sql)
+    players = cursor.fetchall()
+
+    cursor.close()
+    connection.close()
+
+    return render_template('index.html', message = message, players = players)
+
+@app.route('/show/<int:id>')
+def show_player(id):
+  
+    connection = getConnection()
+    message = "Hello Player " + str(id)
+
+    cursor = connection.cursor()
+    sql = "SELECT * FROM players LEFT JOIN jobs ON jobs.id = players.job_id WHERE players.id = %s"
+    cursor.execute(sql, id)
+    player = cursor.fetchone()
+
+    cursor.close()
+    connection.close()
+
+    return render_template('profile.html', message = message, player = player)
+```
+int:idとすることで、idをルートに組み込んでいる。<br>
+<>は<>ブラケットという。urlにidを組み込むことができる。<br>
+変数を入れたり、型の変換をすることができる。<br>
+int型やstr型に変えることができる。
+```
+@app.route('/show/<int:id>')
+```
+
+データを一つだけ取り出す場合はfetchoneを使用する。
+
+```
+players.id = %s"
+    cursor.execute(sql, id)
+    player = cursor.fetchone()
+```
