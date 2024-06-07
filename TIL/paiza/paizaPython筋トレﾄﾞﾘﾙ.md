@@ -146,14 +146,44 @@ print(random.choice(mylist))
 # => melon
 ```
 
-
-
-
-
-
-
-
 ## if not
+https://www.sejuku.net/blog/65070<br>
+条件式の結果が真であれば偽、偽の場合は真を返す演算子
+
+```
+str1 = "apple"
+if not str1 == "orange":
+    print(True)
+else:
+    print(False)
+
+# => True
+```
+### 気をつけなくてはいけないこと
+```
+x = 10
+y = 20
+ 
+if not x == 10 or y == 20:
+    print(True)
+
+# => True
+```
+上記はx == 10はnotにかかっているが、y == 20にはかかっていないのでTrueになる。
+
+```
+x = 10
+y = 20
+
+if not x == 10 or not y == 20:
+    print(True)
+else:
+    print(False)
+```
+上記にすることでどちらにもnotがつけられる。
+
+
+
 
 ## if True:
 if False:
