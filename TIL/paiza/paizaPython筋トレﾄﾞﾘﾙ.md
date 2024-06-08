@@ -183,10 +183,55 @@ else:
 上記にすることでどちらにもnotがつけられる。
 
 
+## if文の条件分岐
+https://note.nkmk.me/python-if-elif-else/
 
+### if True: と if False:について
+常にTrue,Falseになるのでデバッグとして使用する。
+```
+if True:
+    print("This block will always execute.")
+```
 
-## if True:
-if False:
-if b == True:
+### ==演算子とis演算子の違い
+==演算子は値が等しければTrue,is演算子はオブジェクトが等しければTrueになる。
+```
+l1 = [1, 2, 3]
+l2 = [1, 2, 3]
+print(l1 == l2)
+# True
+
+print(l1 is l2)
+# False
+```
+```
+l3 = l1
+print(l1 is l3)
+# True
+```
+
+### 条件式を改行して複数行で記述
+バックスラッシュを使うかかっこで囲む
+```
+def if_backslash():
+    if too_long_name_function_1() \
+       and too_long_name_function_2() \
+       and too_long_name_function_3():
+        print('True')
+    else:
+        print('False')
+```
+```
+def if_parentheses():
+    if (
+        too_long_name_function_1()
+        and too_long_name_function_2()
+        and too_long_name_function_3()
+    ):
+        print('True')
+    else:
+        print('False')
+```
+
 
 ## import math floor
