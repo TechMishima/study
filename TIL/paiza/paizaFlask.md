@@ -799,3 +799,7 @@ players.id = %s"
     cursor.execute(sql, id)
     player = cursor.fetchone()
 ```
+
+## 4-1 SQLAlchemyの役割と効果
+SQLAlchemyは、データベースのレコードをPythonのオブジェクトに割り当てる機能を持ったライブラリ<br>
+SQLAlchemyを使うと、データベースのレコードをオブジェクトとして扱えるようになり、SQLを書かなくても、Pythonのコードでデータベースが操作できる。
