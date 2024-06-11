@@ -803,3 +803,30 @@ players.id = %s"
 ## 4-1 SQLAlchemyの役割と効果
 SQLAlchemyは、データベースのレコードをPythonのオブジェクトに割り当てる機能を持ったライブラリ<br>
 SQLAlchemyを使うと、データベースのレコードをオブジェクトとして扱えるようになり、SQLを書かなくても、Pythonのコードでデータベースが操作できる。
+
+## 4-2 Flask_SQLAlchemyでデータを表示する
+全体のコード
+```
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+app = Flask(__name__)
+
+db_uri = 'mysql+pymysql://root:@localhost/mydb?charset=utf8'
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+db = SQLAlchemy(app)
+
+class Player(db.Model):
+    __tablename__ = 'players'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.Text())
+    level = db.Column(db.Integer)
+    job_id = db.Column(db.Integer)
+
+@app.route('/')
+def select_sql():
+    message = "Hello SQLAlchemy"
+
+    players = Player.query.all()
+
+    return render_template('view.html', message = message, players = players)
+```
