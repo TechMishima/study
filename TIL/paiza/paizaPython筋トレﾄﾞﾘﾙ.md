@@ -9,6 +9,7 @@ https://paiza.jp/works/mondai/cgc_problems/problem_index?language_uid=python3
 条件分岐と関係演算子 - 数値の大きさの比較 4 <br>
 条件の結合と否定 - 論理型の変数 1<br>
 年月日の計算 - 和暦の西暦への変換 1<br>
+年月日の計算 - 小の月の判定 1<br>
 
 
 # TIL
