@@ -269,4 +269,20 @@ else:
     print("省略不可")
 ```
 
+## 記述が長くなってしまう場合
+バックスラッシュを使用することで、行をまたぐことができる。
+```
+import random
+month = random.randint(1, 12)
+
+# 2, 4, 6, 9, 11月ならば"small"
+if month == 2 or month == 4 or \
+    month == 6 or month == 9 or \
+    month == 11:
+    print("small")
+else:
+    print("large")
+print("month is " + str(month))
+```
+
 ## import math floor
