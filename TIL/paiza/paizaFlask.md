@@ -830,3 +830,20 @@ def select_sql():
 
     return render_template('view.html', message = message, players = players)
 ```
+ルーティング後の設定が簡潔になっており、修正も楽になっている。
+```
+db_uri = 'mysql+pymysql://root:@localhost/mydb?charset=utf8' # MySQLデータベースへの接続URIを設定
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri # Flaskアプリケーションの設定にデータベースURIを追加
+db = SQLAlchemy(app) # SQLAlchemyオブジェクトを作成し、Flaskアプリケーションに関連させる
+```
+上記はSQLAlchemyを使用するためのデータベース接続設定を行っている。
+
+
+```
+class Player(db.Model):
+    __tablename__ = 'players'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.Text())
+    level = db.Column(db.Integer)
+    job_id = db.Column(db.Integer)
+```
