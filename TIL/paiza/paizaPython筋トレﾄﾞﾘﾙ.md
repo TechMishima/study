@@ -12,6 +12,7 @@ https://paiza.jp/works/mondai/cgc_problems/problem_index?language_uid=python3
 年月日の計算 - 小の月の判定 1<br>
 標準入力 - 1 行の入力 2<br>
 入力データの処理 - 入力データとif文2<br>
+入力データの処理 - 入力データと暦年 4<br>
 
 
 # TIL
