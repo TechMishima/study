@@ -13,6 +13,8 @@ https://paiza.jp/works/mondai/cgc_problems/problem_index?language_uid=python3
 標準入力 - 1 行の入力 2<br>
 入力データの処理 - 入力データとif文2<br>
 入力データの処理 - 入力データと暦年 4<br>
+定数回のループ - while 文で数値を順に出力 3<br>
+
 
 
 # TIL
@@ -286,6 +288,19 @@ if month == 2 or month == 4 or \
 else:
     print("large")
 print("month is " + str(month))
+```
+
+## 差分を考慮したrange関数
+https://atmarkit.itmedia.co.jp/ait/articles/2011/20/news018.html
+
+```
+# 初期値1、最終値9、差分2の等差数列：1、3、5、7、9
+r = range(1, 10, 2)
+print(list(r))  # [1, 3, 5, 7, 9]
+
+# 降順の数列（初期値9、最終値0、差分-1）：9、8、7、6、5、4、3、2、1、0
+r = range(9, -1, -1)
+print(list(r))  # [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 ```
 
 ## import math floor
