@@ -14,6 +14,7 @@ https://paiza.jp/works/mondai/cgc_problems/problem_index?language_uid=python3
 入力データの処理 - 入力データとif文2<br>
 入力データの処理 - 入力データと暦年 4<br>
 定数回のループ - while 文で数値を順に出力 3<br>
+様々なループ - 複数の乱数の出力 2<br>
 
 
 
