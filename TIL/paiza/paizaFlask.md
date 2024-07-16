@@ -847,3 +847,31 @@ class Player(db.Model):
     level = db.Column(db.Integer)
     job_id = db.Column(db.Integer)
 ```
+
+## 4-3 SQLAlchemyでデータを表示しよう
+
+### 最初の5件を取り出す
+```
+players = Player.query.limit(5).all()
+```
+
+### 条件に一致したデータだけを取り出す
+指定の方法はモデル名の後にカラム名をつける 
+```
+players = Player.query.filter(Player.level >= 5)
+```
+
+### 指定したidのデータを取り出す
+ルーティングにidを指定する<br>
+getメソッドでidを指定することで特定のデータをとりだせる。
+
+```
+@app.route('/show/<int:id>')
+def show(id):
+    message = "Show SQLAlchemy"
+
+    player = Player.query.get(id)
+
+    return render_template('view_player.html', message = message, player = player)
+```
+
