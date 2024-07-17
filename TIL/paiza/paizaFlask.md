@@ -875,3 +875,12 @@ def show(id):
     return render_template('view_player.html', message = message, player = player)
 ```
 
+### SQLインジェクションとは？
+Webアプリケーションの脆弱性を意図的に利用し、断片的なSQL文をアプリケーションに不正に注入し実行させる攻撃方法の事。<br>
+攻撃者がデータベースを操作することができ、データベース内に格納された情報を読み取ったり改ざんすることができる。
+
+<b>対策は？</b><br>
+プレースホルダの利用などがある。
+```
+SELECT * FROM user WHERE id = ?
+```
