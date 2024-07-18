@@ -884,3 +884,31 @@ Webアプリケーションの脆弱性を意図的に利用し、断片的なSQ
 ```
 SELECT * FROM user WHERE id = ?
 ```
+
+## 4-4 SQLAlchemyでデータベースを使ってみよう
+
+### SQLAlchemyでデータを追加する
+addでデータの追加の準備をしている。<br>
+commitでデータの反映をしている。<br>
+追加するたびに反映すると処理が多くなってしまうので、commitで反映する期間を区切っている。
+
+```
+@app.route('/new')
+def new():
+    message = "New SQLAlchemy"
+
+    # データ追加
+    player = Player()
+    player.name = "霧島1号"
+    player.level = 1
+    player.job_id = 1
+    db.session.add(player)
+    db.session.commit()
+
+    players = Player.query.all()
+
+    return render_template('view.html', message = message, players = players)
+```
+
+
+```
