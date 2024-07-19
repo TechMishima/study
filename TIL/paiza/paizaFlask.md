@@ -910,5 +910,38 @@ def new():
     return render_template('view.html', message = message, players = players)
 ```
 
+### SQLAlchemyでデータの更新をする
+指定したデータを取り出して修正し、commitするだけ。
 
+```
+@app.route('/update/<int:id>')
+def update(id):
+    message = "Update SQLAlchemy"
+
+    # データ更新
+    player = Player.query.get(id)
+    player.level += 1
+    db.session.commit()
+
+    players = Player.query.all()
+
+    return render_template('view.html', message = message, players = players)
+```
+
+### SQLAlchemyでデータを削除する
+deleteでデータを削除できる。
+
+```
+@app.route('/destroy/<int:id>')
+def destroy(id):
+    message = "Destroy SQLAlchemy"
+
+    # データ削除
+    player = Player.query.get(id)
+    db.session.delete(player)
+    db.session.commit()
+
+    players = Player.query.all()
+
+    return render_template('view.html', message = message, players = players)
 ```
