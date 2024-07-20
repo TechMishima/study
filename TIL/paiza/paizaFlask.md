@@ -945,3 +945,67 @@ def destroy(id):
 
     return render_template('view.html', message = message, players = players)
 ```
+
+## 2-5 SQLAlchemyでテーブルを連結してデータを取り出す
+
+テーブルの連結をするための記述
+
+```
+外部キーを設定する
+job_id = db.Column(db.Integer, db.ForeignKey('jobs.id'))
+
+
+リレーションシップを設定する
+player = db.relationship('Player', backref=db.backref('jobs', lazy=True))
+
+
+連結したカラムの表示
+<table>
+{% for player in players %}
+    <tr>
+        <td>{{ player.id }}</td>
+        <td>{{ player.name }}</td>
+        <td>{{ player.level }}</td>
+        <td>{{ player.job_id }}</td>
+        <td>{{ player.jobs.job_name }}</td>
+    </tr>
+{% endfor %}
+</table>
+```
+記述例
+```
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+app = Flask(__name__)
+
+db_uri = 'mysql+pymysql://root:@localhost/mydb?charset=utf8'
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+db = SQLAlchemy(app)
+
+class Player(db.Model):
+    __tablename__ = 'players'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.Text())
+    level = db.Column(db.Integer)
+    job_id = db.Column(db.Integer, db.ForeignKey('jobs.id'))
+
+class Job(db.Model):
+    __tablename__ = 'jobs'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    job_name = db.Column(db.Text())
+    vitality = db.Column(db.Integer)
+    strength = db.Column(db.Integer)
+    agility = db.Column(db.Integer)
+    intelligence = db.Column(db.Integer)
+    luck = db.Column(db.Integer)
+
+    player = db.relationship('Player', backref=db.backref('jobs', lazy=True))
+
+@app.route('/')
+def select_sql():
+    message = "Job list"
+
+    players = Player.query.all()
+
+    return render_template('view.html', message = message, players = players)
+```
