@@ -1009,3 +1009,6 @@ def select_sql():
 
     return render_template('view.html', message = message, players = players)
 ```
+
+## 06:特定のプレイヤーを表示する
+## 07:特定職業のプレイヤー一覧を表示する1
