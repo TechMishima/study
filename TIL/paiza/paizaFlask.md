@@ -946,7 +946,7 @@ def destroy(id):
     return render_template('view.html', message = message, players = players)
 ```
 
-## 2-5 SQLAlchemyでテーブルを連結してデータを取り出す
+## 4-5 SQLAlchemyでテーブルを連結してデータを取り出す
 
 テーブルの連結をするための記述
 
@@ -1010,6 +1010,7 @@ def select_sql():
     return render_template('view.html', message = message, players = players)
 ```
 
-## 06:特定のプレイヤーを表示する
-## 07:特定職業のプレイヤー一覧を表示する1
-## 08:特定職業のプレイヤー一覧を表示する2
+## 4-6~4-8 実践
+
+## 5-1 FlaskとSQLAlchemyで作るmarkdownメモ帳アプリ
+
