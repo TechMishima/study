@@ -17,7 +17,7 @@ https://paiza.jp/works/mondai/cgc_problems/problem_index?language_uid=python3
 様々なループ - 複数の乱数の出力 2<br>
 様々なループ - 3 ずつ減少させる 2<br>
 ループと入力 - 複数の文字列の連結 4<br>
-
+ループと条件分岐 - 奇数の出力 1<br>
 
 
 # TIL
