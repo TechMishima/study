@@ -309,5 +309,13 @@ r = range(9, -1, -1)
 print(list(r))  # [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
 ```
 
+## FizzBuzz問題とは
+https://e-words.jp/w/FizzBuzz%E5%95%8F%E9%A1%8C.html<br>
+FizzBuzz問題（フィズバズ問題）とは、英語圏の有名な言葉遊びである “Fizz Buzz” （フィズバズ）のルールをコンピュータプログラムに実装したもの。<br>
+プログラミング初心者向けの簡単な例題としてよく知られている。
+
+ルールは単純で、1から順に数を数え上げていき、3の倍数なら「Fizz」、5の倍数なら「Buzz」、両方の倍数（15の倍数）なら「Fizz Buzz」、いずれでもなければその数を言う。<br>
+「1」「2」「Fizz」「4」「Buzz」「Fizz」「7」「8」「Fizz」「Buzz」「11」「Fizz」「13」「14」「Fizz Buzz」「16」…のように進行する。
+
 ## import math floor
 https://utokyo-ipp.github.io/5/5-1.html
