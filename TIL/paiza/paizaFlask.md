@@ -1014,3 +1014,24 @@ def select_sql():
 
 ## 5-1 FlaskとSQLAlchemyで作るmarkdownメモ帳アプリ
 
+## 5-2 データベースを用意する
+
+### SQL文 テーブルを作成する create
+
+```
+CREATE TABLE posts (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(255),
+  content TEXT
+);
+```
+id: 一意な識別子として使用されるカラム名。テーブル内の各レコードを一意に識別するために使用します。<br>
+INT: 整数型。idカラムには整数値が格納されます。<br>
+NOT NULL: idカラムが必ず値を持つことを強制します。これにより、NULL値は許容されません。<br>
+PRIMARY KEY: idカラムをテーブルのプライマリキーとして指定します。プライマリキーは各レコードを一意に識別し、重複を許さない一意性制約を持ちます。<br>
+AUTO_INCREMENT: 新しいレコードが追加されるたびに、idカラムの値が自動的に1ずつ増加します。これにより、手動でIDを設定する必要がなくなり、一意なIDが自動的に割り当てられます。
+
+## 5-3 Flaskでデータベースに接続する
+
+flaskの復習
+
