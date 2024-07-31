@@ -1035,3 +1035,66 @@ AUTO_INCREMENT: 新しいレコードが追加されるたびに、idカラム�
 
 flaskの復習
 
+## 5-4 個別にメモを表示しよう
+
+flaskの復習
+
+## 5-5 markdownで表示しよう
+
+### markdownの記述
+
+参考URL
+https://www.sejuku.net/blog/77385<br>
+
+リンクの仕方<br>
+タイトル、URLを指定する。
+```
+[paiza](https://paiza.jp/)
+```
+※別タブで開くリンクの設定
+```
+[侍エンジニアブログ](https://www.sejuku.net/blog/){:target="_blank"}
+```
+
+画像のマークダウン
+```
+![paiza](/image/neko.png)
+```
+リンク付きのマークダウン<br>
+```
+[![alt属性](画像ファイルパス)](URL)
+
+[![侍エンジニアブログ](C:UsersSiroDesktopsamurai_blog.png)](https://www.sejuku.net/blog/)
+```
+
+### flaskでmarkdownを使用する方法
+
+Python環境にFlask-Markdownをインストールする<br>
+pipはpythonの為のライブラリを管理するツール<br>
+必要なライブラリを簡単に組み込むことができる
+```
+ターミナルで実行
+
+$ sudo pip3 install Flask-Markdown
+```
+アプリの方にmarkdownライブラリを読み込むコードの記述をする。
+```
+from flask import Flask, request, render_template
+from flask_sqlalchemy import SQLAlchemy
+from flaskext.markdown import Markdown # ライブラリをインポート
+
+app = Flask(__name__)
+Markdown(app) # マークダウンできるように設定
+```
+テンプレートでの記述
+```
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>{{ message }}</h1>
+    <p>タイトル：{{post.title}}</p>
+    {{ post.content | markdown }} # 受け取ったデータをマークダウンで表示する
+
+    <p><a href='/'>一覧に戻る</a> | 編集 | 削除</p>
+
+{% endblock %}
+```
