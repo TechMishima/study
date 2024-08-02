@@ -1098,3 +1098,12 @@ Markdown(app) # マークダウンできるように設定
 
 {% endblock %}
 ```
+
+## 5-6 新規メモを作ろう
+
+### テキストエリアについて
+```
+<textarea name="content" cols="40" rows="10"></textarea>
+```
+- cols : 横幅が40文字の意味
+- rows : 縦幅が10文字の意味
