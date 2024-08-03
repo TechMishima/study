@@ -1107,3 +1107,26 @@ Markdown(app) # マークダウンできるように設定
 ```
 - cols : 横幅が40文字の意味
 - rows : 縦幅が10文字の意味
+
+## 5-7 メモを保存しよう
+
+### フォームからデータを受け取って保存する
+```
+@app.route('/create', methods=['POST'])
+def create_post():
+
+    message = 'Create new memo'
+
+    new_post = Post()
+    new_post.title = request.form['title']
+    new_post.content = request.form['content']
+    db.session.add(new_post)
+    db.session.commit()
+
+    post = Post.query.get(new_post.id)
+
+    return render_template('show.html', message = message, post = post)
+```
+
+## 5-8 メモを編集・保存しよう
+
