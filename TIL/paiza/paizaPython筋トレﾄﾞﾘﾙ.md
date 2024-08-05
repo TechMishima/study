@@ -318,4 +318,5 @@ FizzBuzz問題（フィズバズ問題）とは、英語圏の有名な言葉遊
 「1」「2」「Fizz」「4」「Buzz」「Fizz」「7」「8」「Fizz」「Buzz」「11」「Fizz」「13」「14」「Fizz Buzz」「16」…のように進行する。
 
 ## import math floor
+計算ライブラリ
 https://utokyo-ipp.github.io/5/5-1.html
