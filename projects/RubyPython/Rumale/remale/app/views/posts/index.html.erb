@@ -1,0 +1,17 @@
+<h1>トップページ</h1>
+<% @posts.each do |post|%>
+  <div>
+    <%= post.memo %>
+    <%= post.created_at %>
+  </div>
+<% end %>
+
+<div>
+  score : 
+  <%= @score %>
+</div>
+
+<div>
+  predictions : 
+  <%= @predictions %>
+</div>
