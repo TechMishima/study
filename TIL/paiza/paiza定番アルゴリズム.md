@@ -145,7 +145,3 @@ for i in 1...n
 end
 ```
 最適解だと、ターゲットを左の数字と確認し、小さい場合は左へずらしていくプロンプトで行っていく。
-
-- https://www.tuyano.com/index3?id=5633418423435264&page=5
-- https://docs.ruby-lang.org/ja/latest/method/Array/i/delete_at.html
-- https://docs.ruby-lang.org/ja/latest/method/Array/i/insert.html

@@ -25,3 +25,22 @@ if arr == []
   puts "配列は空です"
 ```
 nilではないので注意！
+
+## delete#at
+指定された位置にある要素を取り除きそれを返す。
+```
+array = [0, 1, 2, 3, 4]
+target = array.delete_at 2
+puts target  # => 2
+p array      # => [0, 1, 3, 4]
+```
+
+## insert
+要素の挿入
+```
+ary = [1, 2, 3]
+ary.insert(2, "a", "b")
+p ary                  # => [1, 2, "a", "b", 3]
+ary.insert(-2, "X")
+p ary                  # => [1, 2, "a", "b", "X", 3]
+```
