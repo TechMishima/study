@@ -145,3 +145,59 @@ for i in 1...n
 end
 ```
 最適解だと、ターゲットを左の数字と確認し、小さい場合は左へずらしていくプロンプトで行っていく。
+
+### 選択ソートとは？
+選択ソート (昇順) は、データ列を「整列済み」と「未整列」の2つに分け、「未整列な配列」の最小値を取り出し、「整列済み配列」の末尾に付け加えることを繰り返す手法。
+
+選択ソートの計算量について<br>
+一番多い計算量を考えると最初はn-1数えて1ずつ減っていく。<br>
+よって、挿入ソートと同様の計算量になる。
+$$O(n^2)$$
+しかし、一番計算量が少ないパターンを考えた時、
+最良計算量は挿入ソートが O(n)に対して、選択ソートはO(n2)になる。<br>
+
+
+どんな時に使うのか？<br>
+データを並び替える目的ではなく、上位10件を取り出したい時などに使用する。<br>
+（挿入ソートの場合は上位10件を知るために、すべてを並び替えないといけないため。
+
+自作コード(挿入よりうまくできた？)
+```
+n = gets.to_i
+nums = gets.split.map(&:to_i)
+
+min_index = 0
+(n - 1).times do |s|
+    min = 10001
+
+    for t in s..n-1 do
+        if nums[t] < min
+        min = nums[t]
+        min_index = t
+        end
+    end
+    
+    target1 = nums[s]
+    target2 = nums[min_index]
+    nums[s] = target2
+    nums[min_index] = target1
+    puts nums.join(" ")
+end
+```
+paizaコードをrubyに変換
+```
+n = gets.to_i
+a = gets.split.map(&:to_i)
+
+(0...n-1).each do |i|
+min_index = i
+(i+1...n).each do |j|
+  min_index = j if a[j] < a[min_index]
+end
+
+a[i], a[min_index] = a[min_index], a[i]
+
+puts a.join(' ')
+end
+```
+変換したコードを見ると、データの交換を一行にできるから自作コードはもっとすっきりできそう！
