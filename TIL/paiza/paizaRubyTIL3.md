@@ -44,3 +44,9 @@ p ary                  # => [1, 2, "a", "b", 3]
 ary.insert(-2, "X")
 p ary                  # => [1, 2, "a", "b", "X", 3]
 ```
+
+## downto
+timesと似ている
+```
+5.downto(1) {|i| print i, " " } # => 5 4 3 2 1
+```

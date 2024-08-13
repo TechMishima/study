@@ -242,3 +242,78 @@ end
 puts a.join(' ')
 end
 ```
+
+### シェルソートとは？
+> シェルソートは、挿入ソートを改良したアルゴリズムです。<br>挿入ソートが整列済みのデータ列に強いことを利用しています。<br>
+<br>
+シェルソートでは、データ列において一定の間隔 h だけ離れた要素たちからなる部分列を対象とした挿入ソートを、h を小さくしながら (間隔を狭めながら) 繰り返してソートを行っていきます。<br>h は適当に大きな値から始め、段階的に小さくしていき、最終的に 1 にします。<br>h が 1 のとき、間隔が 1 離れた要素たちからなる部分列というのは元のデータ列そのものですから、このとき単純な挿入ソートを行うことになります。<br>この時点でデータ列は既にほとんど整列済みとなっていることが期待されるため、ここで挿入ソートの強みが活かされます。
+
+計算量は？<br>
+シェルソートの計算量は間隔列 h に強く依存する。<br>
+シェルソートの計算量解析を正確に行うことは難しく、未解決。
+
+間隔の決め方について<br>
+1. オリジナルギャップ ※10のデータだと 5.2.1になる。
+$$ [\frac{n}{2^k}] $$
+2. 平均計算時間$O(n^1.25)$ ※1.4.13.40.121.....
+$$ \frac{3^k-1}{2} $$
+
+
+
+自作コード
+```
+n = gets.to_i
+a = gets.split.map(&:to_i)
+k = gets.to_i
+dis = gets.split.map(&:to_i)
+
+dis.each do |h|
+    ans = 0
+    for i in h...n
+    x = a[i]
+    j = i - h
+
+        while j >= 0 && a[j] > x
+            a[j+h] = a[j]
+            j -= h
+            ans += 1
+        end
+    a[j+h] = x
+    end
+    puts ans
+end
+```
+paizaコードをrubyに変換
+```
+def insertion_sort(a, n, h)
+  num_of_move = 0
+
+  (h...n).each do |i|
+    x = a[i]
+    j = i - h
+
+    while j >= 0 && a[j] > x
+      a[j + h] = a[j]
+      j -= h
+      num_of_move += 1
+    end
+
+    a[j + h] = x
+  end
+
+  puts num_of_move
+end
+
+def shell_sort(a, n, h)
+  h.each do |h_i|
+    insertion_sort(a, n, h_i)
+  end
+end
+
+n = gets.to_i
+a = gets.split.map(&:to_i)
+k = gets.to_i
+h = gets.split.map(&:to_i)
+
+shell_sort(a, n, h)
+```
