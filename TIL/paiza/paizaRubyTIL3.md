@@ -46,7 +46,27 @@ p ary                  # => [1, 2, "a", "b", "X", 3]
 ```
 
 ## downto
+https://uxmilk.jp/24052<br>
 timesと似ている
 ```
 5.downto(1) {|i| print i, " " } # => 5 4 3 2 1
+```
+```
+obj.downto(min){|int|
+ "繰り返し実行する処理"
+}
+#又は
+obj.downto(min) do |int|
+ "繰り返し実行する処理"
+end
+```
+## upto
+```
+obj.upto(max){|int|
+  "繰り返し実行する処理"
+}
+#又は
+obj.upto(max) do |int|
+ "繰り返し実行する処理"
+end
 ```
