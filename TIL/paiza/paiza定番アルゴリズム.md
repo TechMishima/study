@@ -318,4 +318,46 @@ h = gets.split.map(&:to_i)
 shell_sort(a, n, h)
 ```
 
-### 
+### マージソートとは？
+
+paizaコードを修正 ※でもライタイムエラーになる
+```
+$count = 0
+INF = 1000000001
+
+def merge(arr, left, mid, right)
+  l = arr[left...mid] + [INF]
+  r = arr[mid...right] + [INF]
+
+  lindex = 0
+  rindex = 0
+
+  (left...right).each do |i|
+    if l[lindex] < r[rindex]
+      arr[i] = l[lindex]
+      lindex += 1
+    else
+      arr[i] = r[rindex]
+      rindex += 1
+      $count += 1
+    end
+  end
+end
+
+def merge_sort(arr, left, right)
+  if left + 1 < right
+    mid = (left + right) / 2
+    merge_sort(arr, left, mid)
+    merge_sort(arr, mid, right)
+    merge(arr, left, mid, right)
+  end
+end
+
+n = gets.to_i
+arr = gets.split.map(&:to_i)
+
+merge_sort(arr, 0, n)
+
+puts arr.join(' ')
+puts $count
+```
