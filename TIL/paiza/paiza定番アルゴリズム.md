@@ -320,7 +320,7 @@ shell_sort(a, n, h)
 
 ### マージソートとは？
 
-paizaコードを修正 ※でもライタイムエラーになる
+paizaコードを修正 ※でもタイムエラーになる
 ```
 $count = 0
 INF = 1000000001
@@ -361,3 +361,9 @@ merge_sort(arr, 0, n)
 puts arr.join(' ')
 puts $count
 ```
+
+https://paiza.jp/works/algorithm-java/new-primer/algorithm-java-new-primer-5<br>
+学習する
+
+https://qiita.com/fujimotoprogramming/items/6a3aed1da1f7d07b011b<br>
+ランタイムエラーにならない回答をしている方
