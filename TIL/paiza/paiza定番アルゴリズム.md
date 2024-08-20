@@ -16,6 +16,8 @@ https://paiza.jp/works/mondai<br>
   - 選択ソート
   - バブルソート
 - 効率的なソートアルゴリズムメニュー
+  - マージソート（計算量）
+- 素数メニュー
 
 # TIL
 
@@ -382,3 +384,65 @@ https://paiza.jp/works/algorithm-java/new-primer/algorithm-java-new-primer-5<br>
 https://qiita.com/fujimotoprogramming/items/6a3aed1da1f7d07b011b<br>
 ランタイムエラーにならない回答をしている方
 
+### クイックソート
+
+>クイックソートは、ピボットと呼ばれる値を1つ選び、それを基準としてデータ列を「ピボット未満の要素からなるデータ列」と「ピボット以上の要素からなるデータ列」に二分することを再帰的に行うアルゴリズムです。<br>
+このアルゴリズムは、問題を小さな問題に分割して解くことを繰り返すことによって元の問題の答えを得る手法である「分割統治法」に基づいており、実用的なソートアルゴリズムの中で最も高速であるとされています (名前に quick と付いていることからも、その高速さが評価されていることが窺えます)。
+
+計算量は？
+>「ピボットの選び方とデータ列の相性」に強く依存しています。<br>
+クイックソートの平均計算量はO(n log n)であり、最悪計算量は O(n^2)であることが知られています。
+
+>ピボットの選び方<br>
+・データ列の先頭をとる<br>
+・データ列の末尾をとる<br>
+・データ列からランダムにとる<br>
+・データ列からランダムに2つとり、その中央値をとる
+
+コードはマージソートと似ている
+```
+$count = 0
+
+def quick_sort(a, left, right)
+    if left + 1 >= right
+        return
+    end
+
+    pivot = a[right - 1]
+    cur_index = left
+
+    for i in left..right - 2
+        if a[i] < pivot
+            a[cur_index], a[i] = a[i], a[cur_index]
+            cur_index += 1
+            $count += 1
+        end
+    end
+
+    a[cur_index], a[right - 1] = a[right - 1], a[cur_index]
+    quick_sort(a, left, cur_index)
+    quick_sort(a, cur_index + 1, right)
+end
+
+n = gets.to_i
+a = gets.split.map(&:to_i)
+quick_sort(a, 0, n)
+puts a.join(' ')
+puts $count
+```
+
+## 素数メニュー
+
+仮
+count = 0
+for i in 1..57
+    if 57 % i == 0
+        count += 1
+    end
+end
+
+if count == 2 && 57 >= 2
+    puts "YES"
+else
+    puts "NO"
+end
