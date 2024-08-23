@@ -566,3 +566,78 @@ else
     puts "NO"
 end
 ```
+
+### 素因数分解
+```
+n = gets.to_i
+num = 2
+while n > 1
+    if n % num == 0
+        puts num
+        n = n / num
+    else
+        num += 1
+    end
+end
+```
+
+### 約数の個数
+
+>ある整数 N の約数の個数は、N を素因数分解したときに現れる全ての{素数の累乗 + 1} の積であることが知られています。<br>
+よって、整数 N をN = (p^n)(q^m)(r^l)... と素因数分解できるとき、約数の個数は(n+1)(m+1)(l+1)...となります。<br>
+例として、12 の約数の個数は 12 = 2^2 × 3^1 より、(2+1)×(1+1) = 6 個と求まります。
+
+自作
+```
+n = gets.to_i
+num = 2
+ans = []
+while n > 1
+    if n % num == 0
+        ans << num
+        n = n / num
+    else
+        num += 1
+    end
+end
+
+i = 1
+n_ans = []
+ans.each do |num|
+    if num != i
+        i = num
+        n_ans << 1
+    else
+        n_ans[-1] += 1 
+    end
+end
+
+target = 1
+n_ans.each do |ans|
+    target *= ans + 1
+end
+puts target
+```
+
+paizaコードを生成AIで変換
+```
+divisors = Hash.new(0)
+
+N = gets.to_i
+
+(2..Math.sqrt(N).to_i).each do |i|
+  while N % i == 0
+    divisors[i] += 1
+    N /= i
+  end
+end
+
+divisors[N] += 1 if N != 1
+
+ans = 1
+divisors.each do |k, v|
+  ans *= v + 1
+end
+
+puts ans
+```
