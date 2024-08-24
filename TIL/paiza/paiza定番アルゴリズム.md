@@ -641,3 +641,23 @@ end
 
 puts ans
 ```
+2で割れたらキーが2の値を1増やす。<br>
+連想配列(ハッシュ)を使用すると管理が楽になる。
+
+### 最大公約数
+作成中
+divisors = []
+divisor = Hash.new(0)
+num = gets.to_i
+num.times do    
+    n = gets.to_i
+    (2..Math.sqrt(n).to_i+1).each do |i|
+    while n % i == 0
+        divisor[i] += 1
+        n /= i
+    end
+    end
+divisors << divisor
+end
+
+p divisors
