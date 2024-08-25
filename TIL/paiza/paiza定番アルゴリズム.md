@@ -647,10 +647,10 @@ puts ans
 ### 最大公約数
 作成中
 divisors = []
-divisor = Hash.new(0)
 num = gets.to_i
 num.times do    
     n = gets.to_i
+    divisor = Hash.new(0)
     (2..Math.sqrt(n).to_i+1).each do |i|
     while n % i == 0
         divisor[i] += 1
@@ -660,4 +660,18 @@ num.times do
 divisors << divisor
 end
 
-p divisors
+ans_divisor = Hash.new(0)
+divisors.each do |divisor|
+    divisor.each do |i, j|
+        if ans_divisor[i] == 0 || ans_divisor[i] > j
+            # puts "#{i}に入れます #{ans_divisor[i]}に#{j}"
+            ans_divisor[i] = j
+        end
+    end
+end
+
+ans = 1
+ans_divisor.each do |i, j|
+    ans *= (i * j)
+end
+puts ans
