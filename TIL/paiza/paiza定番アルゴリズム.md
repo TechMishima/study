@@ -645,33 +645,52 @@ puts ans
 連想配列(ハッシュ)を使用すると管理が楽になる。
 
 ### 最大公約数
-作成中
-divisors = []
-num = gets.to_i
-num.times do    
-    n = gets.to_i
-    divisor = Hash.new(0)
-    (2..Math.sqrt(n).to_i+1).each do |i|
-    while n % i == 0
-        divisor[i] += 1
-        n /= i
+
+生成AIで確認
+
+素因数分解を行い、連想配列にする。<br>
+2番目からの数値も素因数分解を行い、前の連想配列と比較し、小さいほうを採用する。<br>
+Hash.new(0)なので、デフォルト値の0と比較してくれる。nilと比較しないようにハッシュを作成するのが肝！<br>
+```
+def factorize(a)
+  prime_factor_map = Hash.new(0)
+
+  j = 2
+  while j ** 2 <= a
+    while a % j == 0
+      prime_factor_map[j] += 1
+      a /= j
     end
-    end
-divisors << divisor
+    j += 1
+  end
+
+  prime_factor_map[a] += 1 if a != 1
+
+  prime_factor_map
 end
 
-ans_divisor = Hash.new(0)
-divisors.each do |divisor|
-    divisor.each do |i, j|
-        if ans_divisor[i] == 0 || ans_divisor[i] > j
-            # puts "#{i}に入れます #{ans_divisor[i]}に#{j}"
-            ans_divisor[i] = j
-        end
-    end
+N = gets.to_i
+A = gets.to_i
+
+prime_factor_map = factorize(A)
+
+(1...N).each do
+  A = gets.to_i
+  prime_factor_map_local = factorize(A)
+
+  prime_factor_map.each do |factor, power|
+    prime_factor_map[factor] = [power, prime_factor_map_local[factor]].min
+  end
 end
 
 ans = 1
-ans_divisor.each do |i, j|
-    ans *= (i * j)
+prime_factor_map.each do |factor, power|
+  power.times { ans *= factor }
 end
+
 puts ans
+```
+
+hash = Hash.new { |h, k| h[k] = [] }
+Hash.new(0): これは各キーに対して独立したスカラー値 0 を提供するため、+= 1 のような操作が意図したとおりに動作します。
+Hash.new([]): これはキーが存在しない場合に同一の配列を返すため、意図しない共有が発生します。この共有が原因で、思わぬ挙動が見られることがあります。
