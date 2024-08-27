@@ -691,6 +691,34 @@ end
 puts ans
 ```
 
-hash = Hash.new { |h, k| h[k] = [] }
-Hash.new(0): これは各キーに対して独立したスカラー値 0 を提供するため、+= 1 のような操作が意図したとおりに動作します。
-Hash.new([]): これはキーが存在しない場合に同一の配列を返すため、意図しない共有が発生します。この共有が原因で、思わぬ挙動が見られることがあります。
+### 最小公倍数
+最大公約数と似ていた。
+自作コード
+
+```
+n = gets.to_i
+ans = Hash.new(0)
+n.times do
+    divisor = Hash.new(0)
+    a = gets.to_i
+    i = 2
+    while a > 1
+        if a % i == 0
+            divisor[i] += 1
+            a /= i
+        else
+            i += 1
+        end
+    end
+    divisor[i] += 1 if a != 1
+    divisor.each do |i, j|
+        ans[i] = j if ans[i] < j
+    end
+end
+
+answer = 1
+ans.each do |i, j|
+    answer *= (i**j)
+end
+puts answer
+```
