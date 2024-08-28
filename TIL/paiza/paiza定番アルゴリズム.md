@@ -722,3 +722,77 @@ ans.each do |i, j|
 end
 puts answer
 ```
+
+### ゴールドバッハ予想
+>全ての 3 よりも大きな偶数は 2 つの素数の和として表すことができる。
+
+
+エラトステネスのふるいを行ったあとにコードを作成した。<br>
+自作コード
+
+```
+is_prime = Array.new(100_000, true)
+is_prime[0], is_prime[1] = false, false
+
+for i in (2..100_000)
+    if is_prime[i] == true
+        num = 2
+        while i * num <= 100_000
+            is_prime[i*num] = false
+            num += 1
+        end
+    end
+end
+
+n = gets.to_i
+num = (n/2).floor - 100_001
+
+is_end = false
+num.downto(-100_000) do |i|
+    if is_prime[i] == true
+        if is_prime[n-(i+100_001)] == true
+            puts i+100_001
+            puts n-(i+100_001)
+            is_end = true
+        end
+    end
+break if is_end == true
+end
+```
+
+生成AI<br>
+エラトステネスのふるいを使用するのは一緒だが、小さい順から更新している。<br>
+可読性が非常に良い。
+```
+N = gets.to_i
+
+is_prime = Array.new(N + 1, true)
+is_prime[0] = false
+is_prime[1] = false
+
+(2..N).each do |i|
+  if is_prime[i]
+    (i * 2).step(N, i) do |j|
+      is_prime[j] = false
+    end
+  end
+end
+
+multi = -1
+ans = [-1, -1]
+
+(0..N).each do |p|
+  if is_prime[p]
+    other_prime = N - p
+    if is_prime[other_prime]
+      if p * other_prime > multi
+        multi = p * other_prime
+        ans = [p, other_prime]
+      end
+    end
+  end
+end
+
+puts ans[0]
+puts ans[1]
+```
