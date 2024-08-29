@@ -796,3 +796,111 @@ end
 puts ans[0]
 puts ans[1]
 ```
+
+### 中国剰余定理
+>m1 と m2 を互いに素な正の整数とする。<br>
+Z を m1 で割った余りが b1 であり、Z を m2 で割ったあまりが b2 であるような整数 Z が 0 以上 m1 × m2 未満にただ 1 つ存在する。
+
+<b>modとは？</b><br>
+「モジュロ演算」、「剰余演算」と言われる。<br>
+下記はaをmで割った余りを表す。
+$$a　mod　m$$
+例
+$$7　mod　3 = 1$$
+
+自作コード
+```
+m1, m2, b1, b2 = gets.split.map(&:to_i)
+is_end = false
+(m1*m2-1).downto(0) do |i|
+    if i % m1 == b1
+        if i % m2 == b2
+            puts i
+            is_end = true
+        end
+    end
+break if is_end == true
+end
+```
+
+paiza解説より
+>0 以上 m1 × m2 未満の全ての数について m1 , m2 で割った余りが b1 , b2 かどうかを調べると、制約より計算回数が最悪ケースで 10,000,000,000 回となってしまい実行時間制限に間に合いません。<br>
+0 以上 m1 × m2 未満の整数のうち、 m1 で割った余りが b1 になるような整数 Z は Z = m1 * i + b1 (0 ≦ i < m2)という形で表すことができ、その個数は m2 個です。<br>
+この m2 個の各整数について m2 で割った余りが b2 になるかどうかを調べることでこの問題を最大 100,000　回程度の計算で解くことができます。
+
+上記より、すべての数値を調べるよりZ = m1 * i + b1を調べていく方が圧倒的に計算量は少なくなる。
+
+生成AI
+```
+m1, m2, b1, b2 = gets.split.map(&:to_i)
+
+(0...m2).each do |i|
+  z = m1 * i + b1
+  if z % m2 == b2
+    puts z
+    break
+  end
+end
+```
+
+### paiza予想(問題)
+平方数 : 2乗した数値の事
+
+4 以上 10^8 以下の平方数
+
+is_prime = Array.new(100_000_000 + 1, true)
+is_prime[0], is_prime[1] = false, false
+
+for i in (2..100_000_000)
+    if is_prime[i] == true
+        num = 2
+        while i * num <= 100_000_000
+            is_prime[i*num] = false
+            num += 1
+        end
+    end
+end
+
+=begin
+z = 1
+count = 1
+while z <= 100_000_000
+    count += 1
+    z = count ** 2
+    is_end = false
+    for i in (2..z)
+        if is_prime[i] == true
+            if is_prime[z-i] == true
+                is_end = true
+            end
+        end
+    break if is_end == true
+    end
+    puts z if is_end == false
+end
+=end
+
+
+平方数を配列にいれたもの
+```
+z = 4
+count = 2
+targets = []
+while z <= 100_000_000
+    targets << z
+    count += 1
+    z = count**2
+end
+
+puts targets.length
+```
+
+>100,000,000 以下の素数は 5,761,455 個存在するため、「予め素数を配列 prime などに列挙しておき、各平方数について 平方数 - prime[i] が素数かどうかで判定する」などの方針だと、実行時間制限に間に合わない可能性があります。
+そこで、現時点で反例の見つかっていないゴールドバッハ予想と「素数のうち偶数のものは 2 のみ」という素数の特性を用いた次のような方針を考えてみましょう。
+paiza 予想を満たすかどうか調べたい平方数 N について
+N が偶数のとき（N の平方根が偶数のとき）
+ゴールドバッハ予想より、 N は 2 つの素数の和で表すことができる。
+N が奇数のとき（N の平方根が奇数のとき）
+2 つの整数の和が奇数になるのは「偶数 + 奇数」の場合のみであり、素数のうち偶数のものは 2 のみである。
+よって、N が 2 つの素数の和で表されるとき、「N = 2 + 素数」の形であるので、N - 2 が素数の場合のみ N は paiza 予想を満たす。
+この方針で解くと、平方根が奇数である平方数について N - 2 が素数であるかを判定することでこの問題を解くことができます。
