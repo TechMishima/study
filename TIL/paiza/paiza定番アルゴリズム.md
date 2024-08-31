@@ -899,3 +899,55 @@ end
 今回の問題で、コードを考える時に、どのようにしたら計算量が少なく解決できるのか柔軟な発想が必要だと再認識した。
 
 ## ユークリッドの互除法
+
+最大公約数 = gct (greatest common divisor)と呼ばれる。<br>
+
+自作コード<br>
+再帰で実装してみた
+```
+def Euclid(a, b)
+    if a == 0 || b == 0
+        puts [a, b].max
+    else
+        if a >= b
+            Euclid(a%b, b)
+        else
+            Euclid(a, b%a)
+        end
+    end
+end
+
+a, b = gets.split.map(&:to_i)
+Euclid(a, b)
+```
+
+### 複数の数字のユークリッドの互除法
+自作コード
+```
+n = gets.to_i
+a = gets.to_i
+
+def Euclid(a, b)
+    if a == 0 || b == 0
+        return [a, b].max
+    else
+        if a >= b
+            return Euclid(a % b, b)
+        else
+            return Euclid(a, b % a)
+        end
+    end
+end
+
+(n-1).times do
+    b = gets.to_i
+    a = Euclid(a, b)
+end
+
+puts a
+```
+
+### 最小公倍数
+lcm = Least common multipleと略される。<br>
+下記の式で簡単に求められる。
+$$lcm(A,B) = A×B/gcd(A,B)$$
