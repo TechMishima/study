@@ -951,3 +951,24 @@ puts a
 lcm = Least common multipleと略される。<br>
 下記の式で簡単に求められる。
 $$lcm(A,B) = A×B/gcd(A,B)$$
+
+自作コード
+```
+def Euclid(a, b)
+    if a == 0 || b == 0
+        return [a, b].max
+    else
+        if a >= b
+            return Euclid(a % b, b)
+        else
+            return Euclid(a, b % a)
+        end
+    end
+  end
+  
+  a, b = gets.split.map(&:to_i)
+  puts (a*b) / Euclid(a, b)
+```
+
+# a
+https://hiraocafe.com/note/euclidtokushukai.html
