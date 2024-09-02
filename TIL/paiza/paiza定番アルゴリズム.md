@@ -970,5 +970,31 @@ def Euclid(a, b)
   puts (a*b) / Euclid(a, b)
 ```
 
-# a
+### ax + by = c (ユークリッドの互除法で一次方程式を解く)
+まずは普通に学習して解いてみる<br>
 https://hiraocafe.com/note/euclidtokushukai.html
+
+今回の問題に関しては、x,yのどちらかが1であり、お互いに1回割れば答えが出てくる条件であり、a,bが正であるので、簡単になっている。<br>
+自作コード
+```
+a, b, c = gets.split.map(&:to_i)
+if a >= b
+    puts "1 -#{a/b}"
+else
+    puts "-#{b/a} 1"
+end
+```
+回答変換コード
+```
+
+if a % b == c
+  x = 1
+  y = -(a / b)
+else
+  x = -(b / a)
+  y = 1
+end
+
+puts "#{x} #{y}"
+```
+
