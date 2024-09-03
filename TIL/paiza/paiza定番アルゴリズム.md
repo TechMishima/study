@@ -986,6 +986,7 @@ end
 ```
 回答変換コード
 ```
+a, b, c = gets.split.map(&:to_i)
 
 if a % b == c
   x = 1
@@ -998,3 +999,24 @@ end
 puts "#{x} #{y}"
 ```
 
+### 拡張ユークリッドの互除法
+
+成功したコードを発見したので確認してみる
+```
+def extgcd(a, b)
+  if b != 0
+    c, x, y = extgcd(b, a % b)
+    x, y = y, x - (a / b) * y
+    return c, x, y
+  else
+    return a, 1, 0
+  end
+end
+
+a, b = gets.split.map(&:to_i)
+c, x, y = extgcd(a, b)
+
+puts "#{x} #{y}"
+```
+
+https://tbasic.org/reference/old/ExEuclid.html
