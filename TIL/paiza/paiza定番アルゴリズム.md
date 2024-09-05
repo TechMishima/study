@@ -1068,3 +1068,55 @@ y' = x - (a / b) * y = 0 - (6 / 4) * 1 = 0 - 1 * 1 = -1<br>
 x' = y = -1<br>
 y' = x - (a / b) * y = 1 - (10 / 6) * -1 = 1 + 1 * -1 = 2<br>
 つまり、最終的な戻り値は (2, -1, 2) です。
+
+### 分数の四則演算
+自作コード<br>
+最小公倍数、最大公約数の取り扱いができれば問題はなさそう<br>
+とおもったら割り算のマイナスが少し肝だった
+```
+a, b, cal, c, d = gets.chomp.split
+a, b, c, d = [a, b, c, d].map(&:to_i)
+
+def Euclid(a, b)
+    if a == 0 || b == 0
+        return [a, b].max
+    else
+        if a >= b
+            return Euclid(a % b, b)
+        else
+            return Euclid(a, b % a)
+        end
+    end
+end
+
+if cal == "+"
+    # 足し算
+    bunbo = (b*d) / Euclid(b, d)
+    bunshi = (bunbo/b*a) + (bunbo/d*c)
+    yakusu = Euclid(bunbo.abs, bunshi.abs)
+    puts "#{bunshi/yakusu} #{bunbo/yakusu}"
+elsif cal == "-"
+    # 引き算
+    bunbo = (b*d) / Euclid(b, d)
+    bunshi = (bunbo/b*a) - (bunbo/d*c)
+    yakusu = Euclid(bunbo.abs, bunshi.abs)
+    puts "#{bunshi/yakusu} #{bunbo/yakusu}"
+elsif cal == "*"
+    # 掛け算
+    bunshi = a*c
+    bunbo = b*d
+    yakusu = Euclid(bunbo.abs, bunshi.abs)
+    puts "#{bunshi/yakusu} #{bunbo/yakusu}"
+elsif cal == "/"
+    # 割り算
+    bunshi = a*d
+    bunbo = b*c
+    bunshi, bunbo = -1 * bunshi, -1 * bunbo if bunbo < 0
+    yakusu = Euclid(bunbo.abs, bunshi.abs)
+    puts "#{bunshi/yakusu} #{bunbo/yakusu}"
+end
+```
+
+### 意地悪すごろく
+すごろくで勝負、特定のマスに止まらないようにサイコロに細工をする。<br>
+因数分解してゴールにはない素数を組み込めばOK？
