@@ -1119,4 +1119,65 @@ end
 
 ### 意地悪すごろく
 すごろくで勝負、特定のマスに止まらないようにサイコロに細工をする。<br>
-因数分解してゴールにはない素数を組み込めばOK？
+~~因数分解してゴールにはない素数を組み込めばOK？~~<br>
+もしくは、一次方程式で解なしになるように設定すればOK？←おそらくこっち
+
+自作コード
+```
+def Euclid(a, b)
+  if a == 0 || b == 0
+      return [a, b].max
+  else
+      if a >= b
+          return Euclid(a % b, b)
+      else
+          return Euclid(a, b % a)
+      end
+  end
+end
+
+n, a = gets.split.map(&:to_i)
+gcd = Euclid(n, a)
+ans = a / gcd
+num = a / gcd
+if gcd == a || ans > 500
+    puts -1
+else
+    while ans <= 1000
+        puts ans if ans != a
+        ans += num
+    end
+end
+```
+
+AI
+```
+def gcd(a, b)
+  return a if b == 0
+  gcd(b, a % b)
+end
+
+n, a = gets.split.map(&:to_i)
+none = true
+
+(1..1000).each do |b|
+  min_move = gcd(a, b)
+  if n % min_move != 0 && b != a
+    puts b
+    none = false
+  end
+end
+
+puts -1 if none
+```
+
+### 合同式
+合同式とは？<br>
+https://hiraocafe.com/note/mod.html
+
+> 合同式<br>
+a，bを整数，mを自然数とする．<br>
+aをmで割ったときの余りがbのとき,(aやbはmより大きくても小さくてもいいし，負の数でも構わない．)<br>
+a≡b(mod m)<br>
+と表す．
+$$a≡b(mod m)$$
