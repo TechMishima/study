@@ -1181,3 +1181,34 @@ aをmで割ったときの余りがbのとき,(aやbはmより大きくても小
 a≡b(mod m)<br>
 と表す．
 $$a≡b(mod m)$$
+
+自作コード
+```
+n, a = gets.split.map(&:to_i)
+num = a % n
+
+while num <= 100_000
+    puts num if num != 0
+    num += n
+end
+```
+
+### modの演算
+上記のリンクで学習した内容をもとに実装
+
+自作コード
+```
+n = gets.to_i
+a, cal, b = gets.chomp.split
+a, b = a.to_i, b.to_i
+
+if cal == "+"
+    puts (a + b) % n
+elsif cal == "-"
+    puts (a - b) % n
+elsif cal == "*"
+    puts (a * b) % n
+elsif cal == "^"
+    puts (a ** b) % n
+end
+```
