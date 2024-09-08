@@ -1212,3 +1212,35 @@ elsif cal == "^"
     puts (a ** b) % n
 end
 ```
+
+### モジュラ逆数
+
+モジュラ逆数とは？<br>
+pを法として、ある整数 aについて、
+$$ax≡1modp$$
+が成立するような数xをモジュラ逆数と呼ぶ。
+
+モジュラ逆数xを$$a^-1$$と書くこともある。
+
+モジュラ逆数は何に使うの？<br>
+RSA暗号で使用される。メッセージを暗号文にして逆数で復元してもらうイメージ。
+```
+def extgcd(a, b)
+    if b != 0
+        c, x, y = extgcd(b, a % b)
+        x, y = y, x - (a / b) * y
+        return c, x, y
+    else
+      return a, 1, 0
+    end
+end
+  
+m, a = gets.split.map(&:to_i)
+c, x, y = extgcd(m, a)
+  
+if y >= 0
+    puts y
+else
+    puts y + m
+end
+```
