@@ -1224,6 +1224,10 @@ $$ax≡1modp$$
 
 モジュラ逆数は何に使うの？<br>
 RSA暗号で使用される。メッセージを暗号文にして逆数で復元してもらうイメージ。
+
+下記コードで求められるけどなんでなのか？<br>
+法であるpの倍数とaの倍数があまり１になればOK<br>
+よってpx+ay=1になり、ユークリッドの互除法が使える。
 ```
 def extgcd(a, b)
     if b != 0
@@ -1296,3 +1300,91 @@ puts num % m
 ### RSA暗号の基本原理問題
 まずは学習する。<br>
 https://it-trend.jp/encryption/article/64-0056
+
+作成中
+```
+def extgcd(a, b)
+    if b != 0
+        c, x, y = extgcd(b, a % b)
+        x, y = y, x - (a / b) * y
+        return c, x, y
+    else
+      return a, 1, 0
+    end
+end
+
+def bin_expo(a, b)
+    num = 1
+    while b > 0
+        if b % 2 == 1
+            num *= a
+        end
+        a *= a
+        b /= 2
+    end
+    return num
+end
+
+ip, iq, e, m = gets.split.map(&:to_i)
+num = (ip-1) * (iq-1)
+c, x, y = extgcd(num, e)
+d = 1
+if y >= 0
+    d = y
+else
+    d = y + m
+end
+puts d
+
+y = bin_expo(m, e) % (ip * iq)
+puts y
+
+message = bin_expo(y, d) % (ip * iq)
+puts message
+```
+考えてくれたコード
+```
+# 拡張ユークリッドの互除法 (Extended Euclidean Algorithm)
+def extgcd(a, b)
+  if b != 0
+    c, y, x = extgcd(b, a % b)
+    y -= (a / b) * x
+    return c, x, y
+  end
+  return a, 1, 0
+end
+
+# バイナリ法でのべき乗計算 (mod m)
+def modpow(a, b, m)
+  ans = 1
+  while b > 0
+    if b & 1 == 1  # bが奇数なら
+      ans = (ans * a) % m
+    end
+    a = (a * a) % m  # aを二乗
+    b >>= 1  # bを右シフト（半分にする）
+  end
+  return ans
+end
+
+# 入力
+p, q, e, m = gets.split.map(&:to_i)
+
+n = p * q
+n_prime = (p - 1) * (q - 1)
+
+# 秘密鍵dの計算
+c, x, y = extgcd(e, n_prime)
+d = (x + n_prime) % n_prime
+
+# メッセージMを暗号化してEにし、再度復号する
+e_value = modpow(m, e, n)
+after_m = modpow(e_value, d, n)
+
+# 結果を出力
+puts d
+puts e_value
+puts after_m
+```
+なぜモジュロが良いのか？<br>
+計算回数が多少増えたとしてもビッグナンバーの計算は控えるべき！
