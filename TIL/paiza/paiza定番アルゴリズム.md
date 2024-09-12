@@ -1425,6 +1425,29 @@ puts after_m
     - d = 5<br>
     (5 * 5) - 24 = 余り1
 
+    **~計算方法~**<br>
+    上記式は次のように変換できる(意味は同じ)
+    $$ ed ≡ 1\mod n´ $$
+    $$ d = e^{-1}(\mod n´) $$
+    モジュラ逆数を求めたいのでユークリッドの互除法を使用し、その後n´で割る。<br>
+    ```
+    # 拡張ユークリッドの互除法 (Extended Euclidean Algorithm)
+    def extgcd(a, b)
+        if b != 0
+            c, y, x = extgcd(b, a % b)
+            y -= (a / b) * x
+            return c, x, y
+        end
+        return a, 1, 0
+    end
+
+    # 秘密鍵dの計算
+    c, x, y = extgcd(e, n_prime)
+    d = (x + n_prime) % n_prime
+    ```
+
+
+
 公開鍵としてn,eを送信者へ送る。
 
 ---
@@ -1437,6 +1460,28 @@ puts after_m
     - 12^5 / 35 = 余り17<br>
     y = 17
 
+    **~計算方法~**<br>
+    上記式は次のように変換できる
+    $$ y = x^e(\mod n) $$
+    モジュラを含んだ繰り返し2乗法を使用して求める。
+    ```
+    # バイナリ法でのべき乗計算 (mod m)
+    def modpow(a, b, m)
+        ans = 1
+        while b > 0
+            if b & 1 == 1  # bが奇数なら
+                ans = (ans * a) % m
+            end
+            a = (a * a) % m  # aを二乗
+            b >>= 1  # bを右シフト（半分にする）
+        end
+        return ans
+    end
+
+    # メッセージMを暗号化してEにする
+    e_value = modpow(m, e, n)
+    ```
+
 暗号文yを受信者へ送る。
 
 ---
@@ -1445,3 +1490,23 @@ puts after_m
 
 1. yをd乗し、nで割った余りが平文xになる。
     - 17^5 / 35 = 余り12
+
+    **~計算方法~**<br>
+    モジュラを含んだ繰り返し2乗法を使用して求める。
+    ```
+    # バイナリ法でのべき乗計算 (mod m)
+    def modpow(a, b, m)
+        ans = 1
+        while b > 0
+            if b & 1 == 1  # bが奇数なら
+                ans = (ans * a) % m
+            end
+            a = (a * a) % m  # aを二乗
+            b >>= 1  # bを右シフト（半分にする）
+        end
+        return ans
+    end
+
+    # 暗号化したEを、再度復号する
+    after_m = modpow(e_value, d, n)
+    ```
