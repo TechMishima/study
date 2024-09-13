@@ -1510,3 +1510,93 @@ puts after_m
     # 暗号化したEを、再度復号する
     after_m = modpow(e_value, d, n)
     ```
+
+### RSA 暗号の解読（1文字）
+
+**ASCⅡコードとは？**<br>
+コンピュータで扱われるテキスト情報を表すための文字コード規格のこと。<br>
+
+rubyで変換する場合は？<br>
+```
+# 文字への変換
+ascii_code = 65
+character = ascii_code.chr
+puts character  # 出力: A
+
+# 数値への変換
+character = 'A'
+ascii_code = character.ord
+puts ascii_code  # 出力: 65
+```
+
+コード作成
+```
+# 拡張ユークリッドの互除法 (Extended Euclidean Algorithm)
+def extgcd(a, b)
+  if b != 0
+    c, y, x = extgcd(b, a % b)
+    y -= (a / b) * x
+    return c, x, y
+  end
+  return a, 1, 0
+end
+
+# バイナリ法でのべき乗計算 (mod m)
+def modpow(a, b, m)
+  ans = 1
+  while b > 0
+    if b % 2 == 1  # bが奇数なら
+      ans = (ans * a) % m
+    end
+    a = (a * a) % m  # aを二乗
+    b /= 2  # bを半分にする
+  end
+  return ans
+end
+
+# データ取得
+ip, iq, e, message = gets.split.map(&:to_i)
+
+# 回答作成
+n = ip * iq
+n_prime = (ip-1) * (iq-1)
+c, x, y = extgcd(e, n_prime)
+d = (x + n_prime) % n_prime
+
+# ans = (E^d)modn
+ans = modpow(message, d, n)
+puts ans.chr
+```
+
+### RSA暗号の解読(文字列)
+# 拡張ユークリッドの互除法 (Extended Euclidean Algorithm)
+def extgcd(a, b)
+  if b != 0
+    c, y, x = extgcd(b, a % b)
+    y -= (a / b) * x
+    return c, x, y
+  end
+  return a, 1, 0
+end
+
+# バイナリ法でのべき乗計算 (mod m)
+def modpow(a, b, m)
+  ans = 1
+  while b > 0
+    if b % 2 == 1  # bが奇数なら
+      ans = (ans * a) % m
+    end
+    a = (a * a) % m  # aを二乗
+    b /= 2  # bを半分にする
+  end
+  return ans
+end
+
+# データ取得
+n, d, message = gets.split.map(&:to_i)
+
+# 回答作成
+
+# ans = (E^d)modn
+ans = modpow(message, d, n)
+puts ans.chr
