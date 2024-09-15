@@ -1569,6 +1569,19 @@ puts ans.chr
 ```
 
 ### RSA暗号の解読(文字列)
+
+自作コード<br>
+完成したけどきたない
+```
+# 素数判定
+def factorize(n)
+    for i in 2..(n**0.5)+1
+        if n % i == 0
+            return i, n / i
+        end
+    end
+end
+
 # 拡張ユークリッドの互除法 (Extended Euclidean Algorithm)
 def extgcd(a, b)
   if b != 0
@@ -1593,10 +1606,128 @@ def modpow(a, b, m)
 end
 
 # データ取得
-n, d, message = gets.split.map(&:to_i)
+n, e, message = gets.split.map(&:to_i)
 
 # 回答作成
+ip, iq = factorize(n)
+
+# 秘密鍵dの計算
+n_prime = (ip-1)*(iq-1)
+c, x, y = extgcd(e, n_prime)
+d = (x + n_prime) % n_prime
 
 # ans = (E^d)modn
-ans = modpow(message, d, n)
-puts ans.chr
+target = modpow(message, d, n)
+target = target.to_s(2)
+if target.length != 28
+    (28-target.length).times do
+        target = "0" + target
+    end
+end
+
+targets = []
+4.times do |i|
+    targets << target[(i*7)..((i+1)*7)-1]
+end
+
+answers = []
+targets.each do |val|
+    if val == "0000000"
+    else
+        val = val.to_i(2)
+        answers << val.chr
+    end
+end
+
+puts answers.join
+```
+
+### RSA暗号の作成(文字列)
+
+自作コード
+```
+# 拡張ユークリッドの互除法 (Extended Euclidean Algorithm)
+def extgcd(a, b)
+  if b != 0
+    c, y, x = extgcd(b, a % b)
+    y -= (a / b) * x
+    return c, x, y
+  end
+  return a, 1, 0
+end
+
+# バイナリ法でのべき乗計算 (mod m)
+def modpow(a, b, m)
+  ans = 1
+  while b > 0
+    if b % 2 == 1  # bが奇数なら
+      ans = (ans * a) % m
+    end
+    a = (a * a) % m  # aを二乗
+    b /= 2  # bを半分にする
+  end
+  return ans
+end
+
+# 入力
+ip, iq, e, m = 7, 5, 5, "ruby"
+
+n = ip * iq
+n_prime = (ip - 1) * (iq - 1)
+
+# 秘密鍵dの計算
+c, x, y = extgcd(e, n_prime)
+d = (x + n_prime) % n_prime
+
+# 平文を文字列から数値に変換
+message = []
+(m.length).times do |i|
+    val = (m[i].ord).to_s(2)
+    if val.length != 7
+        (7-val.length).times do
+            val = "0" + val
+        end
+    end
+    message << val
+end
+
+(4-message.length).times do
+    message << "0000000"
+end
+
+message = (message.join).to_i(2)
+
+# メッセージMを暗号化してEにし、再度復号する
+e_value = modpow(message, e, n)
+after_m = modpow(e_value, d, n)
+
+# 結果を出力
+puts "#{n} #{e} #{message}"
+
+
+
+
+target = modpow(message, d, n)
+target = target.to_s(2)
+if target.length != 28
+    (28-target.length).times do
+        target = "0" + target
+    end
+end
+
+targets = []
+4.times do |i|
+    targets << target[(i*7)..((i+1)*7)-1]
+end
+
+answers = []
+targets.each do |val|
+    if val == "0000000"
+    else
+        val = val.to_i(2)
+        answers << val.chr
+    end
+end
+
+puts answers.join
+```
