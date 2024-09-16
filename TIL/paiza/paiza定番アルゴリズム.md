@@ -3,22 +3,12 @@ https://paiza.jp/works/mondai<br>
 上記の「定番アルゴリズムの習得」を学ぶ
 
 # Progress
+はじまり
+
 - 線形探索メニュー
-  - 【指定された値の探索】指定された値の位置 3
-  - 【最大最小】n 変数の最大最小 Ruby編
-  - 条件付き最大値
-  - 長方形に含まれる点
-  - 【特殊な探索】 成績優秀者の列挙 2
-  - 【第 k 要素の探索】k番目に大きな値
-  - 終了
-- 素朴なソートアルゴリズムメニュー
-  - 挿入ソート
-  - 選択ソート
-  - バブルソート
-- 効率的なソートアルゴリズムメニュー
-  - マージソート（計算量）
-- 素数メニュー
 - ユークリッドの互除法メニュー
+
+ここまで
 
 # TIL
 
@@ -1730,4 +1720,70 @@ targets.each do |val|
 end
 
 puts answers.join
+```
+
+### RSA暗号のふかぼり(ひらがなにも対応できるのか)
+ASCコードにはひらがながないため、UTF-8まで広げてみる。<br>
+しかしordメソッドでメッセージを変更してみるとビッグナンバーになってしまい、計算ができなくなってしまった。<br>
+そこで、配列を作成し格納していくbytesを使用して計算を早くしつつ、最適な答えを出力する。
+
+```
+def extgcd(a, b)
+  if b != 0
+    c, y, x = extgcd(b, a % b)
+    y -= (a / b) * x
+    return c, x, y
+  end
+  return a, 1, 0
+end
+
+# バイナリ法でのべき乗計算 (mod m)
+def modpow(a, b, m)
+  ans = 1
+  while b > 0
+    if b % 2 == 1  # bが奇数なら
+      ans = (ans * a) % m
+    end
+    a = (a * a) % m  # aを二乗
+    b /= 2  # bを半分にする
+  end
+  return ans
+end
+
+# 入力
+ip, iq, e, m = 104729, 1299709, 65537, "Hello world! こんにちは"
+
+n = ip * iq
+n_prime = (ip - 1) * (iq - 1)
+
+# 秘密鍵dの計算
+c, x, y = extgcd(e, n_prime)
+d = (x + n_prime) % n_prime
+
+# 平文をUTF-8バイト列に変換
+message = m.bytes
+
+# メッセージを個別に暗号化
+encrypted_message = message.map { |char| modpow(char, e, n) }
+
+# 暗号化されたメッセージを個別に復号化
+decrypted_message = encrypted_message.map { |char| modpow(char, d, n) }
+
+# 復号化されたメッセージを文字列に変換
+final_output = decrypted_message.pack('C*').force_encoding('UTF-8')
+
+# 出力
+puts "Original message: #{message}"
+puts "Encrypted message: #{encrypted_message}"
+puts "Decrypted message: #{decrypted_message}"
+puts "Final output: #{final_output}"
+```
+
+### その他
+別の進数への変更
+```
+p 10.to_s(2)    # => "1010"
+p 10.to_s(8)    # => "12"
+p 10.to_s(16)   # => "a"
+p 35.to_s(36)   # => "z"
 ```
