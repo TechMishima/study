@@ -124,3 +124,126 @@ else
     puts sums[b]
 end
 ```
+
+### 連続する N 個の和の最大値 1
+自作コード
+```
+line = [1, 5, 9, 7, 5, 3, 2, 5, 8, 4]
+
+cumSum = [0]
+num = 0
+line.each do |val|
+    num += val
+    cumSum << num
+end
+
+max = 0
+for i in 0..7
+    sum = cumSum[i+3] - cumSum[i]
+    if sum > max
+        max = sum
+    end
+end
+
+puts max
+```
+
+### 連続する N 個の和の最大値 2
+自作コード
+```
+line = gets.split.map(&:to_i)
+
+cumSum = [0]
+num = 0
+line.each do |val|
+    num += val
+    cumSum << num
+end
+
+max = 0
+for i in 0..7
+    sum = cumSum[i+3] - cumSum[i]
+    if sum > max
+        max = sum
+    end
+end
+
+puts max
+```
+
+### 連続する N 個の和の最大値 3
+自作コード
+```
+n = gets.to_i
+line = gets.split.map(&:to_i)
+
+cumSum = [0]
+num = 0
+line.each do |val|
+    num += val
+    cumSum << num
+end
+
+max = 0
+for i in 0..(n-3)
+    sum = cumSum[i+3] - cumSum[i]
+    if sum > max
+        max = sum
+    end
+end
+
+puts max
+```
+
+### 【連続する N 個の和の最大値】 連続する N 個の和の最大値 4 
+自作コード
+```
+n, k = gets.split.map(&:to_i)
+line = gets.split.map(&:to_i)
+
+cumSum = [0]
+num = 0
+line.each do |val|
+    num += val
+    cumSum << num
+end
+
+max = 0
+for i in 0..(n-k)
+    sum = cumSum[i+k] - cumSum[i]
+    if sum > max
+        max = sum
+    end
+end
+
+puts max
+```
+
+### 区間内の個数 1
+自作コード
+```
+line = [1, 5, 9, 7, 5, 3, 2, 5, 8, 4]
+
+evenCounts = [0]
+num = 0
+line.each do |val|
+    num += 1 if val % 2 == 0
+    evenCounts << num
+end
+
+puts evenCounts[8] - evenCounts[2]
+```
+
+### 区間内の個数 2
+自作コード
+```
+line = gets.split.map(&:to_i)
+
+evenCounts = [0]
+num = 0
+line.each do |val|
+    num += 1 if val % 2 == 0
+    evenCounts << num
+end
+puts evenCounts[8] - evenCounts[2]
+```
