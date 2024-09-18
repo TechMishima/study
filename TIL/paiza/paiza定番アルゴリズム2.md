@@ -247,3 +247,96 @@ line.each do |val|
 end
 puts evenCounts[8] - evenCounts[2]
 ```
+
+### 区間内の個数 3
+自作コード
+```
+a, b = gets.split.map(&:to_i)
+line = gets.split.map(&:to_i)
+
+evenCounts = [0]
+num = 0
+line.each do |val|
+    num += 1 if val % 2 == 0
+    evenCounts << num
+end
+puts evenCounts[b+1] - evenCounts[a]
+```
+
+### 【区間内の個数】区間内の個数 4
+自作コード
+```
+n, a, b = gets.split.map(&:to_i)
+line = gets.split.map(&:to_i)
+
+evenCounts = [0]
+num = 0
+line.each do |val|
+    num += 1 if val % 2 == 0
+    evenCounts << num
+end
+puts evenCounts[b+1] - evenCounts[a]
+```
+
+### 区間内の個数 (文字列) 1
+自作コード
+```
+str = "bwwbwbbwbwbb"
+line = str.chomp.split("")
+
+bCounts = [0]
+num = 0
+line.each do |val|
+    num += 1 if val == "b"
+    bCounts << num
+end
+
+puts bCounts[8] - bCounts[1]
+```
+
+### 区間内の個数 (文字列) 2
+自作コード
+```
+line = gets.chomp.split("")
+
+bCounts = [0]
+num = 0
+line.each do |val|
+    num += 1 if val == "b"
+    bCounts << num
+end
+
+puts bCounts[8] - bCounts[1]
+```
+
+### 区間内の個数 (文字列) 3
+自作コード
+```
+a, b = gets.split.map(&:to_i)
+line = gets.chomp.split("")
+
+bCounts = [0]
+num = 0
+line.each do |val|
+    num += 1 if val == "b"
+    bCounts << num
+end
+
+puts bCounts[b] - bCounts[a-1]
+```
+
+### 【区間内の個数 (文字列) 】 区間内の個数 (文字列) 4
+自作コード
+```
+n, a, b = gets.split.map(&:to_i)
+line = gets.chomp.split("")
+
+bCounts = [0]
+num = 0
+line.each do |val|
+    num += 1 if val == "b"
+    bCounts << num
+end
+
+puts bCounts[b] - bCounts[a-1]
+```
