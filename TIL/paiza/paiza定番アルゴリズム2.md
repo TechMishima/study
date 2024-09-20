@@ -399,9 +399,28 @@ $$ (長方形領域内の整数の和) = A_{i, j} - A_{(a-1), j} - A_{i, (b-1)} 
 
 自作コード
 ```
-matrix = [[0, 0, 0, 0, 0, 0],
-        [0, 1, 2, 3, 4, 5],
-        [0, 2, 3, 4, 5, 6],
-        [0, 3, 4, 5, 6, 7],
-        [0, 4, 5, 6, 7, 8],
-        [0, 5, 6, 7, 8, 9]]
+matrix = [[1, 2, 3, 4, 5],
+        [2, 3, 4, 5, 6],
+        [3, 4, 5, 6, 7],
+        [4, 5, 6, 7, 8],
+        [5, 6, 7, 8, 9]]
+        
+min_x, min_y = 1, 1
+max_x, max_y = 3, 3
+
+hoge = []
+(matrix[0].length+1).times do
+    hoge << 0
+end
+sum_matrix = [hoge]
+matrix.each do |line|
+    hoge = [0]
+    num = 0
+    line.each do |val|
+        num += val
+        hoge << num
+    end
+    sum_matrix << hoge
+end
+
+#p sum_matrix
