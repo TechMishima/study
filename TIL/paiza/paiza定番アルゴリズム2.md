@@ -412,6 +412,8 @@ hoge = []
 (matrix[0].length+1).times do
     hoge << 0
 end
+
+# 横足し算
 sum_matrix = [hoge]
 matrix.each do |line|
     hoge = [0]
@@ -423,4 +425,66 @@ matrix.each do |line|
     sum_matrix << hoge
 end
 
-#p sum_matrix
+# 縦足し算
+(sum_matrix[0].length).times do |s|
+    num = 0
+    (sum_matrix.length).times do |t|
+        num += sum_matrix[t][s]
+        sum_matrix[t][s] = num
+    end
+end
+
+a1 = sum_matrix[max_y+1][max_x+1]
+a2 = sum_matrix[min_y][max_x+1]
+a3 = sum_matrix[max_y+1][min_x]
+a4 = sum_matrix[min_y][min_x]
+
+puts a1 - a2 - a3 + a4
+```
+
+### 二次元累積和 2
+
+自作コード
+```
+matrix = []
+5.times do
+    hoge = gets.split.map(&:to_i)
+    matrix << hoge
+end
+        
+min_x, min_y = 1, 1
+max_x, max_y = 3, 3
+
+hoge = []
+(matrix[0].length+1).times do
+    hoge << 0
+end
+
+# 横足し算
+sum_matrix = [hoge]
+matrix.each do |line|
+    hoge = [0]
+    num = 0
+    line.each do |val|
+        num += val
+        hoge << num
+    end
+    sum_matrix << hoge
+end
+
+# 縦足し算
+(sum_matrix[0].length).times do |s|
+    num = 0
+    (sum_matrix.length).times do |t|
+        num += sum_matrix[t][s]
+        sum_matrix[t][s] = num
+    end
+end
+
+a1 = sum_matrix[max_y+1][max_x+1]
+a2 = sum_matrix[min_y][max_x+1]
+a3 = sum_matrix[max_y+1][min_x]
+a4 = sum_matrix[min_y][min_x]
+
+puts a1 - a2 - a3 + a4
+```
