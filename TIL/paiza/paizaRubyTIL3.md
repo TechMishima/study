@@ -118,3 +118,174 @@ p hash3[2] # => []
 #=> [:a, 1]
 #   [:b, 2]
 ```
+
+## include?メソッド
+
+含まれているか判定して真偽値で返してくれるメソッド
+
+```
+"hello".include?("ell") # => true
+[1, 2, 3].include?(2)   # => true
+```
+
+## 様々な真偽値を返すメソッド
+
+### empty?メソッド 空かどうか判定
+```
+[].empty?       # => true
+"".empty?       # => true
+[1, 2, 3].empty? # => false
+```
+
+### nil? nilかどうか判定
+```
+nil.nil?        # => true
+"hello".nil?    # => false
+```
+
+### start_with? 特定の文字列で始まるか判定
+```
+"hello".start_with?("he") # => true
+"hello".start_with?("lo") # => false
+```
+
+### end_with? 特定の文字列で終わるか判定
+```
+"hello".end_with?("lo")   # => true
+"hello".end_with?("he")   # => false
+```
+
+### all? 配列の全ての要素が特定の条件を満たすか判定
+```
+[1, 2, 3].all? { |n| n > 0 } # => true
+[1, 2, 3].all? { |n| n > 1 } # => false
+```
+
+### any? 配列の中に少なくとも1つの要素が特定の条件を満たすか判定
+```
+[1, 2, 3].any? { |n| n > 2 } # => true
+[1, 2, 3].any? { |n| n > 3 } # => false
+```
+
+### none? 配列の中に特定の条件を満たす要素が1つもないか判定
+```
+[1, 2, 3].none? { |n| n > 3 } # => true
+[1, 2, 3].none? { |n| n > 2 } # => false
+```
+
+### one? 配列の中に特定の条件を満たす要素がちょうど1つだけあるか判定
+```
+[1, 2, 3].one? { |n| n == 2 } # => true
+[1, 2, 3].one? { |n| n > 1 }  # => false
+```
+
+### has_key? ハッシュに特定のキーが含まれているか判定
+```
+hash = {a: 1, b: 2}
+hash.has_key?(:a)  # => true
+hash.has_key?(:c)  # => false
+```
+
+### has_value? ハッシュに特定の値が含まれているか判定
+```
+hash = {a: 1, b: 2}
+hash.has_value?(1)  # => true
+hash.has_value?(3)  # => false
+```
+
+### member? ハッシュやセットに特定のキーや要素が含まれているか判定
+```
+{a: 1, b: 2}.member?(:a) # => true
+{a: 1, b: 2}.member?(:c) # => false
+```
+
+### match? 文字列が特定の正規表現にマッチするか判定
+```
+"hello".match?(/ell/) # => true
+"hello".match?(/abc/) # => false
+```
+
+### even? 数値が偶数か判定
+```
+4.even?  # => true
+5.even?  # => false
+```
+
+### odd? 数値が奇数か判定
+```
+4.odd?  # => false
+5.odd?  # => true
+```
+
+### zero? 数値がゼロか判定
+```
+0.zero?  # => true
+1.zero?  # => false
+```
+
+### between? 数値が特定の範囲内にあるか判定
+```
+5.between?(1, 10)  # => true ※1-10の範囲
+5.between?(6, 10)  # => false ※6-10の範囲
+'cat'.between?('ant', 'dog')  # => true
+'gnu'.between?('ant', 'dog')  # => false
+```
+
+### eql? オブジェクトが同じ値を持つか判定（型も考慮）
+```
+5.eql?(5)      # => true
+5.eql?(5.0)    # => false
+```
+
+### equal? オブジェクトが同一のものであるか判定
+```
+a = "hello"
+b = a
+c = "hello"
+a.equal?(b)  # => true
+a.equal?(c)  # => false
+```
+
+### frozen? オブジェクトが凍結されているか判定
+```
+str = "hello"
+str.frozen?  # => false
+str.freeze
+str.frozen?  # => true
+```
+
+### respond_to? オブジェクトが特定のメソッドに応答できるか判定
+```
+"hello".respond_to?(:upcase)  # => true
+"hello".respond_to?(:nonexistent_method)  # => false
+```
+
+### instance_of? オブジェクトが特定のクラスの直接のインスタンスか判定
+```
+class Animal; end
+class Dog < Animal; end
+
+dog = Dog.new
+dog.instance_of?(Dog)     # => true
+dog.instance_of?(Animal)  # => false
+dog.instance_of?(Object)  # => false
+dog.instance_of?(String)  # => false
+```
+
+### is_a? オブジェクトが特定のクラス,またはそのサブクラスのインスタンスか判定
+```
+class Animal; end
+class Dog < Animal; end
+
+dog = Dog.new
+dog.is_a?(Dog)     # => true
+dog.is_a?(Animal)  # => true
+dog.is_a?(Object)  # => true
+dog.is_a?(String)  # => false
+```
+
+### kind_of? オブジェクトが特定のクラスまたはそのサブクラスのインスタンスか判定
+```
+"hello".kind_of?(Object)  # => true
+123.kind_of?(Numeric)     # => true
+```
