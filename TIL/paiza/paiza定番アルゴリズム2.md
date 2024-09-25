@@ -753,3 +753,136 @@ end
 ```
 上記のコードはすっきりしていて見やすい。<br>
 縦の計算と横の計算を同時にしているのですっきりとして見える。
+
+### 1 次元上のいもす法 1
+
+**いもす法のメリット**
+
+>区間の値を何度も更新し、最後にそれぞれの値を得たい場合に有効である。<br>
+先に区間の入口と出口のみに加算と減算をおこなったあと累積和をとることで最後にまとめて全体の任意の値を求めることができる。
+
+**いもす法とは？**
+
+問題
+> 横に並んだ 10 個のマスがあり、最初、マスには全て 0 が書かれています。<br>
+以下の 3 つの範囲が与えられます。それぞれの範囲に対して、その範囲に含まれるマスに 1 を加算していきます。<br>
+すべての加算が終わった時点での 10 個のマスに書かれた値のうち、最大の値をいもす法を用いて求めてください。
+
+>1 マス目から 6 マス目<br>
+3 マス目から 9 マス目<br>
+4 マス目から 5 マス目<br>
+
+解き方
+
+1. 10 個のマスは全て 0
+```
+0 0 0 0 0 0 0 0 0 0
+```
+
+2. 「1 マス目から 6 マス目」を考える。<br>
+1マス目に1を加算、7マス目を1を減算する。
+```
+1 0 0 0 0 0 -1 0 0 0
+```
+
+3. 2つ目の範囲、3つ目の範囲を同様に行う。
+```
+1 0 1 1 0 -1 -1 0 0 -1
+```
+
+4. 上記に対して累積和を行う。
+```
+1 1 2 3 3 2 1 1 1 0
+```
+
+よって、最大値は3になる。
+
+---
+
+自作コード
+```
+=begin
+1 マス目から 3 マス目
+1 マス目から 8 マス目
+3 マス目から 8 マス目
+3 マス目から 6 マス目
+7 マス目から 9 マス目
+=end
+
+imos_array = Array.new(10) { 0 }
+line = [[1, 3], [1, 8], [3, 8], [3, 6], [7, 9]]
+line.each do |val|
+    imos_array[val[0]-1] += 1
+    imos_array[val[1]] -= 1
+end
+
+num = 0
+imos_array.each.with_index do |val, i|
+    num += val
+    imos_array[i] = num
+end
+
+puts imos_array.max
+```
+
+### 1 次元上のいもす法 2
+
+自作コード
+```
+imos_array = Array.new(10) { 0 }
+line = Array.new(5) { gets.split.map(&:to_i) }
+line.each do |val|
+    imos_array[val[0]-1] += 1
+    imos_array[val[1]] -= 1
+end
+
+num = 0
+imos_array.each.with_index do |val, i|
+    num += val
+    imos_array[i] = num
+end
+
+puts imos_array.max
+```
+
+### 1 次元上のいもす法 3
+
+自作コード
+```
+n = gets.to_i
+imos_array = Array.new(10) { 0 }
+line = Array.new(n) { gets.split.map(&:to_i) }
+line.each do |val|
+    imos_array[val[0]-1] += 1
+    imos_array[val[1]] -= 1
+end
+
+num = 0
+imos_array.each.with_index do |val, i|
+    num += val
+    imos_array[i] = num
+end
+
+puts imos_array.max
+```
+
+### 【1 次元上のいもす法】1 次元上のいもす法 4
+
+自作コード
+```
+n, q = gets.split.map(&:to_i)
+imos_array = Array.new(n + 1, 0)
+line = Array.new(q) { gets.split.map(&:to_i) }
+line.each do |val|
+    imos_array[val[0] - 1] += 1
+    imos_array[val[1]] -= 1
+end
+
+num = 0
+imos_array.each.with_index do |val, i|
+    num += val
+    imos_array[i] = num
+end
+
+puts imos_array.max
+```
