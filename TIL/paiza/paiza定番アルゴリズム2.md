@@ -886,3 +886,136 @@ end
 
 puts imos_array.max
 ```
+
+### 2 次元上のいもす法 1
+
+**2次元いもす法**
+
+>考え方としては、1次元いもす法と同じ<br>
+2次元累積和と同様に計算
+
+**2次元いもす法の考え方**
+
+問題
+> 横縦5マスの範囲について 以下の 2 つの範囲にそれぞれ 1 を加算したときの最大値を求める。
+
+>(1, 1) (4, 4)<br>
+(2, 2) (5, 5)
+
+解き方
+
+1. 全てのマス(6マス)は全て 0
+```
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+```
+
+2. 「(1, 1) (4, 4)」を考える。<br>
+(1, 1),(5, 5)に1を加算、(1, 5),(5, 1)に1を減算する。
+```
+1 0 0 0 -1 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+-1 0 0 0 1 0
+0 0 0 0 0 0
+```
+
+3. 2つ目の範囲((2, 2) (5, 5))も同様に行う。
+```
+1 0 0 0 -1 0
+0 1 0 0 0 -1
+0 0 0 0 0 0
+0 0 0 0 0 0
+-1 0 0 0 1 0
+0 -1 0 0 0 1
+```
+
+4. 上記に対して累積和を行う。
+```
+1 1 1 1 0 0
+1 2 2 2 1 0
+1 2 2 2 1 0
+1 2 2 2 1 0
+0 1 1 1 1 0
+0 0 0 0 0 0
+```
+
+よって、最大値は2になる。
+
+---
+
+自作コード
+```
+=begin
+(1, 1) (3, 3)
+(2, 2) (4, 4)
+(3, 3) (5, 5)
+(1, 3) (3, 5)
+(3, 1) (5, 3)
+=end
+
+q = 5
+n = 5
+imos_array = Array.new(n + 1) { Array.new(n + 1, 0) }
+# line = Array.new(q) { gets.split.map(&:to_i) }
+line = [[1, 1, 3, 3], [2, 2, 4, 4], [3, 3, 5, 5], [1, 3, 3, 5], [3, 1, 5, 3]]
+line.each do |val|
+    imos_array[val[1] - 1][val[0] - 1] += 1 # 左上
+    imos_array[val[3]][val[0] - 1] -= 1 # 左下
+    imos_array[val[1] - 1][val[2]] -= 1 # 右上
+    imos_array[val[3]][val[2]] += 1 # 右下
+end
+
+sum_matrix = Array.new(n + 2) { Array.new(n + 2, 0) }
+(0...n+1).each do |i|
+  (0...n+1).each do |j|
+    sum_matrix[i + 1][j + 1] = sum_matrix[i + 1][j] + sum_matrix[i][j + 1] - sum_matrix[i][j] + imos_array[i][j]
+  end
+end
+
+num = 0
+sum_matrix.each do |line|
+    line.each do |val|
+        num = val if val > num
+    end
+end
+
+puts num
+```
+
+### 2 次元上のいもす法 2
+
+自作コード
+```
+q = 5
+n = 5
+imos_array = Array.new(n + 1) { Array.new(n + 1, 0) }
+line = Array.new(q) { gets.split.map(&:to_i) }
+line.each do |val|
+    imos_array[2][val[0] - 1] += 1 # 左上
+    imos_array[3][val[0] - 1] -= 1 # 左下
+    imos_array[2][val[1]] -= 1 # 右上
+    imos_array[3][val[1]] += 1 # 右下
+end
+
+sum_matrix = Array.new(n + 2) { Array.new(n + 2, 0) }
+(0...n+1).each do |i|
+  (0...n+1).each do |j|
+    sum_matrix[i + 1][j + 1] = sum_matrix[i + 1][j] + sum_matrix[i][j + 1] - sum_matrix[i][j] + imos_array[i][j]
+  end
+end
+
+num = 0
+sum_matrix.each do |line|
+    line.each do |val|
+        num = val if val > num
+    end
+end
+
+puts num
+```
