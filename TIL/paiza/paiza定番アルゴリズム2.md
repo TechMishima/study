@@ -1019,3 +1019,222 @@ end
 
 puts num
 ```
+
+### 2 次元上のいもす法 3
+
+自作コード
+```
+q = 5
+n = 5
+imos_array = Array.new(n + 1) { Array.new(n + 1, 0) }
+line = Array.new(q) { gets.split.map(&:to_i) }
+line.each do |val|
+    imos_array[val[1] - 1][val[0] - 1] += 1 # 左上
+    imos_array[val[3]][val[0] - 1] -= 1 # 左下
+    imos_array[val[1] - 1][val[2]] -= 1 # 右上
+    imos_array[val[3]][val[2]] += 1 # 右下
+end
+
+sum_matrix = Array.new(n + 2) { Array.new(n + 2, 0) }
+(0...n+1).each do |i|
+  (0...n+1).each do |j|
+    sum_matrix[i + 1][j + 1] = sum_matrix[i + 1][j] + sum_matrix[i][j + 1] - sum_matrix[i][j] + imos_array[i][j]
+  end
+end
+
+num = 0
+sum_matrix.each do |line|
+    line.each do |val|
+        num = val if val > num
+    end
+end
+
+puts num
+```
+
+### 2 次元上のいもす法 4
+
+自作コード
+```
+q = gets.to_i
+n = 5
+imos_array = Array.new(n + 1) { Array.new(n + 1, 0) }
+line = Array.new(q) { gets.split.map(&:to_i) }
+line.each do |val|
+    imos_array[val[1] - 1][val[0] - 1] += 1 # 左上
+    imos_array[val[3]][val[0] - 1] -= 1 # 左下
+    imos_array[val[1] - 1][val[2]] -= 1 # 右上
+    imos_array[val[3]][val[2]] += 1 # 右下
+end
+
+sum_matrix = Array.new(n + 2) { Array.new(n + 2, 0) }
+(0...n+1).each do |i|
+  (0...n+1).each do |j|
+    sum_matrix[i + 1][j + 1] = sum_matrix[i + 1][j] + sum_matrix[i][j + 1] - sum_matrix[i][j] + imos_array[i][j]
+  end
+end
+
+num = 0
+sum_matrix.each do |line|
+    line.each do |val|
+        num = val if val > num
+    end
+end
+
+puts num
+```
+
+### 2 次元上のいもす法 5
+
+自作コード
+```
+n, k = gets.split.map(&:to_i)
+imos_array = Array.new(n + 1) { Array.new(n + 1, 0) }
+line = Array.new(k) { gets.split.map(&:to_i) }
+line.each do |val|
+    imos_array[val[1] - 1][val[0] - 1] += 1 # 左上
+    imos_array[val[3]][val[0] - 1] -= 1 # 左下
+    imos_array[val[1] - 1][val[2]] -= 1 # 右上
+    imos_array[val[3]][val[2]] += 1 # 右下
+end
+
+sum_matrix = Array.new(n + 2) { Array.new(n + 2, 0) }
+(0...n+1).each do |i|
+  (0...n+1).each do |j|
+    sum_matrix[i + 1][j + 1] = sum_matrix[i + 1][j] + sum_matrix[i][j + 1] - sum_matrix[i][j] + imos_array[i][j]
+  end
+end
+
+num = 0
+sum_matrix.each do |line|
+    line.each do |val|
+        num = val if val > num
+    end
+end
+
+puts num
+```
+
+### 【2 次元上のいもす法】 2 次元上のいもす法 6
+
+自作コード
+```
+n, m, k = gets.split.map(&:to_i)
+imos_array = Array.new(n + 1) { Array.new(m + 1, 0) }
+line = Array.new(k) { gets.split.map(&:to_i) }
+line.each do |val|
+    imos_array[val[1] - 1][val[0] - 1] += 1 # 左上
+    imos_array[val[3]][val[0] - 1] -= 1 # 左下
+    imos_array[val[1] - 1][val[2]] -= 1 # 右上
+    imos_array[val[3]][val[2]] += 1 # 右下
+end
+
+sum_matrix = Array.new(n + 2) { Array.new(m + 2, 0) }
+(0...n+1).each do |i|
+  (0...m+1).each do |j|
+    sum_matrix[i + 1][j + 1] = sum_matrix[i + 1][j] + sum_matrix[i][j + 1] - sum_matrix[i][j] + imos_array[i][j]
+  end
+end
+
+num = 0
+sum_matrix.each do |line|
+    line.each do |val|
+        num = val if val > num
+    end
+end
+
+puts num
+```
+
+AI
+```
+n, m, k = gets.split.map(&:to_i)
+imos_array = Array.new(n + 1) { Array.new(m + 1, 0) }
+
+k.times do
+  a, b, c, d = gets.split.map(&:to_i)
+  imos_array[b - 1][a - 1] += 1
+  imos_array[d][c] += 1
+  imos_array[b - 1][c] -= 1
+  imos_array[d][a - 1] -= 1
+end
+
+(0..n).each do |i|
+  (0...m).each do |j|
+    imos_array[i][j + 1] += imos_array[i][j]
+  end
+end
+
+(0...n).each do |i|
+  (0..m).each do |j|
+    imos_array[i + 1][j] += imos_array[i][j]
+  end
+end
+
+max_value = 0
+
+imos_array.each do |line|
+  max_value = [max_value, line.max].max
+end
+
+puts max_value
+```
+
+一気に足し合わせるのではなく、縦横と計算を分けている。<br>
+わかりやすいが自作コードの方が記述量は少なくなっている。でも可読性に欠けているかも
+
+### 区間の数え上げ 1
+
+**しゃくとり法とは**
+
+>累積和と似たアルゴリズムである。<br>
+しゃくとり法を用いることで、条件を満たす区間の数や、最も長い区間の長さを求めることができる。<br>
+区間の左端と右端が交互に動いていくことから、しゃくとり虫に似ていることから命名された。
+
+**しゃくとり法のルール**
+1. left を固定し、条件を満たす間 right を 1 ずつ進めていき、right がそれ以上進めなくなったとき、<br>
+   right - left とすることでそれまでの条件を満たす区間の数を求めることができる<br>
+2. right がこれ以上右に進めなくなったとき、left を 1 進め、また ① に戻る
+3. ただし、left == right となったときは、right を 1 進める
+
+**しゃくとり法の考え方**
+
+問題
+>以下の 10 個の整数からなる数列が与えられます。<br>
+1 5 9 1 20 5 3 6 5 4<br>
+この数列において、長さが 1 以上で総和が 15 以下の区間がいくつあるか求めてください。
+
+1. left を固定し、条件を満たす間 right を 1 ずつ進めていき、right がそれ以上進めなくなったとき<br>
+right - left とすることでそれまでの条件を満たす区間の数を求めることができる
+
+```
+1 5 9 1 20 5 3 6 5 4
+↑   ↑
+
+1～3区間までになる。4区間になると16になり15以下ではないのでstep2に移る。
+```
+2. right がこれ以上右に進めなくなったとき、left を 1 進め、また ① に戻る<br>
+この時にsumにrightを足しておく。今回は3
+
+```
+1 5 9 1 20 5 3 6 5 4
+  ↑ ↑
+  左 rightが3
+
+左をひとつずらす。
+その後、step1に戻り右端を進めていく。
+```
+
+3. ただし、left == right となったときは、right を 1 進める
+
+```
+1 5 9 1 20 5 3 6 5 4
+        ↑
+        例外
+
+例外として条件に当てはまらない場合がでてくる。
+上記でいうと20は15以下ではないのでleft4でright4なので、左を進めてしまうと、
+left5とright4になってしまい、おかしくなってしまう。
+
+そこで例外としてleft == rightになった時はrightを進める。
+```
