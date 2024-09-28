@@ -1238,3 +1238,134 @@ left5とright4になってしまい、おかしくなってしまう。
 
 そこで例外としてleft == rightになった時はrightを進める。
 ```
+
+---
+
+自作コード ※間違っている可能性大
+```
+line = gets.split.map(&:to_i)
+max = line.length
+left, right, num, ans = [0, 0, 0, 0]
+
+while right <= max
+    num += line[right]
+    right += 1
+    
+    if num > 15 && right == left
+        right += 1
+    elsif num > 15
+        num -= line[right-1]
+        right -= 1
+        ans += right - left
+        num -= line[left]
+        left += 1
+    end
+        
+    if right == max
+        (right-left).times do |i|
+            ans += i+1
+        end
+        right += 1
+    end
+end
+
+puts ans
+```
+
+### 区間の数え上げ 2
+上記の自作コードで通過
+
+### 区間の数え上げ 3
+
+自作コード
+```
+k = gets.to_i
+line = gets.split.map(&:to_i)
+max = line.length
+left, right, num, ans = [0, 0, 0, 0]
+
+while right <= max
+    num += line[right]
+    right += 1
+    
+    if num > k && right == left
+        right += 1
+    elsif num > k
+        num -= line[right-1]
+        right -= 1
+        ans += right - left
+        num -= line[left]
+        left += 1
+    end
+        
+    if right == max
+        (right-left).times do |i|
+            ans += i+1
+        end
+        right += 1
+    end
+end
+
+puts ans
+```
+
+### 【区間の数え上げ】 区間の数え上げ 4
+
+自作コード
+```
+n, k = gets.split.map(&:to_i)
+line = gets.split.map(&:to_i)
+max = line.length
+left, right, num, ans = [0, 0, 0, 0]
+
+while right <= max
+    num += line[right]
+    right += 1
+    
+    if num > k && right == left
+        right += 1
+    elsif num > k
+        num -= line[right-1]
+        right -= 1
+        ans += right - left
+        num -= line[left]
+        left += 1
+    end
+        
+    if right == max
+        (right-left).times do |i|
+            ans += i+1
+        end
+        right += 1
+    end
+end
+
+puts ans
+```
+
+AIに添削してもらった
+```
+n, k = gets.split.map(&:to_i)
+line = gets.split.map(&:to_i)
+max = line.length
+left, right, num, ans = [0, 0, 0, 0]
+
+while left < max
+  while right < max && num + line[right] <= k
+    num += line[right]
+    right += 1
+  end
+
+  ans += right - left
+
+  if right == left
+    right += 1
+  else
+    num -= line[left]
+  end
+
+  left += 1
+end
+
+puts ans
+```
