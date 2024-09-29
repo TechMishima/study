@@ -1369,3 +1369,122 @@ end
 
 puts ans
 ```
+
+### 区間の長さ 1
+
+しゃくとり法のコードを修正して作成<br>
+自作コード
+```
+k = 15
+line = gets.split.map(&:to_i)
+max = line.length
+left, right, num, ans = [0, 0, 0, 0]
+
+while left < max
+  while right < max && num + line[right] <= k
+    num += line[right]
+    right += 1
+  end
+
+  ans = right - left if ans < right - left
+
+  if right == left
+    right += 1
+  else
+    num -= line[left]
+  end
+
+  left += 1
+end
+
+puts ans
+```
+
+### 区間の長さ 2
+
+上記と同様
+
+### 区間の長さ 3
+
+自作コード
+```
+k = gets.to_i
+line = gets.split.map(&:to_i)
+max = line.length
+left, right, num, ans = [0, 0, 0, 0]
+
+while left < max
+  while right < max && num + line[right] <= k
+    num += line[right]
+    right += 1
+  end
+
+  ans = right - left if ans < right - left
+
+  if right == left
+    right += 1
+  else
+    num -= line[left]
+  end
+
+  left += 1
+end
+
+puts ans
+```
+
+### 【区間の長さ】 区間の長さ 4
+
+自作コード
+```
+n, k = gets.split.map(&:to_i)
+line = gets.split.map(&:to_i)
+max = line.length
+left, right, num, ans = [0, 0, 0, 0]
+
+while left < max
+  while right < max && num + line[right] <= k
+    num += line[right]
+    right += 1
+  end
+
+  ans = right - left if ans < right - left
+
+  if right == left
+    right += 1
+  else
+    num -= line[left]
+  end
+
+  left += 1
+end
+
+puts ans
+```
+
+添削後
+```
+n, k = gets.split.map(&:to_i)
+line = gets.split.map(&:to_i)
+max = line.length
+left, right, num, max_section = [0, 0, 0, 0]
+
+while left < max
+  while right < max && num + line[right] <= k
+    num += line[right]
+    right += 1
+  end
+
+  max_section = right - left if max_section < right - left
+
+  if right == left
+    right += 1
+  else
+    num -= line[left]
+  end
+
+  left += 1
+end
+
+puts max_section
+```
