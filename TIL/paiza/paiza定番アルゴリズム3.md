@@ -53,3 +53,73 @@ k.times do
     end
 end
 ```
+
+### lower_bound
+
+自作コード
+```
+def binary_search(arr, n, k)
+    left = 0
+    right = n
+    
+    while left < right
+        mid = (left + right) / 2
+
+        if arr[mid] < k
+            left = mid+1
+        else
+            right = mid
+        end
+    end
+    
+    return right
+end
+
+n = gets.to_i
+line = gets.split.map(&:to_i)
+line = line.sort!
+q = gets.to_i
+
+q.times do
+    k = gets.to_i
+    puts n - binary_search(line, n, k)
+end
+```
+
+### upper_bound
+
+**lower_boundとupper_boundってどういう意味？**
+
+- lower_bound
+  - lower_boundは、探索したいkey以上の値を返す (a >= key)
+- upper_bound
+  - upper_boundは、探索したいkeyより大きい値を返す (a > key)
+
+自作コード
+```
+def binary_search(arr, n, k)
+  left = 0
+  right = n
+  
+  while left < right
+      mid = (left + right) / 2
+
+      if arr[mid] <= k
+          left = mid+1
+      else
+          right = mid
+      end
+  end
+  
+  return n -  right
+end
+
+a = gets.to_i
+line = gets.split.map(&:to_i)
+line = line.sort!
+q = gets.to_i
+q.times do
+    num = gets.to_i
+    puts binary_search(line, a, num)
+end
+```
