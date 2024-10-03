@@ -123,3 +123,56 @@ q.times do
     puts binary_search(line, a, num)
 end
 ```
+
+### ある範囲に含まれている整数の個数
+
+自作コード
+```
+def binary_search(arr, n, k)
+  left = 0
+  right = n
+  
+  while left < right
+      mid = (left + right) / 2
+
+      if arr[mid] < k
+          left = mid+1
+      else
+          right = mid
+      end
+  end
+  
+  return n - right
+end
+
+def binary_search2(arr, n, k)
+  left = 0
+  right = n
+  
+  while left < right
+      mid = (left + right) / 2
+
+      if arr[mid] <= k
+          left = mid+1
+      else
+          right = mid
+      end
+  end
+  
+  return n - right
+end
+
+n = gets.to_i
+line = gets.split.map(&:to_i)
+line = line.sort!
+q = gets.to_i
+
+q.times do
+  l, r = gets.split.map(&:to_i)
+  # puts binary_search(line, n, l)
+  # puts binary_search2(line, n, r)
+  puts binary_search(line, n, l) - binary_search2(line, n, r)
+end
+```
+
+### パイプを切り出そう
