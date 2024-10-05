@@ -289,3 +289,37 @@ dog.is_a?(String)  # => false
 "hello".kind_of?(Object)  # => true
 123.kind_of?(Numeric)     # => true
 ```
+
+## combinationメソッド
+重複しない組み合わせを作成するときに使用できるメソッド
+```
+a = [1, 2, 3, 4]
+a.combination(1).to_a  #=> [[1],[2],[3],[4]]
+a.combination(2).to_a  #=> [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]]
+a.combination(3).to_a  #=> [[1,2,3],[1,2,4],[1,3,4],[2,3,4]]
+a.combination(4).to_a  #=> [[1,2,3,4]]
+a.combination(0).to_a  #=> [[]]: one combination of length 0
+a.combination(5).to_a  #=> []  : no combinations of length 5
+```
+
+## combination + each
+1～3個の組み合わせのeachの実装
+
+```
+arr = [1, 2, 3, 4]
+
+(1..3).each do |i|
+    arr.combination(i).each do |comb|
+        p comb
+    end
+end
+```
+
+## sumメソッド(ブロックの使い方)
+
+```
+arr = [[1, 2], [3, 4]]
+
+puts arr.sum {|item| item[0]} # 4
+puts arr.sum {|item| item[1]} # 6
+```
