@@ -176,3 +176,54 @@ end
 ```
 
 ### パイプを切り出そう
+
+限界値を求めるので、100回ほど繰り返し処理を行い小数点以下まで精度を高めて検索している。
+
+自作コード
+```
+n, k = gets.split.map(&:to_i)
+pipes = gets.split.map(&:to_i)
+
+left = 0
+right = 100000.0
+
+100.times do
+    mid = (left + right) / 2
+    # puts mid
+    num = 0
+    pipes.each do |pipe|
+        num += (pipe / mid).floor
+    end
+    
+    if num >= k # 判定内
+        left = mid
+    else
+        right = mid 
+    end
+end
+
+puts right
+```
+
+回答
+```
+n, k = gets.split.map(&:to_i)
+A = gets.split.map(&:to_i)
+
+left, right = 0.0, 10001.0
+100.times do
+  mid = (left + right) / 2.0
+  num_of_pipes = 0
+  A.each do |a|
+    num_of_pipes += (a / mid).to_i
+  end
+
+  if num_of_pipes < k
+    right = mid
+  else
+    left = mid
+  end
+end
+
+puts left
+```
