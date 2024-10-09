@@ -227,3 +227,32 @@ end
 
 puts left
 ```
+
+### 効率よく盗もう
+
+**バイナリーサーチの使うポイント**
+- Yes / No で答えられる質問である。
+- あるところを境界として，そこより小さいところではずっと Yes だし，そこより大きいところではずっと No である．
+- または，あるところを境界として，そこより小さいところではずっと No だし，そこより大きいところではずっと Yes である．
+
+→ どこかで Yes / No が切り替わる質問を考える。
+
+### 途中
+n, k = gets.split.map(&:to_i)
+weights = gets.split.map(&:to_i)
+prices= gets.split.map(&:to_i)
+values = []
+n.times do |i|
+    values << [prices[i], weights[i]] # 価値 = [価格, 重さ]
+end
+
+ans = 0
+
+values.combination(k).each do |comb|
+    price = comb.sum {|item| item[0]}
+    weight = comb.sum {|item| item[1]}
+    value = price / weight.to_f
+    ans = value if value > ans
+end
+
+puts ans
