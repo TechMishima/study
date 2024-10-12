@@ -331,3 +331,124 @@ puts arr.sum {|item| item[1]} # 6
 オブジェクト間に依存関係がある場合、どんな順番に並べるか良いかを決めるアルゴリズムの事。<br>
 オブジェクト間に依存関係がある・・・有向非巡回グラフ(DAG)の事。<br>
 DAGとは、ある頂点vから出発し、辺をたどり、頂点vに戻ってこないグラフである。
+
+### 入次数とは？
+
+次数は、グラフの頂点に接合する辺の数を表している。<br>
+有向グラフでは、頂点に入ってくる辺数を入次数、頂点から出ていく辺数を出次数と呼ぶ。
+
+### トポロジカルソートの実装
+
+1. 与えられた比較結果を元に関係をDAGに変換する。
+2. 入次数の計算を行う。
+3. 入次数が0の頂点を配列に追加する。
+4. 取り出した頂点の出次数に対応する辺を削除する。
+5. 3と4の手順を比較結果がなくなるまで繰り返す。
+
+### コード
+
+```
+def topological_sort(n, edges)
+  # 入次数を格納する配列
+  in_degree = Array.new(n + 1, 0)
+  graph = Array.new(n + 1) { [] }
+
+  # グラフの構築
+  edges.each do |u, v|
+    graph[u] << v
+    in_degree[v] += 1
+  end
+
+  # 入次数が0の頂点をキューに追加
+  queue = []
+  (1..n).each do |i|
+    queue << i if in_degree[i] == 0
+  end
+
+  # トポロジカルソートの結果を格納するリスト
+  result = []
+
+  # トポロジカルソートの実行
+  while !queue.empty?
+    # キューに2つ以上の要素があると順序が一意に決まらない
+    return -1 if queue.size > 1
+
+    node = queue.shift
+    result << node
+
+    # 隣接する頂点の入次数を減らし、入次数が0になればキューに追加
+    graph[node].each do |neighbor|
+      in_degree[neighbor] -= 1
+      queue << neighbor if in_degree[neighbor] == 0
+    end
+  end
+
+  # 全ての頂点を訪問できたか確認
+  if result.size == n
+    result
+  else
+    -1
+  end
+end
+
+# 入力の受け取り
+n, m = gets.split.map(&:to_i)
+edges = m.times.map { gets.split.map(&:to_i) }
+
+# トポロジカルソートの結果を出力
+result = topological_sort(n, edges)
+if result == -1
+  puts -1
+else
+  puts result.join(' ')
+end
+```
+
+### コード解説
+
+1. グラフの作成
+
+edges に含まれる各辺情報 (u, v) をループで処理し、グラフ graph を構築する。<br>
+graph[u] << v によって u から v への有向辺を追加し、
+同時に in_degree[v] をインクリメントして、頂点 v の入次数を1増やす。<br>
+これにより、頂点 u から v への関係を構築している。
+
+```
+n, m = gets.split.map(&:to_i)
+edges = m.times.map { gets.split.map(&:to_i) }
+
+def topological_sort(n, edges)
+
+  # 入次数を格納する配列
+  in_degree = Array.new(n + 1, 0)
+  graph = Array.new(n + 1) { [] }
+
+  # グラフの構築
+  edges.each do |u, v|
+    graph[u] << v
+    in_degree[v] += 1
+  end
+```
+
+2. 入次数の計算
+
+in_degree という配列を初期化し、各頂点（鉱物）が何本の辺を受け取っているか（入次数）を0に初期化している。<br>
+その後、上記のグラフ作成部分で in_degree[v] += 1 によって実際の入次数が計算されている。
+
+```
+  # 入次数の計算 (グラフの構築の途中)
+    in_degree[v] += 1
+```
+
+3. 入次数が0の頂点をキューに追加
+
+頂点 1から n までをループし、入次数が0の頂点を queue に追加している。<br>
+入次数が0の頂点は、他の頂点から依存されていないため、先頭であることが確定している。
+
+```
+  # 入次数が0の頂点をキューに追加
+  queue = []
+  (1..n).each do |i|
+    queue << i if in_degree[i] == 0
+  end
+```
