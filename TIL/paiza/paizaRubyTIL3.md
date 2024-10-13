@@ -452,3 +452,53 @@ in_degree という配列を初期化し、各頂点（鉱物）が何本の辺�
     queue << i if in_degree[i] == 0
   end
 ```
+
+4. トポロジカルソートの実行 (出次数の減算とstep3の繰り返し)
+
+queue.shift でキューの先頭から頂点を取り出し、結果リスト result に追加する。<br>
+graph[node].each によって、現在の node から出る辺を調べ、その隣接するneighborの入次数を1減らします。<br>
+neighborの入次数が0になれば、その頂点をキューに追加します。これを全ての頂点が処理されるまで繰り返します。<br>
+キューのサイズが2以上の場合、一意の順序を決定できないため、-1 を返して終了します。
+
+```
+  # トポロジカルソートの結果を格納するリスト
+  result = []
+
+  # トポロジカルソートの実行
+  while !queue.empty?
+    # キューに2つ以上の要素があると順序が一意に決まらない
+    return -1 if queue.size > 1
+
+    node = queue.shift
+    result << node
+
+    # 隣接する頂点の入次数を減らし、入次数が0になればキューに追加
+    graph[node].each do |neighbor|
+      in_degree[neighbor] -= 1
+      queue << neighbor if in_degree[neighbor] == 0
+    end
+  end
+```
+
+5. 一意性のチェック(キューに複数の頂点がない)
+
+キューに複数の頂点が存在する場合、複数の可能な順序があるため、順序が一意に決まらない。<br>
+この時点で順序が複数あることが判明したため、-1 を返して終了する。
+
+```
+# (トポロジカルソートの途中)
+return -1 if queue.size > 1
+```
+
+6. サイクルのチェック
+
+result に追加された頂点の数が n に等しければ、全ての頂点が処理されたことが保証される。<br>
+もし result.size != n であれば、サイクルが存在し、正しい順序を決定することができないため、-1 を返す。
+
+```
+if result.size == n
+  result
+else
+  -1
+end
+```
