@@ -240,19 +240,27 @@ puts left
 ### 途中
 n, k = gets.split.map(&:to_i)
 weights = gets.split.map(&:to_i)
-prices= gets.split.map(&:to_i)
-values = []
-n.times do |i|
-    values << [prices[i], weights[i]] # 価値 = [価格, 重さ]
+values = gets.split.map(&:to_i)
+
+left, right = 0.0, 5001.0
+100.times do
+    mid = (left + right) / 2.0
+    
+    num = 0
+    n.times do |i|
+        if weights[i] * mid >= values[i]
+            num += 1
+        end
+    end
+    
+    if num >= k
+        right = mid
+    else
+        left = mid
+    end
 end
 
-ans = 0
+puts left
 
-values.combination(k).each do |comb|
-    price = comb.sum {|item| item[0]}
-    weight = comb.sum {|item| item[1]}
-    value = price / weight.to_f
-    ans = value if value > ans
-end
-
-puts ans
+### hint
+個別ではなく、合計
