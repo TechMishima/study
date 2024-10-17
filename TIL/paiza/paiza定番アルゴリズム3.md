@@ -237,7 +237,8 @@ puts left
 
 → どこかで Yes / No が切り替わる質問を考える。
 
-### 途中
+自作コード
+```
 n, k = gets.split.map(&:to_i)
 weights = gets.split.map(&:to_i)
 values = gets.split.map(&:to_i)
@@ -246,14 +247,18 @@ left, right = 0.0, 5001.0
 100.times do
     mid = (left + right) / 2.0
     
-    num = 0
+    targets = []
     n.times do |i|
-        if weights[i] * mid >= values[i]
-            num += 1
-        end
+        targets << values[i] - weights[i] * mid
     end
     
-    if num >= k
+    sum = 0
+    targets = targets.sort!.reverse!
+    k.times do |i|
+        sum += targets[i]
+    end
+    
+    if sum < 0
         right = mid
     else
         left = mid
@@ -261,6 +266,19 @@ left, right = 0.0, 5001.0
 end
 
 puts left
+```
 
-### hint
-個別ではなく、合計
+**なぜうまくいかなかったのか**
+
+個別で比較するのではなく、合計で比較を行わなくてはいけなかったこと。
+
+- NG (個別比較)
+    - $ v1 >= w1 * mid $
+    - $ v2 >= w2 * mid $
+- OK (合計比較)
+    - $ (v1 + v2) >= (w1 + w2) * mid $
+
+上記の合計比較を行うためにsortして上位k件を対象に条件分岐を行うことが大切だった。
+
+今回の件より、バイナリーソートを行う際は、<br>
+どこでOKなのかNGなのか境界をきめる条件を適切に設定することが重要であることがわかる。
