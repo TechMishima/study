@@ -293,3 +293,32 @@ x を 1 から L までの範囲で二分探索。
 
 **貪欲法**
 https://algo-method.com/descriptions/95
+
+### 回答
+```
+L, n, k = gets.split.map(&:to_i)
+arr = gets.split.map(&:to_i)
+
+arr = [0] + arr + [L]
+left, right = 0, L + 1
+
+while right - left > 1
+  mid = (left + right) / 2
+
+  last_index, parts = 0, 0
+  (0..k+1).each do |i|
+    if arr[i] - arr[last_index] >= mid
+      parts += 1
+      last_index = i
+    end
+  end
+
+  if parts < n
+    right = mid
+  else
+    left = mid
+  end
+end
+
+puts left
+```
