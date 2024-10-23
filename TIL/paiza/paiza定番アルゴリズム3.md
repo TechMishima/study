@@ -6,7 +6,8 @@ https://paiza.jp/works/mondai<br>
 # Progress
 始まり
 
-- 二分探索メニュー
+- 二分探索メニュー<br>
+時間をかけ考えながら解いていく
 
 # TIL
 
@@ -292,7 +293,9 @@ x を 1 から L までの範囲で二分探索。
 各 x に対して、貪欲法を使って実際に n 個の区間に分割できるかを確認。
 
 **貪欲法**
-https://algo-method.com/descriptions/95
+> https://algo-method.com/descriptions/95
+
+
 
 ### 回答
 ```
