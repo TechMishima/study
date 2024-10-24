@@ -25,3 +25,18 @@ end
 puts n
 puts line
 ```
+
+### スタック・キュー実装編( 共通問題 ) step 2
+
+```
+n = gets.to_i
+arr = []
+
+n.times do
+    line = gets.split.map(&:to_i)
+    arr << line[1] if line[0] == 1
+end
+
+puts arr.length
+puts arr
+```
