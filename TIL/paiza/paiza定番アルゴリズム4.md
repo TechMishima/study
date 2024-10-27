@@ -63,3 +63,27 @@ n.times do
     puts arr.join(" ")
 end
 ```
+
+### スタック実装編 step 2
+
+```
+n = gets.to_i
+arr = []
+
+n.times do
+    line = gets.chomp.split
+    if line[0].to_i == 1
+        arr.push(line[1])
+        puts arr.join(" ")
+    elsif line[0].to_i == 2
+        a = arr.pop
+        puts a
+        puts arr.join(" ")
+    end
+end
+```
+
+### キュー実装編 step 1
+
+> キューとは、「先入れ先出し構造( First In, First Out )」などと呼ばれるデータ構造で、
+データの追加と、最初に追加したデータを取り出すことができます。

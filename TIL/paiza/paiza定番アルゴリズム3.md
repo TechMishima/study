@@ -286,18 +286,7 @@ puts left
 
 ### 太巻きを分けよう (おなかペコペコ)
 
-### 考え中
-この「最も短い太巻きの長さ」を変数として二分探索。 x cm を最小の太巻きの長さとして、
-x 以上の長さの区間を作ることができるかを確認。
-x を 1 から L までの範囲で二分探索。
-各 x に対して、貪欲法を使って実際に n 個の区間に分割できるかを確認。
-
-**貪欲法**
-> https://algo-method.com/descriptions/95
-
-
-
-### 回答
+**模範回答**
 ```
 L, n, k = gets.split.map(&:to_i)
 arr = gets.split.map(&:to_i)
@@ -325,3 +314,76 @@ end
 
 puts left
 ```
+
+自作コード
+
+```
+l, n, k = gets.split.map(&:to_i)
+line = gets.split.map(&:to_i)
+hutomaki = [0] + line + [l]
+
+left, right = 0, l+1
+
+while left < right
+    mid = (left + right) / 2
+    num = 0
+    index = 0
+    hutomaki.each.with_index do |val, i|
+        length = val - hutomaki[index]
+        if length >= mid
+            num += 1
+            index = i
+        end
+    end
+    
+    if num < n
+        right = mid
+    else
+        left = mid+1
+    end
+    
+end
+
+puts left-1
+```
+
+上記の自作コードを添削
+
+```
+# 入力処理
+l, n, k = gets.split.map(&:to_i)
+line = gets.split.map(&:to_i)
+hutomaki = [0] + line + [l]
+
+# 二分探索の初期範囲を設定
+left, right = 0, l
+
+# 条件に合う最大の`mid`を探索
+while left < right
+  mid = (left + right + 1) / 2
+  num = 0   # カット回数
+  index = 0 # 前回カットした場所
+
+  # カットの判定をループで処理
+  hutomaki.each_with_index do |val, i|
+    length = val - hutomaki[index] # カット候補の長さ
+    if length >= mid
+      num += 1
+      index = i
+    end
+  end
+
+  # カット回数がn未満であれば右側を狭める
+  if num < n
+    right = mid - 1
+  else
+    left = mid
+  end
+end
+
+# 結果の出力
+puts left
+```
+
+**貪欲法について**
+> https://algo-method.com/descriptions/95
