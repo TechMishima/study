@@ -87,3 +87,21 @@ end
 
 > キューとは、「先入れ先出し構造( First In, First Out )」などと呼ばれるデータ構造で、
 データの追加と、最初に追加したデータを取り出すことができます。
+
+> push : 最後尾にデータを追加<br>
+shift : 先頭のデータを取り出す
+
+```
+n = gets.to_i
+arr = []
+
+n.times do
+    line = gets.split.map(&:to_i)
+    if line[0] == 1
+        arr.push(line[1])
+    elsif line[0] == 2
+        a = arr.shift
+    end
+    puts arr.join(" ")
+end
+```
