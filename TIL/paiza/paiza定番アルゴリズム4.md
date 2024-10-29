@@ -105,3 +105,22 @@ n.times do
     puts arr.join(" ")
 end
 ```
+
+### キュー実装編 step 2
+
+```
+n = gets.to_i
+arr = []
+
+n.times do
+    line = gets.chomp.split
+    if line[0].to_i == 1
+        arr.push(line[1])
+        puts arr.join(" ")
+    elsif line[0].to_i == 2
+        a = arr.shift
+        puts a
+        puts arr.join(" ")
+    end
+end
+```
