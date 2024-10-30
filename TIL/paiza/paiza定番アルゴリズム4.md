@@ -124,3 +124,34 @@ n.times do
     end
 end
 ```
+
+### 2つのキュー
+
+```
+n = gets.to_i
+arr1 = []
+arr2 = []
+
+n.times do
+    line = gets.split.map(&:to_i)
+    if line[0] == 1
+        if line[1] == 1
+            arr1 << line[2]
+        else
+            arr2 << line[2]
+        end
+    elsif line[0] == 2
+        if line[1] == 1
+            val = arr1.shift
+            puts val
+        else
+            val = arr2.shift
+            puts val
+        end
+    else
+        print arr1.length
+        print " "
+        print "#{arr2.length}\n"
+    end
+end
+```
