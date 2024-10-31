@@ -155,3 +155,65 @@ n.times do
     end
 end
 ```
+
+### 最大の区間和
+
+```
+n, x = gets.split.map(&:to_i)
+arr = gets.split.map(&:to_i)
+sum_arr = [0]
+a_sum = 0
+arr.each do |val|
+    a_sum += val
+    sum_arr << a_sum
+end
+
+max_num = 0
+sum_max = 0
+(n-x+1).times do |i|
+    sum = sum_arr[i+x] - sum_arr[i]
+    if sum > sum_max
+        sum_max = sum
+        max_num = arr[i]
+    end
+end
+
+print sum_max
+print " "
+puts max_num
+```
+
+上記はスタック、キューを使ったコードではないため、練習として使用したコードを作成してみる。
+
+```
+n, x = gets.split.map(&:to_i)
+arr = gets.split.map(&:to_i)
+sum_arr = []
+sum = 0
+
+(x-1).times do |i|
+    sum += arr[i]
+    sum_arr.push(arr[i])
+end
+
+max_num = 0
+sum_max = 0
+
+(n-x+1).times do |i|
+    push_num = arr[i+x-1]
+    sum_arr.push(push_num)
+    sum += push_num
+    num = sum_arr.shift
+    
+    if sum > sum_max
+        sum_max = sum
+        max_num = num
+    end
+    
+    sum -= num
+end
+
+print sum_max
+print " "
+puts max_num
+```
