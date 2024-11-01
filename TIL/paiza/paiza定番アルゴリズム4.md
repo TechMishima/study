@@ -217,3 +217,39 @@ print sum_max
 print " "
 puts max_num
 ```
+
+### 逆ポーランド記法
+
+> https://www.seplus.jp/dokushuzemi/ec/fe/fenavi/kind_basic_theory/reverse-polish-notation/
+>>【逆ポーランド記法の計算式の値を得る手順】<br>
+（1） 逆ポーランド記法の計算式の先頭から順に1文字ずつ取り出す。<br>
+（2） 取り出した文字が値（変数や数値）ならスタックにプッシュする。<br>
+（3） 取り出した文字が演算子ならスタックから2つのデータをポップし、両者の演算結果の値をスタックにプッシュする。<br>
+（4） （1）に戻って繰り返し、最後の文字を取り出して処理したら、その時点でスタックに残っている1つの値が計算式の値である。
+
+自作コード
+
+```
+n = gets.to_i
+arr = gets.chomp.split
+stack = []
+
+arr.each do |val|
+    if val == "+"
+        int1 = stack.pop
+        int2 = stack.pop
+        int = int2 + int1
+        stack.push(int)
+    elsif val == "-"
+        int1 = stack.pop
+        int2 = stack.pop
+        int = int2 - int1
+        stack.push(int)
+    else
+        int = val.to_i
+        stack.push(int)
+    end
+end
+
+puts stack
+```
