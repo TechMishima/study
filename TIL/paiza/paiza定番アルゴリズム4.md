@@ -253,3 +253,34 @@ end
 
 puts stack
 ```
+
+### 括弧列
+
+自作コード
+
+```
+n = gets.to_i
+kakko = gets.chomp.split("")
+stock = []
+ans = true
+
+while kakko.empty? == false
+    a = kakko.shift
+    if a == "("
+        stock.push(a)
+    elsif a == ")" || stock.empty? == true
+        b = stock.pop
+        if b != "("
+            ans = false
+        end
+    end
+    
+    break if ans == false
+end
+
+if stock.empty? == true && ans == true
+    puts "Yes"
+else
+    puts "No"
+end
+```
