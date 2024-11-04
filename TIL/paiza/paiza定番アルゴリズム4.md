@@ -284,3 +284,26 @@ else
     puts "No"
 end
 ```
+
+回答
+
+```
+n = gets.to_i
+s = gets.chomp
+
+stack = []
+
+n.times do |i|
+  if !stack.empty? && stack[-1] == "(" && s[i] == ")"
+    stack.pop
+  else
+    stack.push(s[i])
+  end
+end
+
+if stack.empty?
+  puts "Yes"
+else
+  puts "No"
+end
+```
