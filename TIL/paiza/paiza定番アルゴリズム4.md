@@ -307,3 +307,21 @@ else
   puts "No"
 end
 ```
+
+##
+```
+n, k = gets.split.map(&:to_i)
+menbers = gets.split.map(&:to_i)
+stock = []
+n.times do |i|
+    stock << menbers[i]
+    stock.each do |menber|
+        if (menbers[i] - menber) < k
+            break
+        else
+            a = stock.shift
+        end
+    end
+    puts stock.length
+end
+```
