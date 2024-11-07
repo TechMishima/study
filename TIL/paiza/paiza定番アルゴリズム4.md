@@ -308,7 +308,10 @@ else
 end
 ```
 
-##
+### エスカレーター
+
+間違いコード（なぜ？<br>
+
 ```
 n, k = gets.split.map(&:to_i)
 menbers = gets.split.map(&:to_i)
@@ -322,6 +325,67 @@ n.times do |i|
             a = stock.shift
         end
     end
+    puts stock.length
+end
+```
+
+stock.each doを行い、途中でshiftで削除してしまうとおかしくなってしまう。
+
+> 例: 提出されたコードの動作を詳しく追う<br>
+入力<br>
+n = 6, k = 3<br>
+menbers = [1, 2, 3, 7, 8, 9]<br>
+<br>
+各ステップの動作<br>
+4番目のループ（i = 3）を重点的に確認します。<br>
+i = 0:<br>
+stock = [1]<br>
+出力: 1<br>
+<br>
+i = 1:<br>
+stock = [1, 2]<br>
+出力: 2<br>
+<br>
+i = 2:<br>
+stock = [1, 2, 3]<br>
+出力: 3<br>
+<br>
+i = 3:<br>
+現在のstock = [1, 2, 3, 7]<br>
+stock.eachのループが始まります。<br>
+**最初の要素1**に対してif (menbers[i] - menber) < kをチェック。<br>
+7 - 1 = 6でk以上なので、shiftで1を削除し、stockが[2, 3, 7]になります。<br>
+**次の要素2**に対して再度チェック。<br>
+※しかしここで参照されるのはindex1の[3]が対象されてしまう。<br>
+7 - 3 = 4でk以上なので、再びshiftで2を削除し、stockが[3, 7]になります。<br>
+**次の要素3**に対してチェックするはずですが、ここで問題が発生します。<br>
+stock.eachは、1を削除した時点で、stock配列が変更されたものの、ループの状態は保持されたままなので、次の要素として7が選択されます。<br>
+結果として、3がスキップされ、チェックされません。<br>
+結果: stockが[7]となり、出力は2になります。<br>
+
+提出してもらったコード
+
+whileにしているので、ちゃんとした対象に処理できている。
+
+```
+# 入力を受け取る
+n, k = gets.split.map(&:to_i)
+menbers = gets.split.map(&:to_i)
+
+# 配列stockを初期化
+stock = []
+
+# 各メンバーに対して処理を行う
+n.times do |i|
+    # stockに現在のメンバーを追加
+    stock << menbers[i]
+
+    # stockの先頭メンバーと現在のメンバーの差がk以上なら古いメンバーを削除
+    while (menbers[i] - stock[0]) >= k
+        stock.shift
+    end
+
+    # 現在のstock配列の長さを出力
     puts stock.length
 end
 ```
