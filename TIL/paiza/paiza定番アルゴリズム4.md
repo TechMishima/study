@@ -7,6 +7,7 @@ https://paiza.jp/works/mondai<br>
 始まり
 
 - スタック・キューメニュー
+- 連結リストメニュー
 
 # TIL
 
@@ -389,3 +390,31 @@ n.times do |i|
     puts stock.length
 end
 ```
+
+間違いコードを修正してみた
+
+```
+n, k = gets.split.map(&:to_i)
+menbers = gets.split.map(&:to_i)
+stock = []
+n.times do |i|
+    count = 0
+    stock << menbers[i]
+    stock.each do |menber|
+        if (menbers[i] - menber) < k
+            break
+        else
+            count += 1
+        end
+    end
+    
+    if count != 0
+        count.times do
+            stock.shift
+        end
+    end
+    puts stock.length
+end
+```
+
+
