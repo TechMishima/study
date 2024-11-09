@@ -417,4 +417,45 @@ n.times do |i|
 end
 ```
 
+### 箱とボール
 
+```
+n = gets.to_i
+balls = gets.split.map(&:to_i)
+stock = []
+
+n.times do |i|
+    stock << balls[i]
+    fin = false
+    while stock.length > 1 && fin == false
+        if stock[-1] == stock[-2]
+            a = stock.pop
+            b = stock.pop
+            sum = a+b
+            stock.push(sum)
+        else
+            fin = true
+        end
+    end
+end
+
+while stock.empty? == false
+    ball = stock.pop
+    puts ball
+end
+```
+
+## 連結リストメニュー
+
+連結リストとは？
+
+>https://zenn.dev/masahiro_toba/books/436c018f5cd4e2/viewer/af0195
+>> - 連結リストのメリット<br>
+連結リストのメリットは追加・削除などの変更に柔軟に対応できる点です。<br>
+データが追加・削除されてもその前後のデータを変更させるだけで良いので、カンタンに変更に対応できます。<br>
+追加・削除が頻繁に行われるプログラムの場合によく使われます。<br>
+>> - 連結リストのデメリット<br>
+連結リストを例えるなら、やたらページ遷移の多いWebサイトのようなモノです。<br>
+映画のおすすめランキングを１〜１０位まで紹介するWebサイトでは、やたらと次へボタンが多いですよね。<br>
+これは少しでもPVを稼ごうという戦略なのですが、私たちからする１位に辿り着くには、１０回もクリックしなければならなかったりします。<br>
+これと同じで連結リストは、目的のデータを見つけるのに１個１個要素を辿る必要があります。<br>そのため、データの探索に時間がかかります。
