@@ -468,3 +468,130 @@ end
 両方とも 1,024 個の要素を持つ配列で、 value の先頭の要素の値と末尾の要素の値は - 1 、 next_ptr の先頭の要素の値は 1,023 、 next_ptr の末尾の要素の値は - 1 で初期化します。<br>
 また、末尾の要素の一つ前の要素のインデックスを保持する変数( back )と、 value に要素が入っていない最も小さいインデックスを保持する変数( empty_min_idx )を用意します。<br>
  back は 0 、 empty_min_idx は 1 で初期化します。
+
+
+最初の自作
+```
+# valueは1,024 個の要素を持つ配列で、先頭の要素の値と末尾の要素の値は -1
+value = Array.new(1024)
+value[0] = -1
+value[-1] = -1
+
+# next_ptrは1,024 個の要素を持つ配列で、先頭の要素の値は 1,023 、末尾の要素の値は - 1 で初期化
+next_ptr = Array.new(1024)
+next_ptr[0] = 1023
+next_ptr[-1] = -1
+
+# back は 0 、 empty_min_idx は 1 で初期化
+back = 0
+empty_min_idx = 1
+
+n = gets.to_i
+n.times do
+    num = gets.to_i
+    puts num
+end
+```
+
+解説
+```
+value = Array.new(1024)
+next_ptr = Array.new(1024)
+empty_min_idx = 1 # まだ使用していない配列の要素で、最も小さいインデックス
+back = 0 # リストの末尾のインデックス
+start_ptr = 0 # リストの先頭のインデックス
+end_ptr = 1023 # リストの末尾の次のインデックス
+
+n = gets.to_i
+value[start_ptr] = value[end_ptr] = -1
+next_ptr[start_ptr] = end_ptr
+next_ptr[end_ptr] = -1
+
+n.times do |i|
+  value[i] = gets.to_i
+end
+
+n.times do |i|
+  puts value[i]
+end
+```
+
+解説を見ると、valueに入力から受け取った数値を保管してから出力しているので修正してみる。
+
+修正後自作コード
+```
+# valueは1,024 個の要素を持つ配列で、先頭の要素の値と末尾の要素の値は -1
+value = Array.new(1024)
+value[0] = -1
+value[-1] = -1
+
+# next_ptrは1,024 個の要素を持つ配列で、先頭の要素の値は 1,023 、末尾の要素の値は - 1 で初期化
+next_ptr = Array.new(1024)
+next_ptr[0] = 1023
+next_ptr[-1] = -1
+
+# back は 0 、 empty_min_idx は 1 で初期化
+back = 0
+empty_min_idx = 1
+
+n = gets.to_i
+n.times do |i|
+    value[i] = gets.to_i
+end
+
+n.times do |i|
+    puts value[i]
+end
+```
+
+### 片方向リスト実装編 step 2
+
+> 片方向リストの末尾に要素 X を追加するには
+>1. 配列 value の empty_min_idx 番目に要素を代入
+>2. 配列 next_ptr の値を変更
+>3. 変数 back の値を変更
+>4. 変数 empty_min_idx の値を変更
+
+```
+value = Array.new(1024)
+next_ptr = Array.new(1024)
+empty_min_idx = 1 # まだ使用していない配列の要素で、最も小さいインデックス
+back = 0 # リストの末尾のインデックス
+start_ptr = 0 # リストの先頭のインデックス
+end_ptr = 1023 # リストの末尾の次のインデックス
+
+# push_back関数
+def push_back(a, value, next_ptr, empty_min_idx, back, end_ptr)
+  value[empty_min_idx] = a
+  next_ptr[back] = empty_min_idx
+  next_ptr[empty_min_idx] = end_ptr
+  back = empty_min_idx
+  empty_min_idx += 1
+  return empty_min_idx, back
+end
+
+# print_list_values関数
+def print_list_values(value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+  while current_ptr != end_ptr
+    if current_ptr != start_ptr
+      puts value[current_ptr]
+    end
+    current_ptr = next_ptr[current_ptr]
+  end
+end
+
+# メイン処理
+value[start_ptr] = value[end_ptr] = -1
+next_ptr[start_ptr] = end_ptr
+next_ptr[end_ptr] = -1
+
+n = gets.to_i
+
+n.times do
+  a = gets.to_i
+  empty_min_idx, back = push_back(a, value, next_ptr, empty_min_idx, back, end_ptr)
+end
+
+print_list_values(value, next_ptr, start_ptr, end_ptr)
+```
