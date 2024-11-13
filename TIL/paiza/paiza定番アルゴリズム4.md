@@ -595,3 +595,117 @@ end
 
 print_list_values(value, next_ptr, start_ptr, end_ptr)
 ```
+
+### 片方向リスト実装編 step 3
+
+> 片方向リストの先頭に要素を追加するには
+> 1. 配列 value 変数の empty_min_idx 番目に要素を代入
+>2. 配列 next_ptr を変更
+>3. 変数 empty_min_idx を変更
+
+途中
+```
+value = Array.new(1024)
+next_ptr = Array.new(1024)
+empty_min_idx = 1 # まだ使用していない配列の要素で、最も小さいインデックス
+back = 0 # リストの末尾のインデックス
+start_ptr = 0 # リストの先頭のインデックス
+end_ptr = 1023 # リストの末尾の次のインデックス
+
+def shift(a, value, next_ptr, empty_min_idx, start_ptr, end_ptr)
+    value[empty_min_idx] = a
+    next_ptr.unshift(empty_min_idx)
+    back = empty_min_idx
+    empty_min_idx += 1
+    return empty_min_idx, back
+end
+
+# push_back関数
+def push_back(a, value, next_ptr, empty_min_idx, back, end_ptr)
+  value[empty_min_idx] = a
+  next_ptr[back] = empty_min_idx
+  next_ptr[empty_min_idx] = end_ptr
+  back = empty_min_idx
+  empty_min_idx += 1
+  return empty_min_idx, back
+end
+
+# print_list_values関数
+def print_list_values(value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+  while current_ptr != end_ptr
+    if current_ptr != start_ptr
+      puts value[current_ptr]
+    end
+    current_ptr = next_ptr[current_ptr]
+  end
+end
+
+# メイン処理
+value[start_ptr] = value[end_ptr] = -1
+next_ptr[start_ptr] = end_ptr
+next_ptr[end_ptr] = -1
+
+n = gets.to_i
+
+n.times do
+  a = gets.to_i
+  empty_min_idx, back = shift(a, value, next_ptr, empty_min_idx, start_ptr, end_ptr)
+end
+
+p next_ptr
+
+print_list_values(value, next_ptr, start_ptr, end_ptr)
+```
+
+```
+value = Array.new(1024)
+next_ptr = Array.new(1024)
+empty_min_idx = 1 # まだ使用していない配列の要素で、最も小さいインデックス
+back = 0 # リストの末尾のインデックス
+start_ptr = 0 # リストの先頭のインデックス
+end_ptr = 1023 # リストの末尾の次のインデックス
+
+def shift(a, value, next_ptr, empty_min_idx, start_ptr, end_ptr)
+    value[empty_min_idx] = a
+    next_ptr[empty_min_idx] = next_ptr[start_ptr]
+    next_ptr[start_ptr] = empty_min_idx
+    empty_min_idx += 1
+    return empty_min_idx, start_ptr
+end
+
+# push_back関数
+def push_back(a, value, next_ptr, empty_min_idx, back, end_ptr)
+  value[empty_min_idx] = a
+  next_ptr[back] = empty_min_idx
+  next_ptr[empty_min_idx] = end_ptr
+  back = empty_min_idx
+  empty_min_idx += 1
+  return empty_min_idx, back
+end
+
+# print_list_values関数
+def print_list_values(value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+  while current_ptr != end_ptr
+    if current_ptr != start_ptr
+      puts value[current_ptr]
+    end
+    current_ptr = next_ptr[current_ptr]
+  end
+end
+
+# メイン処理
+value[start_ptr] = value[end_ptr] = -1
+next_ptr[start_ptr] = end_ptr
+next_ptr[end_ptr] = -1
+
+n = gets.to_i
+
+n.times do
+  a = gets.to_i
+  empty_min_idx, start_ptr = shift(a, value, next_ptr, empty_min_idx, start_ptr, end_ptr)
+end
+
+print_list_values(value, next_ptr, start_ptr, end_ptr)
+```
