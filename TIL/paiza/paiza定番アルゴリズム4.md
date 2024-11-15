@@ -662,3 +662,139 @@ print_list_values(value, next_ptr, start_ptr, end_ptr)
 >片方向リストから末尾の要素を削除するには
 >1. 変数 back の前のノードの next_ptr を変更する
 >2. 変数 back を変更
+
+自作コード
+```
+value = Array.new(1024)
+next_ptr = Array.new(1024)
+empty_min_idx = 1 # まだ使用していない配列の要素で、最も小さいインデックス
+back = 0 # リストの末尾のインデックス
+start_ptr = 0 # リストの先頭のインデックス
+end_ptr = 1023 # リストの末尾の次のインデックス
+
+# push_front
+def push_front(a, value, next_ptr, empty_min_idx, start_ptr, end_ptr)
+    value[empty_min_idx] = a
+    next_ptr[empty_min_idx] = next_ptr[start_ptr]
+    next_ptr[start_ptr] = empty_min_idx
+    empty_min_idx += 1
+    return empty_min_idx, start_ptr
+end
+
+# push_back関数
+def push_back(a, value, next_ptr, empty_min_idx, back, end_ptr)
+  value[empty_min_idx] = a
+  next_ptr[back] = empty_min_idx
+  next_ptr[empty_min_idx] = end_ptr
+  back = empty_min_idx
+  empty_min_idx += 1
+  return empty_min_idx, back
+end
+
+# print_list_values関数
+def print_list_values(value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+  while current_ptr != end_ptr
+    if current_ptr != start_ptr
+      puts value[current_ptr]
+    end
+    current_ptr = next_ptr[current_ptr]
+  end
+end
+
+# メイン処理
+value[start_ptr] = value[end_ptr] = -1
+next_ptr[start_ptr] = end_ptr
+next_ptr[end_ptr] = -1
+
+n, k = gets.split.map(&:to_i)
+
+n.times do
+  a = gets.to_i
+  #empty_min_idx, back = push_back(a, value, next_ptr, empty_min_idx, back, end_ptr)
+  empty_min_idx, back = push_back(a, value, next_ptr, empty_min_idx, back, end_ptr)
+end
+
+k.times do
+    next_ptr[back-1] = end_ptr
+    back -= 1
+end
+
+print_list_values(value, next_ptr, start_ptr, end_ptr)
+```
+
+delete_back関数にする
+
+```
+value = Array.new(1024)
+next_ptr = Array.new(1024)
+$empty_min_idx = 1 # まだ使用していない配列の要素で、最も小さいインデックス
+$back = 0 # リストの末尾のインデックス
+start_ptr = 0 # リストの先頭のインデックス
+end_ptr = 1023 # リストの末尾の次のインデックス
+
+# 要素をリストの末尾に追加
+def push_back(a, value, next_ptr, start_ptr, end_ptr)
+  value[$empty_min_idx] = a
+  next_ptr[$back] = $empty_min_idx
+  next_ptr[$empty_min_idx] = end_ptr
+  $back = $empty_min_idx
+  $empty_min_idx += 1
+end
+
+# 要素をリストの先頭に追加
+def push_front(a, value, next_ptr, start_ptr, end_ptr)
+  value[$empty_min_idx] = a
+  next_ptr[$empty_min_idx] = next_ptr[start_ptr]
+  next_ptr[start_ptr] = $empty_min_idx
+  # 先頭に要素を追加した際、リストが1つの要素しかなければbackを更新
+  $back = $empty_min_idx if next_ptr[$empty_min_idx] == end_ptr
+  $empty_min_idx += 1
+end
+
+# リストの末尾の要素を削除
+def delete_back(value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+  while current_ptr != end_ptr
+    if next_ptr[current_ptr] == $back
+      $back = current_ptr
+      next_ptr[current_ptr] = end_ptr
+      break
+    end
+    current_ptr = next_ptr[current_ptr]
+  end
+end
+
+# リスト内の全ての要素を表示
+def print_list_values(value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+  while current_ptr != end_ptr
+    if current_ptr != start_ptr
+      puts value[current_ptr]
+    end
+    current_ptr = next_ptr[current_ptr]
+  end
+end
+
+# 初期設定
+value[start_ptr] = value[end_ptr] = -1
+next_ptr[start_ptr] = end_ptr
+next_ptr[end_ptr] = -1
+
+# 入力処理
+n, k = gets.split.map(&:to_i)
+
+# n回の入力を受け取ってリストに追加（push_back または push_front で切り替え可能）
+n.times do
+  a = gets.to_i
+  push_back(a, value, next_ptr, start_ptr, end_ptr)
+end
+
+# k回の末尾削除処理
+k.times do
+  delete_back(value, next_ptr, start_ptr, end_ptr)
+end
+
+# リストの全要素を表示
+print_list_values(value, next_ptr, start_ptr, end_ptr)
+```
