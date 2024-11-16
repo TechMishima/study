@@ -798,3 +798,16 @@ end
 # リストの全要素を表示
 print_list_values(value, next_ptr, start_ptr, end_ptr)
 ```
+
+### 片方向リスト実装編 step 5
+
+> 片方向リストから先頭の要素を削除するには
+> 1. 「開始ノードの次のノード」を「開始ノードの 2 つ先のノード」に置き換える
+
+模索中
+```
+def delete_front(value, next_ptr, start_ptr, end_ptr)
+    ptr = next_ptr[1]
+    next_ptr[0] = ptr
+end
+```
