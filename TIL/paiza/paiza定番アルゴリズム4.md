@@ -966,10 +966,11 @@ print_list_values(value, next_ptr, start_ptr, end_ptr)
 >* P ≦ N の場合、 先頭から P 番目のノードの前に要素 X を挿入してください。<br>
 >* P = N + 1 の場合、片方向リストの末尾に要素 X を挿入してください。<br>
 
-模索中
-・nを受け取ってnext_ptrを取得する
-・value,empty_min_idxに値を入れる
+模索中<br>
+・nを受け取って繰り返し処理を行い、適切なnext_ptrを取得する<br>
+・value,empty_min_idxに値を入れる<br>
 
+作成コード
 ```
 value = Array.new(1024)
 next_ptr = Array.new(1024)
@@ -1045,6 +1046,74 @@ end
 #end
 
 insert(value, start_ptr, point, n, x, next_ptr)
+
+# リストの全要素を表示
+print_list_values(value, next_ptr, start_ptr, end_ptr)
+```
+
+修正後
+```
+value = Array.new(1024)
+next_ptr = Array.new(1024)
+$empty_min_idx = 1 # まだ使用していない配列の要素で、最も小さいインデックス
+$back = 0 # リストの末尾のインデックス
+start_ptr = 0 # リストの先頭のインデックス
+end_ptr = 1023 # リストの末尾の次のインデックス
+
+# 要素をリストの末尾に追加
+def push_back(a, value, next_ptr, start_ptr, end_ptr)
+  value[$empty_min_idx] = a
+  next_ptr[$back] = $empty_min_idx
+  next_ptr[$empty_min_idx] = end_ptr
+  $back = $empty_min_idx
+  $empty_min_idx += 1
+end
+
+# 位置 pos に値 val を挿入
+def insert(pos, val, value, next_ptr, start_ptr, end_ptr)
+  value[$empty_min_idx] = val
+  current_ptr = start_ptr
+
+  # 挿入位置までリストをたどる
+  pos.times do
+    break if current_ptr == end_ptr # pos がリストのサイズより大きい場合
+    current_ptr = next_ptr[current_ptr]
+  end
+
+  # 挿入処理
+  next_ptr[$empty_min_idx] = next_ptr[current_ptr]
+  next_ptr[current_ptr] = $empty_min_idx
+  $empty_min_idx += 1
+end
+
+# リスト内の全ての要素を表示
+def print_list_values(value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+  while current_ptr != end_ptr
+    if current_ptr != start_ptr
+      puts value[current_ptr]
+    end
+    current_ptr = next_ptr[current_ptr]
+  end
+end
+
+# 初期設定
+value[start_ptr] = value[end_ptr] = -1
+next_ptr[start_ptr] = end_ptr
+next_ptr[end_ptr] = -1
+
+# 入力処理
+n, p, x = gets.split.map(&:to_i)
+p -= 1 # 0-indexed に変換
+
+# n回の入力を受け取ってリストに追加
+n.times do
+  a = gets.to_i
+  push_back(a, value, next_ptr, start_ptr, end_ptr)
+end
+
+# 指定位置に値を挿入
+insert(p, x, value, next_ptr, start_ptr, end_ptr)
 
 # リストの全要素を表示
 print_list_values(value, next_ptr, start_ptr, end_ptr)
