@@ -34,3 +34,15 @@ https://paiza.jp/works/sql/new-primer
 - フィールド
   - レコードとカラムが交差する個々のデータの単位
 
+## 1-2 SQLとは
+
+### 復習
+
+SQL : データベースに対して操作を行うために使用する問い合わせ言語
+
+- 様々なSQL文について
+  - SELECT文
+  - INSERT文
+  - UPDATE文
+  - DELETE文
+  - CREATE文
