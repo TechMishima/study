@@ -46,3 +46,13 @@ SQL : データベースに対して操作を行うために使用する問い�
   - UPDATE文
   - DELETE文
   - CREATE文
+
+## 1-3 MySQLへの接続と切断
+paizaの使用方法の復習
+```
+接続
+mysql -u root
+
+切断
+exit
+```
