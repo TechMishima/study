@@ -56,3 +56,15 @@ mysql -u root
 切断
 exit
 ```
+
+## 1-4 データベースの準備
+
+sqlファイルの実行
+```
+source /home/ubuntu/bookstore-schema.sql
+```
+
+### sakilaって？
+
+Mysqlにあるサンプルデータベースのこと。<br>
+https://dev.mysql.com/doc/sakila/en/
