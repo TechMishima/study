@@ -68,3 +68,36 @@ source /home/ubuntu/bookstore-schema.sql
 
 Mysqlにあるサンプルデータベースのこと。<br>
 https://dev.mysql.com/doc/sakila/en/
+
+## 1-5 使用するデータベースを選択する (USEコマンド)
+
+### mysqlに格納されているデータベース一覧を見る
+```
+show databases;
+```
+
+### useコマンドはどのデータベースを参照するのか決められるコマンド
+
+useコマンドを使用しない場合
+```
+データベースを選択しない取得できない
+mysql> SELECT * FROM customer;
+ERROR 1046 (3D000): No database selected
+
+useコマンドをしない時は、テーブル名の前にデータベース名を入れる
+mysql> SELECT * FROM sakila.customer;
+```
+
+useコマンドを使用する場合
+
+```
+USEコマンドを使用する。
+mysql> USE sakila;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+
+データベース名を入れなくても使用できる。(切断したら再度設定しないといけない)
+mysql> SELECT * FROM customer;
+```
