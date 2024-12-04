@@ -1271,3 +1271,150 @@ erase(p, value, next_ptr, start_ptr, end_ptr)
 # リストの全要素を表示
 print_list_values(value, next_ptr, start_ptr, end_ptr)
 ```
+
+### 片方向リスト実装編 step 8
+
+>先頭から数えて L 番目のノードから R - 1 番目のノードをすべて削除してください。 L = R のときは何もしなくてよいです。
+
+自作コード
+```
+value = Array.new(1024)
+next_ptr = Array.new(1024)
+$empty_min_idx = 1 # まだ使用していない配列の要素で、最も小さいインデックス
+$back = 0 # リストの末尾のインデックス
+start_ptr = 0 # リストの先頭のインデックス
+end_ptr = 1023 # リストの末尾の次のインデックス
+
+# 要素をリストの末尾に追加
+def push_back(a, value, next_ptr, start_ptr, end_ptr)
+  value[$empty_min_idx] = a
+  next_ptr[$back] = $empty_min_idx
+  next_ptr[$empty_min_idx] = end_ptr
+  $back = $empty_min_idx
+  $empty_min_idx += 1
+end
+
+def delete(r, l, value, next_ptr, start_ptr, end_ptr)
+    current_ptr1 = start_ptr
+    current_ptr2 = start_ptr
+    
+    (r-1).times do
+        break if current_ptr1 == end_ptr # point がリストのサイズより大きい場合
+        current_ptr1 = next_ptr[current_ptr1]
+    end
+    
+    (l-1).times do
+        break if current_ptr2 == end_ptr # point がリストのサイズより大きい場合
+        current_ptr2 = next_ptr[current_ptr2]
+    end
+
+    next_ptr[current_ptr2] = next_ptr[current_ptr1]
+end
+
+# 指定位置 pos の要素を削除
+def erase(r, l, value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+
+  # 削除位置までリストをたどる
+  pos.times do
+    break if current_ptr == end_ptr # pos がリストのサイズより大きい場合
+    current_ptr = next_ptr[current_ptr]
+  end
+
+  # 削除処理
+  if next_ptr[current_ptr] != end_ptr # 削除可能な位置の場合のみ処理
+    next_ptr[current_ptr] = next_ptr[next_ptr[current_ptr]]
+  end
+end
+
+# リスト内の全ての要素を表示
+def print_list_values(value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+  while current_ptr != end_ptr
+    if current_ptr != start_ptr
+      puts value[current_ptr]
+    end
+    current_ptr = next_ptr[current_ptr]
+  end
+end
+
+# 初期設定
+value[start_ptr] = value[end_ptr] = -1
+next_ptr[start_ptr] = end_ptr
+next_ptr[end_ptr] = -1
+
+# 入力処理
+n, l, r = gets.split.map(&:to_i)
+
+# n回の入力を受け取ってリストに追加
+n.times do
+  a = gets.to_i
+  push_back(a, value, next_ptr, start_ptr, end_ptr)
+end
+
+# 指定位置の要素を削除
+delete(r, l, value, next_ptr, start_ptr, end_ptr)
+
+# リストの全要素を表示
+print_list_values(value, next_ptr, start_ptr, end_ptr)
+```
+
+解説 python3
+```
+value = [None] * 1024
+next_ptr = [None] * 1024
+empty_min_idx = 1
+back = 0
+start_ptr = 0
+end_ptr = 1023
+
+
+def push_back(a):
+    global empty_min_idx, back
+    value[empty_min_idx] = a
+    next_ptr[back] = empty_min_idx
+    next_ptr[empty_min_idx] = end_ptr
+    back = empty_min_idx
+    empty_min_idx += 1
+
+
+# 区間[left, right) の要素を削除する
+def range_erase(left, right):
+    current_ptr = start_ptr  # 区間の削除直前のインデックス
+    for i in range(left):  # 削除したい区間の直前まで移動する
+        if current_ptr == end_ptr:  # current_ptr がリストのサイズより大きい場合
+            break
+        current_ptr = next_ptr[current_ptr]
+    if current_ptr != end_ptr:
+        range_next_ptr = current_ptr  # 区間の削除直後のインデックス
+        for i in range(right - left + 1):  # 削除したい区間の直後まで移動する
+            if range_next_ptr == end_ptr:
+                break
+            range_next_ptr = next_ptr[range_next_ptr]
+        next_ptr[current_ptr] = range_next_ptr
+
+
+def print_list_values():
+    current_ptr = start_ptr
+    while current_ptr != end_ptr:
+        if current_ptr != start_ptr:
+            print(value[current_ptr])
+        current_ptr = next_ptr[current_ptr]
+
+
+n, l, r = map(int, input().split())
+l -= 1
+r -= 1
+value[start_ptr] = value[end_ptr] = -1
+next_ptr[start_ptr] = end_ptr
+next_ptr[end_ptr] = -1
+
+for i in range(n):
+    a = int(input())
+    push_back(a)
+
+
+range_erase(l, r)
+
+print_list_values()
+```
