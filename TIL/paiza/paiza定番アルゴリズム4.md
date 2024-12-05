@@ -1418,3 +1418,111 @@ range_erase(l, r)
 
 print_list_values()
 ```
+
+## 片方向リスト実装編 完成
+
+途中
+
+```
+value = Array.new(1024)
+next_ptr = Array.new(1024)
+$empty_min_idx = 1 # まだ使用していない配列の要素で、最も小さいインデックス
+$back = 0 # リストの末尾のインデックス
+start_ptr = 0 # リストの先頭のインデックス
+end_ptr = 1023 # リストの末尾の次のインデックス
+
+# 要素をリストの末尾に追加
+def push_back(a, value, next_ptr, start_ptr, end_ptr)
+  value[$empty_min_idx] = a
+  next_ptr[$back] = $empty_min_idx
+  next_ptr[$empty_min_idx] = end_ptr
+  $back = $empty_min_idx
+  $empty_min_idx += 1
+end
+
+def delete(r, l, value, next_ptr, start_ptr, end_ptr)
+    current_ptr1 = start_ptr
+    current_ptr2 = start_ptr
+    
+    (r-1).times do
+        break if current_ptr1 == end_ptr # point がリストのサイズより大きい場合
+        current_ptr1 = next_ptr[current_ptr1]
+    end
+    
+    (l-1).times do
+        break if current_ptr2 == end_ptr # point がリストのサイズより大きい場合
+        current_ptr2 = next_ptr[current_ptr2]
+    end
+
+    next_ptr[current_ptr2] = next_ptr[current_ptr1]
+end
+
+# 指定位置 pos の要素を削除
+def erase(pos, value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+
+  # 削除位置までリストをたどる
+  pos.times do
+    break if current_ptr == end_ptr # pos がリストのサイズより大きい場合
+    current_ptr = next_ptr[current_ptr]
+  end
+
+  # 削除処理
+  if next_ptr[current_ptr] != end_ptr # 削除可能な位置の場合のみ処理
+    next_ptr[current_ptr] = next_ptr[next_ptr[current_ptr]]
+  end
+end
+
+# リスト内の全ての要素を表示
+def print_list_values(value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+  while current_ptr != end_ptr
+    if current_ptr != start_ptr
+      puts value[current_ptr]
+    end
+    current_ptr = next_ptr[current_ptr]
+  end
+end
+
+# 位置 point に値 x を挿入
+def insert(point, x, value, next_ptr, start_ptr, end_ptr)
+  value[$empty_min_idx] = x
+  current_ptr = start_ptr
+
+  (point - 1).times do
+    break if current_ptr == end_ptr # point がリストのサイズより大きい場合
+    current_ptr = next_ptr[current_ptr]
+  end
+
+  next_ptr[$empty_min_idx] = next_ptr[current_ptr]
+  next_ptr[current_ptr] = $empty_min_idx
+  $empty_min_idx += 1
+end
+
+# 初期設定
+value[start_ptr] = value[end_ptr] = -1
+next_ptr[start_ptr] = end_ptr
+next_ptr[end_ptr] = -1
+
+# 入力処理
+n, q = gets.split.map(&:to_i)
+
+# n回の入力を受け取ってリストに追加
+n.times do
+  a = gets.to_i
+  push_back(a, value, next_ptr, start_ptr, end_ptr)
+end
+
+# 指定位置の要素を削除
+q.times do
+    query = gets.split.map(&:to_i)
+    if query[0] == 1
+        insert(query[1], query[2], value, next_ptr, start_ptr, end_ptr)
+    elsif query[0] == 2
+        erase(query[1], value, next_ptr, start_ptr, end_ptr)
+    end
+end
+
+# リストの全要素を表示
+print_list_values(value, next_ptr, start_ptr, end_ptr)
+```
