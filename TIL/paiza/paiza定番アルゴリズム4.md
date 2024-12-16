@@ -1526,3 +1526,93 @@ end
 # リストの全要素を表示
 print_list_values(value, next_ptr, start_ptr, end_ptr)
 ```
+
+## 片方向リストをまとめる
+
+作成中
+
+```
+value = Array.new(1024)
+next_ptr = Array.new(1024)
+empty_min_idx = 1 # まだ使用していない配列の要素で、最も小さいインデックス
+back = 0 # リストの末尾のインデックス
+start_ptr = 0 # リストの先頭のインデックス
+end_ptr = 1023 # リストの末尾の次のインデックス
+
+
+# リストの先頭に要素を追加
+def push_front(a, value, next_ptr, empty_min_idx, start_ptr, end_ptr)
+    value[empty_min_idx] = a
+    next_ptr[empty_min_idx] = next_ptr[start_ptr]
+    next_ptr[start_ptr] = empty_min_idx
+    empty_min_idx += 1
+    return empty_min_idx, start_ptr
+end
+
+
+# リストの末尾に要素を追加
+def push_back(a, value, next_ptr, empty_min_idx, back, end_ptr)
+  value[empty_min_idx] = a
+  next_ptr[back] = empty_min_idx
+  next_ptr[empty_min_idx] = end_ptr
+  back = empty_min_idx
+  empty_min_idx += 1
+  return empty_min_idx, back
+end
+
+
+# リストの先頭の要素を削除
+def delete_front(value, next_ptr, start_ptr, end_ptr)
+  # リストが空の場合、何もしない
+  return if next_ptr[start_ptr] == end_ptr
+  
+  # 先頭の次の要素を取得
+  current_ptr = next_ptr[start_ptr]
+  next_ptr[start_ptr] = next_ptr[current_ptr]
+  
+  # もし削除した要素が最後の要素だった場合、backをリセット
+  $back = 0 if next_ptr[current_ptr] == end_ptr
+end
+
+
+# リストの末尾の要素を削除
+def delete_back(value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+  while current_ptr != end_ptr
+    if next_ptr[current_ptr] == $back
+      $back = current_ptr
+      next_ptr[current_ptr] = end_ptr
+      break
+    end
+    current_ptr = next_ptr[current_ptr]
+  end
+end
+
+
+# print_list_values関数
+def print_list_values(value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+  while current_ptr != end_ptr
+    if current_ptr != start_ptr
+      puts value[current_ptr]
+    end
+    current_ptr = next_ptr[current_ptr]
+  end
+end
+
+
+# メイン処理
+value[start_ptr] = value[end_ptr] = -1
+next_ptr[start_ptr] = end_ptr
+next_ptr[end_ptr] = -1
+
+n = gets.to_i
+
+n.times do
+  a = gets.to_i
+  empty_min_idx, back = push_back(a, value, next_ptr, empty_min_idx, back, end_ptr)
+end
+
+print_list_values(value, next_ptr, start_ptr, end_ptr)
+
+```
