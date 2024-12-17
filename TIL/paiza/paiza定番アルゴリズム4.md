@@ -1589,6 +1589,62 @@ def delete_back(value, next_ptr, start_ptr, end_ptr)
 end
 
 
+# 位置 point に値 x を挿入
+def insert(point, x, value, next_ptr, start_ptr, end_ptr)
+  value[$empty_min_idx] = x
+  current_ptr = start_ptr
+
+  # 挿入位置までリストをたどる
+  (point - 1).times do
+    break if current_ptr == end_ptr # point がリストのサイズより大きい場合
+    current_ptr = next_ptr[current_ptr]
+  end
+
+  # 挿入処理
+  next_ptr[$empty_min_idx] = next_ptr[current_ptr]
+  next_ptr[current_ptr] = $empty_min_idx
+  $empty_min_idx += 1
+end
+
+
+# 指定位置 pos の要素を削除
+def erase(pos, value, next_ptr, start_ptr, end_ptr)
+  current_ptr = start_ptr
+
+  # 削除位置までリストをたどる
+  pos.times do
+    break if current_ptr == end_ptr # pos がリストのサイズより大きい場合
+    current_ptr = next_ptr[current_ptr]
+  end
+
+  # 削除処理
+  if next_ptr[current_ptr] != end_ptr # 削除可能な位置の場合のみ処理
+    next_ptr[current_ptr] = next_ptr[next_ptr[current_ptr]]
+  end
+end
+
+
+# 指定範囲 leftからrightまでの要素を削除
+def range_erase(left, right)
+  current_ptr = start_ptr
+  left.times do
+    break if current_ptr == end_ptr
+
+    current_ptr = next_ptr[current_ptr]
+  end
+
+  if current_ptr != end_ptr
+    range_next_ptr = current_ptr
+    (right - left + 1).times do
+      break if range_next_ptr == end_ptr
+
+      range_next_ptr = next_ptr[range_next_ptr]
+    end
+    next_ptr[current_ptr] = range_next_ptr
+  end
+end
+
+
 # print_list_values関数
 def print_list_values(value, next_ptr, start_ptr, end_ptr)
   current_ptr = start_ptr
@@ -1606,13 +1662,7 @@ value[start_ptr] = value[end_ptr] = -1
 next_ptr[start_ptr] = end_ptr
 next_ptr[end_ptr] = -1
 
-n = gets.to_i
-
-n.times do
-  a = gets.to_i
-  empty_min_idx, back = push_back(a, value, next_ptr, empty_min_idx, back, end_ptr)
-end
-
+# 出力
 print_list_values(value, next_ptr, start_ptr, end_ptr)
 
 ```
