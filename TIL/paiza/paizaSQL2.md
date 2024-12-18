@@ -106,3 +106,13 @@ mysql> SELECT * FROM customer;
 
 ### sakilaについて
 レンタルDVDショップの業務システムを想定したサンプルデータベースである。
+
+## 2-1 レコードを取得する (SELECT句, FROM句)
+
+### 復習
+- SELECT : どのカラムから
+- FROM : どのテーブルから
+
+```
+SELECT * FROM customer;
+```
