@@ -116,3 +116,11 @@ mysql> SELECT * FROM customer;
 ```
 SELECT * FROM customer;
 ```
+
+## 2-2 取得するカラムを絞り込む
+
+### 復習
+カラム名の指定の仕方
+```
+SELECT customer_id, first_name, last_name FROM customer;
+```
