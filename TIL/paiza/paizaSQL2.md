@@ -124,3 +124,8 @@ SELECT * FROM customer;
 ```
 SELECT customer_id, first_name, last_name FROM customer;
 ```
+
+## 2-3 NULLの捉え方
+
+NULLとはデータが入っていないことを表している。<br>
+システムによっては、空の文字列に関してもNULLとして扱われる可能性がある。
