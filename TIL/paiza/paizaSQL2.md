@@ -129,3 +129,20 @@ SELECT customer_id, first_name, last_name FROM customer;
 
 NULLとはデータが入っていないことを表している。<br>
 システムによっては、空の文字列に関してもNULLとして扱われる可能性がある。
+
+## 2-4 レコードを並び替える (ORDER BY句)
+
+昇順
+```
+SELECT * FROM film ORDER BY release_year ;
+```
+
+降順
+```
+SELECT * FROM film ORDER BY release_year DESC;
+```
+
+複数の並び替え
+```
+SELECT * FROM film ORDER BY release_year DESC, title;
+```
