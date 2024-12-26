@@ -146,3 +146,27 @@ SELECT * FROM film ORDER BY release_year DESC;
 ```
 SELECT * FROM film ORDER BY release_year DESC, title;
 ```
+
+## 2-5 取得する行数を決める (LIMIT句)
+
+limit句は使用するRDBMSによってかわってくる。<br>
+
+mysql,postgreSQL
+```
+SELECT * FROM book ORDER BY price DESC LIMIT 30
+```
+
+SQLserver
+```
+TOP句で取得する行数を指定する
+SELECT TOP 10 * FROM film ORDER BY length DESC;
+```
+
+Oracle
+```
+FETCH FIRST節で取得する行数を指定する
+SELECT * FROM film ORDER BY length DESC FETCH FIRST 10 ROWS 
+
+ROWNUM疑似列で取得する行数を指定する
+SELECT  FROM (SELECT  FROM film ORDER BY length DESC) WHERE ROWNUM <= 10;
+```
