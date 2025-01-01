@@ -170,3 +170,8 @@ SELECT * FROM film ORDER BY length DESC FETCH FIRST 10 ROWS
 ROWNUM疑似列で取得する行数を指定する
 SELECT  FROM (SELECT  FROM film ORDER BY length DESC) WHERE ROWNUM <= 10;
 ```
+
+## 2-6 コーディングスタイル, コメント
+
+SELECTなどのSQL文をを小文字にして実行しても、問題はない。<br>
+しかし、可読性の面を考えて、大文字で入力することが一般的になっている。
