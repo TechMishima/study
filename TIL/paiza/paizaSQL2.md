@@ -175,3 +175,11 @@ SELECT  FROM (SELECT  FROM film ORDER BY length DESC) WHERE ROWNUM <= 10;
 
 SELECTなどのSQL文をを小文字にして実行しても、問題はない。<br>
 しかし、可読性の面を考えて、大文字で入力することが一般的になっている。
+
+## 3-1 条件を付けてレコードを取得する (WHERE句)
+
+```
+SELECT *
+FROM film
+WHERE release_year = 2005;
+```
