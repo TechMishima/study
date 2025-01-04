@@ -183,3 +183,29 @@ SELECT *
 FROM film
 WHERE release_year = 2005;
 ```
+
+## 3-2 比較演算子と IS NULL 演算子、IS NOT NULL 演算子
+```
+= : 両辺が等しい
+> : より大きい
+>= : 以上
+< : より小さい
+<= : 以下
+<> : 両辺が異なる
+```
+=と<>が特殊なので間違えないようにする。
+
+```
+SELECT *
+FROM film
+WEHRE first_name = 'takeshi'
+```
+シングルコーテーションをつけることにより、カラム名ではなく値を参照できる。
+
+```
+SELECT *
+FROM film
+WEHRE first_name is NULL
+```
+
+= NULLではないので注意、 nullではない場合は IS NOT NULL と記述する。
