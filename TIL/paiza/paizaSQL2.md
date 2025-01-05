@@ -209,3 +209,13 @@ WEHRE first_name is NULL
 ```
 
 = NULLではないので注意、 nullではない場合は IS NOT NULL と記述する。
+
+## 3-3 BETWEEN 演算子
+
+A以上B以下の演算子
+
+```
+SELECT *
+WHERE
+  length BETWEEN 85 AND 95;
+```
