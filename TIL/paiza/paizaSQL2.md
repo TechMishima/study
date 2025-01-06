@@ -219,3 +219,14 @@ SELECT *
 WHERE
   length BETWEEN 85 AND 95;
 ```
+
+## 3-4 論理演算子
+
+否定演算子NOT
+
+```
+SELECT *
+FROM film
+WHERE
+  NOT (rating = 'NC-17' OR rating IS NULL);
+```
