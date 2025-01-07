@@ -230,3 +230,14 @@ FROM film
 WHERE
   NOT (rating = 'NC-17' OR rating IS NULL);
 ```
+
+## 3-5 値の集合に含まれるかどうかを調べる (IN演算子)
+
+カラムの値が値の集合に含まれるかどうかを調べる
+
+```
+SELECT *
+FROM customer
+WHERE
+  first_name IN ('JESSIE', 'KELLY', 'TIM');
+```
