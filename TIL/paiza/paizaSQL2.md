@@ -241,3 +241,34 @@ FROM customer
 WHERE
   first_name IN ('JESSIE', 'KELLY', 'TIM');
 ```
+
+## 3-6 文字列が含まれるかどうかを調べる (LIKE演算子)
+
+前方一致
+
+```
+SELECT *
+FROM film
+WHERE
+  title LIKE 'GOLD%';
+```
+
+> % : ワイルドカード ・・・ 0文字以上の任意の文字(無くても良い)
+
+部分一致
+
+```
+SELECT *
+FROM film
+WHERE
+  title LIKE '%GOLD%';
+```
+
+後方一致
+
+```
+SELECT *
+FROM film
+WHERE
+  title LIKE '%ING';
+```
