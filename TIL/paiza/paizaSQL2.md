@@ -273,10 +273,22 @@ WHERE
   title LIKE '%ING';
 ```
 
-## テーブルの結合
+## 4-1 テーブルの結合
 
 - 結合
   - リレーションを使って、複数のテーブルから1つのテーブルを作ること
 - 結合方法
   - 内部結合
   - 外部結合(左外部結合、右外部結合)
+
+## 4-2 内部結合 (INNER JOIN)
+
+INNER JOIN (テーブル名) ON (結合条件)
+
+```
+SELECT *
+FROM payment
+INNER JOIN customer ON payment.customer_id = customer.customer_id;
+```
+
+内部結合 : お互いのカラムの値について、存在しないかNULLの場合は、結合されない。
