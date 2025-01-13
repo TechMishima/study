@@ -292,3 +292,47 @@ INNER JOIN customer ON payment.customer_id = customer.customer_id;
 ```
 
 内部結合 : お互いのカラムの値について、存在しないかNULLの場合は、結合されない。
+
+## 4-3 外部結合 (LEFT OUTER JOIN, RIGHT OUTER JOIN)
+
+左外部結合
+
+SELECT カラム名 FROM テーブル名<br>
+LEFT OUTER JOIN テーブル名 ON 結合条件;
+
+```
+SELECT *
+FROM film
+LEFT OUTER JOIN category
+  ON film.category_id = category.category_id;
+```
+
+右外部結合
+
+SELECT カラム名 FROM テーブル名<br>
+RIGHT OUTER JOIN テーブル名 ON 結合条件;
+
+```
+SELECT *
+FROM category
+RIGHT OUTER JOIN film
+  ON film.category_id = category.category_id;
+```
+
+よく使われるのは左外部結合。<br>
+右外部結合はオプション程度。
+
+### ※ 追加学習
+
+> LEFT JOIN と LEFT OUTER JOINは同じ挙動になる。<br>
+・ LEFT JOIN : 簡略した記述<br>
+・ LEFT OUTER JOIN : 可読性が高い記述
+
+> 左外部結合の左テーブルってどこが基準になるのか？<br>
+FROMの後に記述されているテーブル名が参照される。<br>
+下記だとfilmになる。<br>
+<br>
+SELECT *<br>
+FROM film<br>
+LEFT OUTER JOIN category<br>
+  ON category.category_id = film.category_id;<br>
