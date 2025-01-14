@@ -336,3 +336,15 @@ SELECT *<br>
 FROM film<br>
 LEFT OUTER JOIN category<br>
   ON category.category_id = film.category_id;<br>
+
+## 4-4 3つ以上のテーブルの結合
+
+続けてテーブルをつなげることができる。<br>
+下記はｱｽﾀﾘｽｸだが、全部の情報を取得すると多くのカラムを取得してしまうので注意。
+```
+SELECT *
+FROM rental
+INNER JOIN inventory ON rental.inventory_id = inventory.inventory_id
+INNER JOIN film ON inventory.film_id = film.film_id
+LEFT OUTER JOIN category ON film.category_id = category.category_id;
+```
