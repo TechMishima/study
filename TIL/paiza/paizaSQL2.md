@@ -348,3 +348,22 @@ INNER JOIN inventory ON rental.inventory_id = inventory.inventory_id
 INNER JOIN film ON inventory.film_id = film.film_id
 LEFT OUTER JOIN category ON film.category_id = category.category_id;
 ```
+
+## 5-1 レコードをグループ化する (GROUP BY句)
+
+### 用語
+- 集約キー : グループ化するにあたり、対象となる値の事。
+- 集約関数 : 複数のレコードから一つの値を返す関数のこと。<br>
+  最大値や最小値、合計値や平均値を求めることができる。
+
+SELECT句に書ける要素は、（集約キー、集約関数、定数）の3種類だけ。<br>
+他のカラムを記述するとエラーになる。
+
+### COUNT関数 : レコード数を数える
+
+```
+SELECT customer_id, COUNT(*)
+FROM payment
+GROUP BY customer_id
+LIMIT 10;
+```
