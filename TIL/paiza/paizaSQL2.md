@@ -367,3 +367,16 @@ FROM payment
 GROUP BY customer_id
 LIMIT 10;
 ```
+
+## 5-2 合計を求める (SUM())
+
+```
+全ての合計
+SELECT SUM(amount)
+FROM payment;
+
+グループ化して合計を求める
+SELECT staff_id, SUM(amount)
+FROM payment
+GROUP BY staff_id;
+```
