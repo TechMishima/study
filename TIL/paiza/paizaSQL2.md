@@ -380,3 +380,16 @@ SELECT staff_id, SUM(amount)
 FROM payment
 GROUP BY staff_id;
 ```
+
+## 5-3 平均を求める (AVG())
+
+```
+全ての平均
+SELECT AVG(length)
+FROM film;
+
+グループ化して平均を求める
+SELECT category_id, AVG(length)
+FROM film
+GROUP BY category_id;
+```
