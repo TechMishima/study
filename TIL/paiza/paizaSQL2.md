@@ -393,3 +393,17 @@ SELECT category_id, AVG(length)
 FROM film
 GROUP BY category_id;
 ```
+
+## 5-4 最小値と最大値を求める (MIN(), MAX())
+
+最小値,最大値
+```
+全ての最小値、最大値
+SELECT MIN(length), MAX(length)
+FROM film;
+
+グループ化して最小値、最大値を求める
+SELECT category_id, MIN(length), MAX(length)
+FROM film
+GROUP BY category_id;
+```
