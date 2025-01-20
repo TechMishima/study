@@ -407,3 +407,12 @@ SELECT category_id, MIN(length), MAX(length)
 FROM film
 GROUP BY category_id;
 ```
+
+## 5-5 カラムに名前を付ける (AS句)
+
+```
+SELECT customer_id, SUM(amount) AS 支払い金額
+FROM payment
+GROUP BY customer_id
+LIMIT 10;
+```
