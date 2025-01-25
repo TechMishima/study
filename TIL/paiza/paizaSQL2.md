@@ -416,3 +416,20 @@ FROM payment
 GROUP BY customer_id
 LIMIT 10;
 ```
+
+## 5-6 結果を絞り込む (HAVING句)
+
+集約関数にWHERE句は使用できない。<br>
+SUM(amount) >= 90 などの条件をつけるときは、<br>
+HAVING句を使用することで集約関数の結果を絞り込むことができる。<br>
+
+- WHERE句 : グループ化する前に絞り込みを行う。
+- HAVING句 : グループ化した後に絞り込みを行う。
+
+```
+SELECT customer_id, SUM(amount)
+FROM payment
+WHERE payment_date BETWEEN '2005-07-01' AND '2005-07-31'
+GROUP BY customer_id
+HAVING SUM(amount) >= 40;
+```
