@@ -433,3 +433,21 @@ WHERE payment_date BETWEEN '2005-07-01' AND '2005-07-31'
 GROUP BY customer_id
 HAVING SUM(amount) >= 40;
 ```
+
+## 6-1 レコードを追加する
+
+>> INSERT INTO テーブル名(カラム名1, カラム名2, ・・・・・)<br>
+VALUES (値1, 値2, ・・・・・);
+
+```
+INSERT INTO staff(staff_id, first_name, last_name, username)
+VALUES (3, 'Kyoko', 'Kirishima', 'Kyoko');
+
+-- 全ての情報が入っているならカラム名を省略しても大丈夫
+INSERT INTO staff
+VALUES (3, 'Kyoko', 'Kirishima', 'Kyoko');
+
+-- オートインクリメントしてくれるカラムなら省略しても大丈夫
+INSERT INTO staff(first_name, last_name, username)
+VALUES ('Kyoko', 'Kirishima', 'Kyoko');
+```
