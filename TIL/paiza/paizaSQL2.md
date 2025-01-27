@@ -451,3 +451,18 @@ VALUES (3, 'Kyoko', 'Kirishima', 'Kyoko');
 INSERT INTO staff(first_name, last_name, username)
 VALUES ('Kyoko', 'Kirishima', 'Kyoko');
 ```
+
+## 6-2 複数レコードを一度に追加する
+
+```
+INSERT INTO film(title, category_id, release_year)
+VALUES ('ぱいじょ！ THE MOVIE', 2, 2018),
+('ぱいじょ！ THE MOVIE 2', 2, 2019),
+('ぱいじょ！ THE MOVIE 3', 2, 2020);
+
+Oracle Databaseの場合
+INSERT ALL
+INTO テーブル名 (カラム1, カラム2, ...) VALUES (値1, 値2, ...)
+INTO テーブル名 (カラム1, カラム2, ...) VALUES (値1, 値2, ...)
+SELECT * FROM DUAL;
+```
