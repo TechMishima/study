@@ -467,3 +467,12 @@ INTO テーブル名 (カラム1, カラム2, ...) VALUES (値1, 値2, ...)
 SELECT * FROM DUAL;
 ```
 
+## 7-1 フィールドの値を更新する
+
+>>UPDATE テーブル名 SET カラム名1 = 値1, カラム名2 = 値2, ・・・・・<br>
+WHERE 更新対象のレコードを絞り込む条件;
+
+```
+UPDATE staff SET username = 'Margaret'
+WHERE staff_id = 3;
+```
