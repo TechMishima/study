@@ -476,3 +476,10 @@ WHERE 更新対象のレコードを絞り込む条件;
 UPDATE staff SET username = 'Margaret'
 WHERE staff_id = 3;
 ```
+
+## 7-2 フィールドの値を増減させる
+
+```
+UPDATE film SET price = price + 0.5
+WHERE title LIKE 'ぱいじょ%';
+```
