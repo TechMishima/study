@@ -483,3 +483,12 @@ WHERE staff_id = 3;
 UPDATE film SET price = price + 0.5
 WHERE title LIKE 'ぱいじょ%';
 ```
+
+## 7-3 UPDATE文の注意点
+
+WHEREの更新対象の絞り込みをしなかった場合、全てのレコードを対象に変更されてしまう。
+
+### 自分なりに考えた対処法
+WHEREをつけた後は空白だとエラーになるため、<br>
+UPDATE句を使用するときはWHEREも同時に使用できるように、<br>
+コピーする範囲を一緒にするか、UPDATE+WHEREの意識を持つことが重要だと考えるべき。
