@@ -492,3 +492,13 @@ WHEREの更新対象の絞り込みをしなかった場合、全てのレコー
 WHEREをつけた後は空白だとエラーになるため、<br>
 UPDATE句を使用するときはWHEREも同時に使用できるように、<br>
 コピーする範囲を一緒にするか、UPDATE+WHEREの意識を持つことが重要だと考えるべき。
+
+## 8-1 レコードを削除する (DELETE文)
+
+>>DELETE FROM テーブル名<br>
+WHERE 削除するレコードの条件;
+
+```
+DELETE FROM staff
+WHERE  staff_id = 5;
+```
