@@ -502,3 +502,17 @@ WHERE 削除するレコードの条件;
 DELETE FROM staff
 WHERE  staff_id = 5;
 ```
+
+## 8-2 すべてのレコードを削除する (DELETE文, TRUNCATE文)
+
+2つの方法がある。<br>
+処理速度はTRUNCATEの方が早い。<br>
+なぜか？テーブルを丸ごと削除したのちに新しいテーブルを作成する2ステップしかないため。
+
+```
+DELETE FROM payment
+```
+
+```
+TRUNCATE TABLE payment;
+```
