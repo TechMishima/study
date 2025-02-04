@@ -516,3 +516,15 @@ DELETE FROM payment
 ```
 TRUNCATE TABLE payment;
 ```
+
+## 9-1 データベースを作成する (CREATE DATABASE文)
+
+```
+データベースの作成
+CREATE DATABASE practice;
+```
+
+```
+データベースの確認方法
+SHOW databases;
+```
