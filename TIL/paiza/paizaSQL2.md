@@ -528,3 +528,38 @@ CREATE DATABASE practice;
 データベースの確認方法
 SHOW databases;
 ```
+
+## 10-1 テーブルを作成する (CREATE TABLE文)
+
+>>CREATE TABLE テーブル名(<br>
+  カラム名1 データ型 [制約],<br>
+  カラム名1 データ型 [制約],<br>
+  ...<br>
+);
+
+```
+CREATE TABLE diary(
+  id INTEGER PRIMARY KEY,
+  published_on DATE UNIQUE NOT NULL,
+  title VARCHAR(31) NOT NULL,
+  temperature DECIMAL(3, 1),
+  content TEXT
+);
+```
+
+### データ型
+
+- INTEGER : 整数
+- DATE : 日付
+- VARCHAR(31) : 文字列
+- TEXT : 文字列(文章)
+- DECIMAL(3, 1) : 小数
+
+### 制約
+
+- PRIMARY KEY : 重複とNULLを禁止
+- UNIQUE : 重複したデータの禁止
+- NOT NULL : NULLを禁止
+
+PRIMARY KEYはテーブルに1つだけしか設定できない！ <br>
+もしも上記と同じ制約をテーブルで複数設定するなら UNIQUE + NOT NULLをしようする！
