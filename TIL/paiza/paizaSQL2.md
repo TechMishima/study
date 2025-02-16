@@ -664,3 +664,17 @@ CREATE TABLE products (
 
 - 参照制約
   - 外部キー制約を決めておくと、存在しないデータに結び付くケースがなくなる。
+
+## 12-2 一意制約: カラム内の値の重複を禁止する (UNIQUE)
+
+一意 : 重複しないという意味<br>
+UNIQUEをつける。
+
+```
+CREATE TABLE user(
+  user_id INTEGER,
+  email VARCHAR(255) UNIQUE
+);
+```
+
+※ NULLは重複してもOK
