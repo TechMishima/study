@@ -678,3 +678,18 @@ CREATE TABLE user(
 ```
 
 ※ NULLは重複してもOK
+
+## 12-3 非NULL制約: カラムへのNULLの挿入を禁止する (NOT NULL)
+
+```
+CREATE TABLE user(
+  user_id INTEGER,
+  email VARCHAR(127) NOT NULL
+);
+```
+
+### 追加学習
+テーブルの削除
+```
+DROP TABLE user;
+```
