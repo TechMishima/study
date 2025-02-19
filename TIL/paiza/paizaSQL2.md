@@ -693,3 +693,16 @@ CREATE TABLE user(
 ```
 DROP TABLE user;
 ```
+
+## 12-4 主キー制約: 主キーを設定する (PRIMARY KEY)
+
+一意制約と非NULL制約を満たす
+
+```
+CREATE TABLE user(
+  user_id INTEGER PRIMARY KEY
+);
+```
+
+## 12-5 外部キー制約: 外部キーを設定する (FOREIGN KEY)
+
