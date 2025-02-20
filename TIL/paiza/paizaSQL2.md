@@ -706,3 +706,19 @@ CREATE TABLE user(
 
 ## 12-5 外部キー制約: 外部キーを設定する (FOREIGN KEY)
 
+> FOREIGN KEY (外部キー制約を付与するカラム名)<br>
+REFERENCES 参照先テーブル名(参照先テーブルの参照するカラム名)
+
+```
+CREATE TABLE thread(
+  thread_id INT PRIMARY KEY,
+  title VARCHAR(63) NOT NULL
+);
+
+CREATE TABLE post(
+  thread_id INT,
+  post_id INT PRIMARY KEY,
+  content TEXT NOT NULL,
+  FOREIGN KEY (thread_id) REFERENCES thread(thread_id)
+);
+```
