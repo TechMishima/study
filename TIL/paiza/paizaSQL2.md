@@ -722,3 +722,29 @@ CREATE TABLE post(
   FOREIGN KEY (thread_id) REFERENCES thread(thread_id)
 );
 ```
+
+## 13-1 日付同士の差を求める (TIMESTAMPDIFF)
+MYSQL限定
+
+```
+SELECT customer_id, first_name, email, birthday, TIMESTAMPDIFF(YEAR, birthday, '2022-01-01')
+FROM customer
+LIMIT 10;
+```
+- 第１引数 : year 計算した期間をどんな形式にするか 
+- 第２引数 : 引き算を行う対象
+- 第３引数 : 引き算する数値
+
+### 第１引数の種類について
+> MySQLリファレンスより<br>
+https://dev.mysql.com/doc/refman/8.0/ja/date-and-time-functions.html#function_timestampdiff
+
+- MICROSECOND (マイクロ秒) ※5.1.24以前ではFRAC_SECOND
+- SECOND 秒
+- MINUTE 分
+- HOUR 時
+- DAY 日
+- WEEK 週
+- MONTH 月
+- QUARTER 四半期
+- YEAR 年
