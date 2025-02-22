@@ -748,3 +748,35 @@ https://dev.mysql.com/doc/refman/8.0/ja/date-and-time-functions.html#function_ti
 - MONTH 月
 - QUARTER 四半期
 - YEAR 年
+
+## 13-2 日時に対する加算
+> カラム名 + INTERVAL 加算する間隔値 単位
+
+```
+UPDATE rental SET return_date_deadline = rental_date + INTERVAL 5 DAY;
+
+SELECT rental_date, rental_date + INTERVAL 12 HOUR
+FROM rental
+LIMIT 10;
+
+SELECT rental_date, rental_date + INTERVAL '1:30' HOUR_MINUTE
+FROM rental
+LIMIT 10;
+```
+
+### 単位と間隔値の書式
+
+| 単位 | 間隔値の書式 | 記述例 |
+| - | - | - |
+|YEAR|年|3YEAR|
+|MONTH|月|6YEAR|
+|WEEK|週|3WEEK|
+|DAY|日|5DAY|
+|HOUR|時間|12HOUR|
+|MINUTE|分|30MINUTE|
+|SECOND|秒|45SECOND|
+|YEAR_MONTH|年-月|1-6 YEAR_MONTH|
+|DAY_HOUR|日 時間|1 12 DAY_HOUR|
+|HOUR_MINUTE|時:分|1:30 HOUR_MINUTE|
+|MINUTE_SECOND|分:秒|30:30 MINUTE_SECOND|
+
