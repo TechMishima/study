@@ -780,3 +780,13 @@ LIMIT 10;
 |HOUR_MINUTE|時:分|1:30 HOUR_MINUTE|
 |MINUTE_SECOND|分:秒|30:30 MINUTE_SECOND|
 
+## 13-3 日時に対する減算
+
+加算と同様であるが、マイナスにすればOK
+
+```
+SELECT rental_date, rental_date - INTERVAL 12 HOUR
+FROM rental
+LIMIT 10;
+```
+
