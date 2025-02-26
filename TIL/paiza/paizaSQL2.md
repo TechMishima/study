@@ -815,3 +815,13 @@ LIMIT 5;
 |%W|曜日(英語表記)|Sunday|
 |%w|曜日(※数値 0=日曜日, 1=月曜日)|0|
 
+## 14-1 サブクエリとは
+
+あるSELECT文の実行結果を他のSQL文に使用できる機能
+```
+SELECT *
+FROM payment
+WHERE amount >= (SELECT AVG(amount) FROM payment)
+LIMIT 15;
+```
+
