@@ -825,3 +825,23 @@ WHERE amount >= (SELECT AVG(amount) FROM payment)
 LIMIT 15;
 ```
 
+## 14-2 サブクエリをWHERE句の中で使う
+
+サブクエリに使用する場合は単一の値を返すようなSELECT文でなくてはいけない。
+
+## 14-3 サブクエリをIN演算子と使う
+
+IN演算子を使用したサブクエリに関しては複数の値を返すことは可能。<br>
+しかし、複数のカラムに関しては扱えない。
+
+```
+SELECT *
+FROM payment
+WHERE customer_id IN (
+  SELECT customer_id
+  FROM customer
+  WHERE DATE_FORMAT(birthday, '%m') = 1
+)
+LIMIT 15;
+```
+
