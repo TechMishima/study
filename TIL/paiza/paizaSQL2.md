@@ -845,3 +845,16 @@ WHERE customer_id IN (
 LIMIT 15;
 ```
 
+## 14-4 サブクエリをSELECT句の中で使う
+
+SELECT句の中でサブクエリを使用するときは単一の値でなくてはならない。
+
+```
+SELECT customer_id,
+  SUM(amount) AS 支払額,
+  (SELECT SUM(amount) FROM payment) AS 総支払額,
+  SUM(amount) / (SELECT SUM(amount) FROM payment) AS 割合
+FROM payment
+GROUP BY customer_id;
+```
+
