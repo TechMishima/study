@@ -858,3 +858,16 @@ FROM payment
 GROUP BY customer_id;
 ```
 
+## 14-5 サブクエリをFROM句の中で使う
+
+FROM句にサブクエリを使用する場合は、AS句も使用しなくてはならない。
+
+```
+SELECT AVG(支払額)
+FROM (
+  SELECT SUM(amount) AS 支払額
+  FROM payment
+  GROUP BY customer_id
+) AS 顧客別支払額;
+```
+
