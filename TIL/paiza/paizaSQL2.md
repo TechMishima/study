@@ -871,3 +871,23 @@ FROM (
 ) AS 顧客別支払額;
 ```
 
+## 15-1 条件に応じて値を変える (CASE式)
+
+> CASE<br>
+  WHEN 条件1 THEN 値1<br>
+  WHEN 条件2 THEN 値2<br>
+  ・・・<br>
+  ELSE 値1<br>
+END
+
+```
+SELECT customer_id, SUM(amount) AS 支払額,
+  CASE
+    WHEN SUM(amount) >= 80 THEN '上級会員'
+    WHEN SUM(amount) >= 40 THEN '中級会員'
+    ELSE '通常会員'
+  END AS 会員ランク
+FROM payment
+GROUP BY customer_id;
+```
+
