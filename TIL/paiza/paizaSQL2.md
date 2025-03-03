@@ -891,3 +891,20 @@ FROM payment
 GROUP BY customer_id;
 ```
 
+## 15-2 CASE式を用いた並び替え
+
+```
+SELECT *
+FROM film
+ORDER BY
+  CASE
+    WHEN rating = 'G' THEN 1
+    WHEN rating = 'PG' THEN 2
+    WHEN rating = 'PG-13' THEN 3
+    WHEN rating = 'R' THEN 4
+    WHEN rating = 'NC-17' THEN 5
+    WHEN rating IS NULL THEN 6
+  END
+;
+```
+
