@@ -908,3 +908,12 @@ ORDER BY
 ;
 ```
 
+## 15-3 CASE式を用いた列持ちでの集計
+
+```
+SELECT
+  SUM(CASE WHEN store_id = 1 THEN amount ELSE 0 END) AS 店舗1,
+  SUM(CASE WHEN store_id = 2 THEN amount ELSE 0 END) AS 店舗2
+FROM payment;
+```
+
