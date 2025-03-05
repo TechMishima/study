@@ -917,3 +917,17 @@ SELECT
 FROM payment;
 ```
 
+## 16-1 クロス集計表を作ってみよう
+
+```
+SELECT
+  売上月,
+  SUM(CASE WHEN store_id = 1 THEN amount ELSE 0 END) AS 店舗1,
+  SUM(CASE WHEN store_id = 2 THEN amount ELSE 0 END) AS 店舗2
+FROM (
+  SELECT DATE_FORMAT(payment_date, '%Y-%m') AS 売上月, payment_id, store_id, amount
+  FROM payment
+) AS 売上
+GROUP BY 売上月;
+```
+
