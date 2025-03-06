@@ -931,3 +931,11 @@ FROM (
 GROUP BY 売上月;
 ```
 
+## 17-1 月ごとに集計する
+
+```
+SELECT DATE_FORMAT(payment_date, '%Y-%m') AS 売上月, SUM(amount)
+FROM payment
+GROUP BY DATE_FORMAT(payment_date, '%Y-%m');
+```
+
