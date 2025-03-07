@@ -939,3 +939,8 @@ FROM payment
 GROUP BY DATE_FORMAT(payment_date, '%Y-%m');
 ```
 
+## 17-2 曜日ごとに集計する
+
+演習１、演習２終了
+
+
