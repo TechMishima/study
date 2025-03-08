@@ -944,3 +944,8 @@ GROUP BY DATE_FORMAT(payment_date, '%Y-%m');
 演習１、演習２終了
 
 
+## 新・SQL入門編02ドリル
+
+注文履歴を取得しよう MySQL編
+~
+会員のリストを取得しよう MySQL編
