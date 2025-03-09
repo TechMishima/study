@@ -949,3 +949,5 @@ GROUP BY DATE_FORMAT(payment_date, '%Y-%m');
 注文履歴を取得しよう MySQL編
 ~
 会員のリストを取得しよう MySQL編
+~
+漢字名、フリガナ、入会日、居住地を取得しよう MySQL編
