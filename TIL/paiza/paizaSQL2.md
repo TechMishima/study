@@ -953,3 +953,5 @@ GROUP BY DATE_FORMAT(payment_date, '%Y-%m');
 漢字名、フリガナ、入会日、居住地を取得しよう MySQL編
 ~
 合計金額の高い順に並べ替えよう MySQL編
+~
+入会した順に並べ替えよう MySQL編
