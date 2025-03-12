@@ -955,3 +955,5 @@ GROUP BY DATE_FORMAT(payment_date, '%Y-%m');
 合計金額の高い順に並べ替えよう MySQL編
 ~
 入会した順に並べ替えよう MySQL編
+~
+注文番号、小計、メニュー番号についての条件で並べ替えよう MySQL編
