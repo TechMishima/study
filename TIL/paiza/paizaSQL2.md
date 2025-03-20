@@ -963,3 +963,5 @@ GROUP BY DATE_FORMAT(payment_date, '%Y-%m');
 ## 新・SQL入門編03ドリル
 
 STEP: 1 日時を指定して取得しよう
+~
+バーガーを全種類取得しよう MySQL編
