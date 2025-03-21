@@ -965,3 +965,5 @@ GROUP BY DATE_FORMAT(payment_date, '%Y-%m');
 STEP: 1 日時を指定して取得しよう
 ~
 バーガーを全種類取得しよう MySQL編
+~
+入会日を指定して取得しよう MySQL編
