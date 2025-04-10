@@ -1001,3 +1001,6 @@ STEP: 1 日時を指定して取得しよう
 https://paiza.jp/works/mondai/sql-new-primer-04_drill/problem_index?language_uid=sql
 
 IDなしのメニュー表を作ろう MySQL編
+~
+応急メニュー表 MySQL編
+
