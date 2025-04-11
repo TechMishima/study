@@ -1003,4 +1003,6 @@ https://paiza.jp/works/mondai/sql-new-primer-04_drill/problem_index?language_uid
 IDなしのメニュー表を作ろう MySQL編
 ~
 応急メニュー表 MySQL編
+~
+ウルトラ注文履歴 MySQL編
 
