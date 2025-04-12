@@ -1006,3 +1006,7 @@ IDなしのメニュー表を作ろう MySQL編
 ~
 ウルトラ注文履歴 MySQL編
 
+## 新・SQL入門編05ドリル
+https://paiza.jp/works/mondai/sql-new-primer-05_drill/problem_index?language_uid=sql
+
+カテゴリごとの売上を求めよう MySQL編
