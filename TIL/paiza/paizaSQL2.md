@@ -1010,3 +1010,5 @@ IDなしのメニュー表を作ろう MySQL編
 https://paiza.jp/works/mondai/sql-new-primer-05_drill/problem_index?language_uid=sql
 
 カテゴリごとの売上を求めよう MySQL編
+~
+カテゴリごとの平均価格を求めよう MySQL編
