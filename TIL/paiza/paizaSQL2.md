@@ -1014,3 +1014,5 @@ https://paiza.jp/works/mondai/sql-new-primer-05_drill/problem_index?language_uid
 カテゴリごとの平均価格を求めよう MySQL編
 ~
 各注文の最高単価メニューを求めよう MySQL編
+~
+カラムに名前を付けてみよう 4 MySQL編
