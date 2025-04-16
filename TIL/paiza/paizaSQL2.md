@@ -1016,3 +1016,8 @@ https://paiza.jp/works/mondai/sql-new-primer-05_drill/problem_index?language_uid
 各注文の最高単価メニューを求めよう MySQL編
 ~
 カラムに名前を付けてみよう 4 MySQL編
+~
+会員が多い都道府県を調べよう MySQL編
+~
+安くてたくさん MySQL編
+
