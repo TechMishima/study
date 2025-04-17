@@ -1021,3 +1021,7 @@ https://paiza.jp/works/mondai/sql-new-primer-05_drill/problem_index?language_uid
 ~
 安くてたくさん MySQL編
 
+## 新・SQL入門編06ドリル
+https://paiza.jp/works/mondai/sql-new-primer-06_drill/problem_index?language_uid=sql
+
+カテゴリを開発しよう MySQL編
