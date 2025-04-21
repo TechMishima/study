@@ -1027,4 +1027,3 @@ https://paiza.jp/works/mondai/sql-new-primer-06_drill/problem_index?language_uid
 カテゴリを開発しよう MySQL編
 ~
 2件の注文されたメニューのデータを記録しよう MySQL編
-
