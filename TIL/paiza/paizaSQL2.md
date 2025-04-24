@@ -1028,3 +1028,8 @@ https://paiza.jp/works/mondai/sql-new-primer-06_drill/problem_index?language_uid
 ~
 2件の注文されたメニューのデータを記録しよう MySQL編
 
+
+## 新・SQL入門編07ドリル
+https://paiza.jp/works/mondai/sql-new-primer-07_drill/problem_index?language_uid=sql
+
+全サイズ150円 MySQL編
