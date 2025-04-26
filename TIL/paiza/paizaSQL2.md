@@ -1033,3 +1033,5 @@ https://paiza.jp/works/mondai/sql-new-primer-06_drill/problem_index?language_uid
 https://paiza.jp/works/mondai/sql-new-primer-07_drill/problem_index?language_uid=sql
 
 全サイズ150円 MySQL編
+~
+10円玉のいらないお店 MySQL編
