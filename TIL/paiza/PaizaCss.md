@@ -17,3 +17,36 @@ RGBカラーモデルと言われる。<br>
 #FF8000
 ```
 上記の#は16進数で色を指定するという意味。
+
+## 枠線
+```
+h1 {
+  border: solid #00A0A0;
+}
+```
+
+## 内側に余白をつける
+```
+body {
+  padding: 100px;
+}
+```
+
+## 外側に余白をつける
+```
+h1 {
+  margin: 80px;
+}
+```
+
+## レスポンシブデザイン
+bootstrap限定
+```
+<div class="container">
+  <div>
+    <h1>吾輩は猫である。</h1>
+    <p class="lead">名前はまだない。</p>
+    <a class="btn btn-primary" href="#">OK</a>
+  </div>
+</div>
+```
