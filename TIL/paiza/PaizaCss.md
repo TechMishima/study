@@ -50,3 +50,23 @@ bootstrap限定
   </div>
 </div>
 ```
+
+## スターターテンプレート
+```
+<style>
+  .starter-template {
+    padding: 40px 15px;
+    background-color: white;
+  }
+</style>
+
+<body>
+  <div class="starter-template">
+    <div>
+      <h1>吾輩は猫である。</h1>
+      <p class="lead">名前はまだない。</p>
+      <a class="btn btn-primary" href="#">OK</a>
+    </div>
+  </div>
+</body>
+```
