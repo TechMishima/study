@@ -70,3 +70,36 @@ bootstrap限定
   </div>
 </body>
 ```
+
+## グリッドシステム
+bootstrap限定<br>
+grid : マス目<br>
+col-sm-4の場所を変えると列の幅を変えられる。<br>
+合計12になるように設定する。
+```
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>1行目</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>2行目のA</h2>
+    </div>
+    <div class="col-sm-4">
+      <h2>2行目のB</h2>
+    </div>
+    <div class="col-sm-4">
+      <h2>2行目のC</h2>
+    </div>
+  </div>
+</div>
+<!-- /.container -->
+```
+
+## ジャンボトロン
+文字を大きく表示する。
+```
+<div class="jumbotron>
+```
