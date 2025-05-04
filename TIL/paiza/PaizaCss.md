@@ -103,3 +103,8 @@ col-sm-4の場所を変えると列の幅を変えられる。<br>
 ```
 <div class="jumbotron>
 ```
+
+## 画像の大きさ自動調節 ※bootstrap限定
+```
+<img class="img-responsive center-block"> src="[URL]">
+```
