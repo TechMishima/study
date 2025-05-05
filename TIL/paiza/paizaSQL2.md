@@ -1035,3 +1035,8 @@ https://paiza.jp/works/mondai/sql-new-primer-07_drill/problem_index?language_uid
 全サイズ150円 MySQL編
 ~
 10円玉のいらないお店 MySQL編
+
+## 新・SQL入門編08ドリル
+https://paiza.jp/works/mondai/sql-new-primer-08_drill/problem_index?language_uid=sql
+
+条件を指定して削除しよう 3 MySQL編
