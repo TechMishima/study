@@ -1040,3 +1040,5 @@ https://paiza.jp/works/mondai/sql-new-primer-07_drill/problem_index?language_uid
 https://paiza.jp/works/mondai/sql-new-primer-08_drill/problem_index?language_uid=sql
 
 条件を指定して削除しよう 3 MySQL編
+~
+TRUNCATE文で削除しよう 2 MySQL編
