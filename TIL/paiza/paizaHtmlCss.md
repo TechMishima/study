@@ -89,3 +89,12 @@ Webページ用の便利な部品を多数装備。レスポンシブデザイ�
 
 ### ふかぼり用
 https://www.tohoho-web.com/ex/bootstrap.html
+
+## 3-1 画像とリンクを載せよう
+
+
+### 画像の大きさ自動調節 ※bootstrap限定
+```
+<img class="img-responsive center-block"> src="[URL]">
+```
+
