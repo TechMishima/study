@@ -98,3 +98,10 @@ https://www.tohoho-web.com/ex/bootstrap.html
 <img class="img-responsive center-block"> src="[URL]">
 ```
 
+### リンク
+```
+<a href="https://ja.wikipedia.org/wiki/%E5%A4%8F%E7%9B%AE%E6%BC%B1%E7%9F%B3" target="_blank">夏目漱石</a>
+```
+
+target属性は同じウィンドウで開くのか別ウィンドウで開くのか選択できる。<br>
+_blankにすると別ウィンドウになる。
