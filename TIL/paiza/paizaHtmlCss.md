@@ -105,3 +105,74 @@ https://www.tohoho-web.com/ex/bootstrap.html
 
 target属性は同じウィンドウで開くのか別ウィンドウで開くのか選択できる。<br>
 _blankにすると別ウィンドウになる。
+
+## 3-2 リストとナビゲーションバーを追加しよう
+
+>・見出し<br>
+h1、表題になる。<br>
+h2、大見出しになる。<br>
+h3、中見出しになる。<br>
+h4、小見出しになる。<br>
+
+```
+・箇条書き
+<ul>
+<li>ねこ</li>
+	<li>いぬ</li>
+	<li>うさぎ</li>
+</ul>
+```
+
+>ページ内で特定の場所に移りたい場合、aタグのhrefに#[id名]を設定すると、クリックするだけで遷移できる。<br>
+#だけにするとトップ（一番上にうつる。）
+
+### ナビゲーションバー ※ bootstrap限定
+
+サンプル
+```
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Project Nyaan</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#list">List</a></li>
+        <li><a href="">Table</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+```
+
+
+
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+        		<div class="container">
+        			<div class="navbar-header">
+        				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        					<span class="sr-only">Toggle navigation</span>
+        					<span class="icon-bar"></span>
+        					<span class="icon-bar"></span>
+        					<span class="icon-bar"></span>
+        				</button>
+        				<a class="navbar-brand" href="#">Project Nyaan</a>
+        			</div>
+        			<div id="navbar" class="collapse navbar-collapse">
+        				<ul class="nav navbar-nav">
+        					<li class="active"><a href="#">Home</a></li>
+        					<li><a href="#list">List</a></li>
+        					<li><a href="">Table</a></li>
+        				</ul>
+        			</div>
+        		</div>
+        	</nav>
