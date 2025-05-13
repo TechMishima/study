@@ -160,6 +160,45 @@ h4、小見出しになる。<br>
 - 機能性の独立性
   - スクリプトやスタイルを個別に当てやすい
 
+### 特定の場所だけCSSを適用 span
+
+```
+<p>これは <span class="highlight">目立たせたい部分</span> です。</p>
+```
+
+### bootstrap限定 トップにナビゲーションバーを作成
+このボタンは、画面が狭いとき（スマホ・タブレットなど）にメニューを折りたたみ表示し、タップ/クリックで開閉できるようにする「トグルボタン（≒ハンバーガーメニュー）」。
+```
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+  <span class="sr-only">Toggle navigation</span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+</button>
+```
+| 属性/クラス | 意味 |
+| --------------------------------- | ------------------------------------------------------ |
+| `type="button"`  | 通常のボタンとして動作（フォーム送信しない） |
+| `class="navbar-toggle collapsed"` | Bootstrapのクラスで、折りたたみナビ用ボタンをスタイル（collapsedは折りたたまれている状態） |
+| `data-toggle="collapse"`  | BootstrapのJSに「折りたたみをトグルしろ」と伝える |
+| `data-target="#navbar"` | どの要素を開閉対象にするか（ここでは `id="navbar"` を指定） |
+| `aria-expanded="false"`  | アクセシビリティ：今は「開いていない」ことを示す |
+| `aria-controls="navbar"` | アクセシビリティ：制御対象が `#navbar` であることを示す |
+
+```
+<span class="sr-only">Toggle navigation</span>
+```
+スクリーンリーダー専用のテキスト。<br>
+画面には表示されないが、「何のボタンか」伝えるために読み上げられる。
+
+```
+<span class="icon-bar"></span>
+```
+視覚的に「3本線のハンバーガーメニュー」を表示するための要素。<br>
+BootstrapのCSSがこれらを横線にスタイリングして、「≡」のようなボタンに見せる。
+
+
+
 
 
 
