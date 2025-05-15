@@ -1043,6 +1043,5 @@ https://paiza.jp/works/mondai/sql-new-primer-08_drill/problem_index?language_uid
 ~
 TRUNCATE文で削除しよう 2 MySQL編
 
-
 ## 新・SQL入門編09ドリル
 https://paiza.jp/works/mondai/sql-new-primer-09_drill/problem_index?language_uid=sql
