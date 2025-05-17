@@ -197,28 +197,68 @@ h4、小見出しになる。<br>
 視覚的に「3本線のハンバーガーメニュー」を表示するための要素。<br>
 BootstrapのCSSがこれらを横線にスタイリングして、「≡」のようなボタンに見せる。
 
+## 3-3 テーブルを表示しよう
 
+テーブルの基本形(表題込み)
+```
+<table>
+	<thead><!-- ここが表題-->
+		<tr><!-- 横一行ごとに記述する-->
+			<th>#</th>
+			<th>名前</th>
+			<th>特徴</th>
+			<th>住所</th>
+		</tr>
+	</thead>
+	<tbody><!-- ここが表の本体-->
+		<tr><!-- 横一行ごとに記述する-->
+			<td>1</td>
+			<td>たま</td>
+			<td>くつ下</td>
+			<td>東京都港区南青山</td>
+		</tr>
+	</tbody>
+</table>
+```
 
+bootstrap限定 テーブルの装飾
+```
+<table class="table table-striped">
+```
 
-
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-        		<div class="container">
-        			<div class="navbar-header">
-        				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        					<span class="sr-only">Toggle navigation</span>
-        					<span class="icon-bar"></span>
-        					<span class="icon-bar"></span>
-        					<span class="icon-bar"></span>
-        				</button>
-        				<a class="navbar-brand" href="#">Project Nyaan</a>
-        			</div>
-        			<div id="navbar" class="collapse navbar-collapse">
-        				<ul class="nav navbar-nav">
-        					<li class="active"><a href="#">Home</a></li>
-        					<li><a href="#list">List</a></li>
-        					<li><a href="">Table</a></li>
-        				</ul>
-        			</div>
-        		</div>
-        	</nav>
+<table class="table table-striped">
+    			    <thead>
+    			        <tr>
+    			            <th>#</th>
+    			            <th>名前</th>
+    			            <th>特徴</th>
+    			            <th>住所</th>
+    			        </tr>
+    			    </thead>
+    			    <tbody>
+    			        <tr>
+    			            <td>1</td>
+    			            <td>たま</td>
+    			            <td>くつした</td>
+    			            <td>東京都港区青山</td>
+    			        </tr>
+                    	<tr>
+                    		<td>2</td>
+                    		<td>ミケ</td>
+                    		<td>三毛</td>
+                    		<td>東京都千代田区秋葉原駅周辺</td>
+                    	</tr>
+	                    <tr>
+					        <td>3</td>
+                    		<td>トラ</td>
+                    		<td>シマ</td>
+                    		<td>兵庫県西宮市甲子園町</td>
+                    	</tr>
+                    	<tr>
+                    		<td>4</td>
+                    		<td>にゃあ</td>
+                    		<td>トラの兄弟</td>
+                    		<td>兵庫県西宮市甲子園町</td>
+                    	</tr>
+    			    </tbody>
+    			</table>
