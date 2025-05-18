@@ -1048,3 +1048,7 @@ https://paiza.jp/works/mondai/sql-new-primer-09_drill/problem_index?language_uid
 
 データベースを作成しよう 2 MySQL編
 
+## 新・SQL入門編10ドリル
+https://paiza.jp/works/mondai/sql-new-primer-10_drill/problem_index?language_uid=sql
+
+テーブルを作成しよう 5 MySQL編
