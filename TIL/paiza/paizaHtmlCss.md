@@ -226,39 +226,14 @@ bootstrap限定 テーブルの装飾
 <table class="table table-striped">
 ```
 
-<table class="table table-striped">
-    			    <thead>
-    			        <tr>
-    			            <th>#</th>
-    			            <th>名前</th>
-    			            <th>特徴</th>
-    			            <th>住所</th>
-    			        </tr>
-    			    </thead>
-    			    <tbody>
-    			        <tr>
-    			            <td>1</td>
-    			            <td>たま</td>
-    			            <td>くつした</td>
-    			            <td>東京都港区青山</td>
-    			        </tr>
-                    	<tr>
-                    		<td>2</td>
-                    		<td>ミケ</td>
-                    		<td>三毛</td>
-                    		<td>東京都千代田区秋葉原駅周辺</td>
-                    	</tr>
-	                    <tr>
-					        <td>3</td>
-                    		<td>トラ</td>
-                    		<td>シマ</td>
-                    		<td>兵庫県西宮市甲子園町</td>
-                    	</tr>
-                    	<tr>
-                    		<td>4</td>
-                    		<td>にゃあ</td>
-                    		<td>トラの兄弟</td>
-                    		<td>兵庫県西宮市甲子園町</td>
-                    	</tr>
-    			    </tbody>
-    			</table>
+## 3-4 基本的なフォームを作ろう
+
+フォームの基本形
+```
+<form action="#" method="post">
+    <label for="comment_1">コメント</label>
+    <input type="text" name="comment">
+	<button type="submit">送信する</button>
+</form>
+```
+
