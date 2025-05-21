@@ -237,3 +237,13 @@ bootstrap限定 テーブルの装飾
 </form>
 ```
 
+Bootstrapのフォーム基本形
+```
+<form action="#" method="post">
+	<div class="form-group">
+		<label for="comment_1">コメント</label>
+		<input type="text" class="form-control" name="comment" id="comment_1">
+	</div>
+	<button type="submit">OK</button>
+</form>
+```
