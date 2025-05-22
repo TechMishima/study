@@ -247,3 +247,26 @@ Bootstrapのフォーム基本形
 	<button type="submit">OK</button>
 </form>
 ```
+
+## 3-5 フォームにパーツを追加しよう
+
+複数行のテキストエリアの基本形
+```
+<form action="#" method="post">
+	<label for="message">メッセージ</label>
+	<textarea name="message" id="message" rows="3"></textarea>
+	<button type="submit">送信する</button>
+</form>
+```
+
+Bootstrapの複数行のテキストエリアの基本形
+```
+<form action="#" method="post">
+	<div class="form-group">
+		<label for="message">メッセージ</label>
+		<textarea class="form-control" name="message" id="message" rows="3"></textarea>
+	</div>
+	<button type="submit">送信する</button>
+</form>
+```
+
