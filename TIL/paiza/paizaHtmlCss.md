@@ -270,3 +270,15 @@ Bootstrapの複数行のテキストエリアの基本形
 </form>
 ```
 
+プルダウンメニューの基本形
+```
+<form action="#" method="post">
+	<select name="select" id="select">
+		<option>タマ</option>
+		<option>ミケ</option>
+		<option>トラ</option>
+	</select>
+</form>
+```
+
+Bootstrapのプルダウンメニューの基本形
