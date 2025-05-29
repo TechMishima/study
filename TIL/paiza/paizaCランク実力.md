@@ -8,3 +8,15 @@ b = gets.chomp
 c = gets.chomp
 puts a+"-"+b+"-"+c
 ```
+
+気象観測 Ruby編
+```
+n = gets.to_i
+if n < 2
+    puts "clear"
+elsif n < 9
+    puts "sunny"
+else
+    puts "cloudy"
+end
+```
