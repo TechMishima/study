@@ -293,3 +293,5 @@ Bootstrapのプルダウンメニューの基本形
 	</div>
 </form>
 ```
+
+textareaの学習
