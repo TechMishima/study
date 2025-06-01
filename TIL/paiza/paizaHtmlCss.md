@@ -295,3 +295,28 @@ Bootstrapのプルダウンメニューの基本形
 ```
 
 textareaの学習
+
+## 3-6 グリッドでフォームを作ろう
+
+### Bootstrapによる、水平型フォームの基本形
+
+行は、class="form-group"で指定します。<br>
+ラベルとパーツをcol-sm-xで分割します。<br>
+ラベルには、control-labelを追加します。<br>
+
+ラベルがない場合は、col-sm-offset-xを追加します。
+```
+<form class="form-horizontal" action="#" method="post">
+	<div class="form-group">
+		<label class="col-sm-4 control-label" for="comment">コメント</label>
+		<div class="col-sm-8">
+			<input type="text" class="form-control" name="comment" id="comment">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-4 col-sm-8">
+			<button type="submit">OK</button>
+		</div>
+	</div>
+</form>
+```
