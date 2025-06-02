@@ -20,3 +20,18 @@ else
     puts "cloudy"
 end
 ```
+
+荷物検査 Ruby編
+```
+n, m = gets.split.map(&:to_i)
+sum = 0
+n.times do
+    sum += gets.to_i
+end
+
+if sum <= m
+    puts "OK"
+else
+    puts "NG"
+end
+```
