@@ -35,3 +35,28 @@ else
     puts "NG"
 end
 ```
+
+背の順 Ruby編
+```
+n = gets.to_i
+menbers = []
+
+n.times do
+    a, b = gets.chomp.split
+    menbers << [a.to_i, b]
+end
+
+ans_menbers = menbers.sort{|a,b| b[0] <=> a[0]}
+
+ans_menbers.each do |ans|
+    if ans[0] != 168
+        puts ans[1]
+    else
+        if ans[1] == "Sato"
+            puts "Suzuki"
+        else
+            puts "Sato"
+        end
+    end
+end
+```
