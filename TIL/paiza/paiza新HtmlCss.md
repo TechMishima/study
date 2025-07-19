@@ -15,3 +15,17 @@ https://paiza.jp/works/html-css/new-primer
 
 HTMLとはWebページを作成するために開発されたマークアップ言語<br>
 WebページのほとんどがHTMLを用いて作成されている
+
+## 1-2 DOCTYPE宣言
+
+最新のHTMLでWebページを表示するために必要な記述
+
+- DOCTYPE宣言あり
+  - 標準モード
+- DOCTYPE宣言なし
+  - 互換モード(古いWebページで表示する)
+
+```
+<!DOCTYPE html>
+```
+大文字小文字混ぜても宣言はできるが一般的には大文字で宣言する
