@@ -276,3 +276,64 @@ pre要素に記述した空白やタブ、改行を含んだテキストはそ�
 ## 5-6 順序付きリスト要素
 
 > ul要素と同じように表示されますが、各項目の行頭では記号の代わりに、番号が付けられている点で異なっています。
+
+### olタグの属性
+
+- start属性
+  - リスト項目の番号付けの初めの値を変更する
+- type属性
+  - 番号付けのスタイルを変更することができる属性
+- reversed属性
+  - リストの番号付けを降順にする属性
+
+### コード
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <p>小学生に人気な職業</p>
+    <ol start=3>
+        <li>スポーツ選手</li>
+        <li>YouTuber</li>
+        <li>警察官</li>
+    </ol>
+</body>
+</html>
+```
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <p>小学生に人気な職業</p>
+    <ol type="a">
+        <li>スポーツ選手</li>
+        <li>YouTuber</li>
+        <li>警察官</li>
+    </ol>
+</body>
+</html>
+```
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <p>小学生に人気な職業</p>
+    <ol reversed>
+        <li>スポーツ選手</li>
+        <li>YouTuber</li>
+        <li>警察官</li>
+    </ol>
+</body>
+</html>
+```
