@@ -355,3 +355,36 @@ pre要素に記述した空白やタブ、改行を含んだテキストはそ�
   </main>
 </body>
 ```
+
+
+## 5-8 汎用コンテナ
+
+> div要素は特定の機能を持たない汎用コンテナを表す要素
+
+```
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .item{
+            background: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <div class="item">
+        <p>剣</p>
+        <p>盾</p>
+        <p>杖</p>
+    </div>
+</body>
+```
+
+```
+<body>
+    <div style="background: #00ff00;">
+        <p>剣</p>
+        <p>盾</p>
+        <p>杖</p>
+    </div>
+</body>
+```
